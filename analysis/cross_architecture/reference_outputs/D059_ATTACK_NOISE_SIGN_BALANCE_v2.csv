@@ -1,0 +1,7 @@
+family,family_label,metric,negative_seeds,positive_seeds,zero_seeds,dominant_sign,mean_delta_vits_minus_vitb
+learned,Learned,attack_nauc,6,0,0,negative,-0.21860955689862319
+learned,Learned,noise_nauc,3,3,0,balanced,-0.00089416053857294998
+sinusoidal,Sinusoidal,attack_nauc,6,0,0,negative,-0.15992397803788136
+sinusoidal,Sinusoidal,noise_nauc,2,4,0,positive,0.00072932867750484997
+rope,RoPE,attack_nauc,5,1,0,negative,-0.093203972210789909
+rope,RoPE,noise_nauc,3,3,0,balanced,0.00013207895416378332

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "analysis_id": "D031_SINUSOIDAL_PER_LAYER_ANALYSIS_v1",
+  "created_at": "2026-08-02T10:23:00+02:00",
+  "status": "PASS_COMPLETE_FOR_D019_SINUSOIDAL_AND_D020_VITS_S42",
+  "scope": {
+    "D019": "ViT-B and ViT-S FP32 Sinusoidal, n=6, four budgets, loss- and rho-selected restarts",
+    "D020": "ViT-S FP32 Sinusoidal seed 42, direct-rho 200x5 at budgets 0.0095 and 0.020"
+  },
+  "identity_check": {
+    "formula": "global_rho_abs^2 = mean_l(layer_rho_abs_l^2)",
+    "max_relative_error": 3.9241868537292065e-16,
+    "status": "PASS"
+  },
+  "key_findings": {
+    "vitb_taskloss_loss_vs_rho_selection": {
+      "mean_cosine": 0.9964578251988713,
+      "min_cosine": 0.9151435508080095,
+      "max_jsd_nats": 0.023522647039404647,
+      "different_restart_points": 19
+    },
+    "vits_taskloss_loss_vs_rho_selection": {
+      "mean_cosine": 0.9998890483164656,
+      "min_cosine": 0.9973478721343174,
+      "max_jsd_nats": 0.0012545012138425527,
+      "different_restart_points": 15
+    },
+    "direct_vs_task_loss": [
+      {
+        "architecture": "vits",
+        "training_seed": 42,
+        "budget": 0.02,
+        "direct_rho_restart": 1,
+        "task_loss_restart": 1,
+        "direct_rho_calibration_rho_rel": 0.2950492673039998,
+        "task_loss_calibration_rho_rel": 0.07945296773258853,
+        "direct_rho_accuracy_pct": 19.515011547344113,
+        "task_loss_accuracy_pct": 1.7032332563510393,
+        "direct_rho_n_eff": 4.447901106139261,
+        "task_loss_n_eff": 10.977867962335463,
+        "direct_rho_max_share": 0.4074954761019784,
+        "task_loss_max_share": 0.1210728314799415,
+        "direct_rho_dominant_layer": 2,
+        "task_loss_dominant_layer": 4,
+        "profile_cosine": 0.6134565613993356,
+        "profile_jsd_nats": 0.1256517738187145
+      },
+      {
+        "architecture": "vits",
+        "training_seed": 42,
+        "budget": 0.0095,
+        "direct_rho_restart": 3,
+        "task_loss_restart": 0,
+        "direct_rho_calibration_rho_rel": 0.10208808379639417,
+        "task_loss_calibration_rho_rel": 0.09379674395478407,
+        "direct_rho_accuracy_pct": 76.70323325635104,
+        "task_loss_accuracy_pct": 7.361431870669746,
+        "direct_rho_n_eff": 4.042957085118755,
+        "task_loss_n_eff": 9.223693606833365,
+        "direct_rho_max_share": 0.43006653189521205,
+        "task_loss_max_share": 0.20205693147086284,
+        "direct_rho_dominant_layer": 2,
+        "task_loss_dominant_layer": 4,
+        "profile_cosine": 0.5892040678716538,
+        "profile_jsd_nats": 0.14033573985107195
+      }
+    ]
+  },
+  "claim_limit": "Per-layer energy shares describe layerwise concentration of the measured logit displacement. They do not localize heads/tokens, establish causality, or extend canonical support.",
+  "matched_damage_rule": {
+    "targets": [
+      0.8,
+      0.5,
+      0.2
+    ],
+    "tolerance": 0.03,
+    "interpolation": false,
+    "unmatched_status": "NOT_MATCHED"
+  }
+}

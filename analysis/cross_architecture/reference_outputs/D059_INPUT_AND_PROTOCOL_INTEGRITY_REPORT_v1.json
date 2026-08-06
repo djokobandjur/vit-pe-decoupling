@@ -1,0 +1,857 @@
+{
+  "analysis_label": "SEED_ALIGNED_CROSS_ARCHITECTURE",
+  "attack_eval_numerical_mode": {
+    "attack_backward_autocast": false,
+    "attack_forward_autocast": false,
+    "attack_input_dtype": "torch.float32",
+    "created_at": "2026-07-30T10:39:07.370652+00:00",
+    "cuda_version": "12.9",
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cudnn_version": 91002,
+    "float32_matmul_precision": "high",
+    "gpu_capability": [
+      9,
+      0
+    ],
+    "gpu_name": "NVIDIA H200",
+    "grad_scaler_during_attack": false,
+    "hostname": "1e41e8b00727",
+    "lock_id": "ATTACK_EVAL_NUMERICAL_MODE_v1",
+    "matmul_allow_tf32": true,
+    "model_parameter_dtype_after_load_required": "torch.float32",
+    "note": "This locks the new audit execution mode. Historical cross-cohort equivalence remains subject to D033a reconciliation; no historical result is declared invalid here.",
+    "platform": "Linux-4.18.0-477.27.1.el8_8.x86_64-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0]",
+    "schema_version": 1,
+    "sdpa_backend": "MATH",
+    "torch_version": "2.8.0a0+5228986c39.nv25.06"
+  },
+  "checks": {
+    "attack_36_curves": true,
+    "clean_36_rows": true,
+    "d033_present": true,
+    "noise_36_curves": true,
+    "numerical_mode_present": true,
+    "vits_final_audit_present": true,
+    "vits_six_sessions": true
+  },
+  "comparison": "ViT-B/16 AMP-trained vs ViT-S/16 AMP-trained; FP32 attack/eval",
+  "d033_provenance": {
+    "canonical_engine_sources": {
+      "vitb_server": {
+        "attack_backward_present": true,
+        "autocast_mentions": 0,
+        "exists": true,
+        "expected_sha256": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307",
+        "expected_sha256_match": true,
+        "gradscaler_mentions": 0,
+        "path": "/home/djoko.bandjur.ftnkm/Notebooks/cross_family_final_n6_FMLE/code/cross_family_rho_decoupling.py",
+        "sha256": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307",
+        "tf32_mentions": 0
+      },
+      "vits_packaged_reference": {
+        "attack_backward_present": true,
+        "autocast_mentions": 0,
+        "exists": true,
+        "gradscaler_mentions": 0,
+        "path": "/home/djoko.bandjur.ftnkm/Notebooks/SINUSOIDAL_PER_RESTART_AUDIT_v1/inputs/VITS_CANONICAL_ENGINE_REFERENCE.py",
+        "sha256": "e2b86d96ee33737761665b1e6a78f96cc5f446ac41f9cbc3f5426fa82fd88c64",
+        "tf32_mentions": 0
+      },
+      "vits_server": {
+        "attack_backward_present": true,
+        "autocast_mentions": 0,
+        "exists": true,
+        "expected_sha256": "e2b86d96ee33737761665b1e6a78f96cc5f446ac41f9cbc3f5426fa82fd88c64",
+        "expected_sha256_match": true,
+        "gradscaler_mentions": 0,
+        "path": "/home/djoko.bandjur.ftnkm/Notebooks/FMLE_IN100_VITS_FULL_ROBUSTNESS_v1/code/cross_family_rho_vits_engine.py",
+        "sha256": "e2b86d96ee33737761665b1e6a78f96cc5f446ac41f9cbc3f5426fa82fd88c64",
+        "tf32_mentions": 0
+      }
+    },
+    "created_at": "2026-07-30T10:39:07.234061+00:00",
+    "datasets": {
+      "vitb": {
+        "counts": {
+          "attack": 1280,
+          "calibration": 256,
+          "evaluation": 3464
+        },
+        "n_classes": 100,
+        "n_images": 5000,
+        "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+        "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+        "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/imagenet100_resized/val"
+      },
+      "vits": {
+        "counts": {
+          "attack": 1280,
+          "calibration": 256,
+          "evaluation": 3464
+        },
+        "n_classes": 100,
+        "n_images": 5000,
+        "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+        "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+        "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/reextract_test/imagenet100_resized/val"
+      }
+    },
+    "expected_engine_hashes_from_prior_session_protocols": {
+      "vitb": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307",
+      "vits": "e2b86d96ee33737761665b1e6a78f96cc5f446ac41f9cbc3f5426fa82fd88c64"
+    },
+    "package_code": {
+      "audit_core_sha256": "71dd1d19138326dec5c2a77aed3bad57b28062c11c12e4780c74fff17d96cc4a",
+      "runner_sha256": "8f1252169acfa23bd31cbc83a5181cb33470d5cb1987c84011911dd7922a0c9a",
+      "vitb_architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf",
+      "vits_architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf"
+    },
+    "package_dir": "/home/djoko.bandjur.ftnkm/Notebooks/SINUSOIDAL_PER_RESTART_AUDIT_v1",
+    "status": "PROVENANCE_CAPTURED_FOR_NEW_AUDIT__HISTORICAL_RECONCILIATION_PENDING"
+  },
+  "scope_limit": "Architecture is the matched factor of interest, but bit-identical initialization and training-order pairing are not demonstrated; results are seed-aligned, not strict paired causal estimates.",
+  "shared_families": [
+    "learned",
+    "sinusoidal",
+    "rope"
+  ],
+  "shared_seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011,
+    1213
+  ],
+  "status": "PASS",
+  "strict_pairing": "NOT_CLAIMED",
+  "vitb": {
+    "attack_rows": 168,
+    "attack_source": "/mnt/data/_v19src_d059/NN_CANONICAL_v19_VITB_VITS_SUPPORT_AWARE_UPDATE/analysis/v18_canonical_pipeline/outputs/adversarial_native_budget_points_v18.csv",
+    "clean_rows": 18,
+    "clean_source": "/mnt/data/_v19src_d059/NN_CANONICAL_v19_VITB_VITS_SUPPORT_AWARE_UPDATE/analysis/v13_closure/clean_accuracy_eval_subset_seed_level_v13.csv",
+    "datasets": [
+      "imagenet"
+    ],
+    "families": [
+      "learned",
+      "rope",
+      "sinusoidal"
+    ],
+    "noise_rows": 108,
+    "noise_source": "/mnt/data/_v19src_d059/NN_CANONICAL_v19_VITB_VITS_SUPPORT_AWARE_UPDATE/analysis/v18_canonical_pipeline/outputs/noise_budget_paired_points_v18.csv",
+    "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011,
+      1213
+    ]
+  },
+  "vitb_pipeline_report": {
+    "attack_points": 444,
+    "canonical_checks": {
+      "cifar_alibi_noise_primary_mean": 0.9935255412556439,
+      "cifar_alibi_noise_wide_mean": 0.964138272128801,
+      "expected_primary_rounded": "0.9935",
+      "expected_wide_rounded": "0.9641"
+    },
+    "cifar_wide_endpoint": 0.23,
+    "curve_keys_primary": 96,
+    "figure_sha256": {
+      "pdf": "e94705cc815a8a0f7e066bb9ba0a984d5db4b0c749a5312d4149dcf4f933f9ae",
+      "png": "e14d1c744ce38eef4b222487cb50dfe06394c1c7e243e8a2050c353d8a8654a3",
+      "svg": "50dd900fd56053412bafeba131788d7a781165419879fa6ae29212c7fb3daf82"
+    },
+    "friedman": {
+      "cifar_0p09": {
+        "asymptotic_p_value": 0.0018166489665723214,
+        "exact_permutation_p_value": 9.46924029063786e-05,
+        "exact_tail_count": 18096,
+        "family_order": [
+          "learned",
+          "sinusoidal",
+          "rope",
+          "alibi"
+        ],
+        "n_total_permutations": 191102976,
+        "seed_order": [
+          42,
+          123,
+          456,
+          789,
+          1011,
+          1213
+        ],
+        "statistic": 15.0
+      },
+      "cifar_0p095": {
+        "asymptotic_p_value": 0.0018166489665723214,
+        "exact_permutation_p_value": 9.46924029063786e-05,
+        "exact_tail_count": 18096,
+        "family_order": [
+          "learned",
+          "sinusoidal",
+          "rope",
+          "alibi"
+        ],
+        "n_total_permutations": 191102976,
+        "seed_order": [
+          42,
+          123,
+          456,
+          789,
+          1011,
+          1213
+        ],
+        "statistic": 15.0
+      },
+      "imagenet_0p09": {
+        "asymptotic_p_value": 0.0009387420550450392,
+        "exact_permutation_p_value": 8.037551440329219e-06,
+        "exact_tail_count": 1536,
+        "family_order": [
+          "learned",
+          "sinusoidal",
+          "rope",
+          "alibi"
+        ],
+        "n_total_permutations": 191102976,
+        "seed_order": [
+          42,
+          123,
+          456,
+          789,
+          1011,
+          1213
+        ],
+        "statistic": 16.400000000000006
+      },
+      "imagenet_0p095": {
+        "asymptotic_p_value": 0.0009387420550450392,
+        "exact_permutation_p_value": 8.037551440329219e-06,
+        "exact_tail_count": 1536,
+        "family_order": [
+          "learned",
+          "sinusoidal",
+          "rope",
+          "alibi"
+        ],
+        "n_total_permutations": 191102976,
+        "seed_order": [
+          42,
+          123,
+          456,
+          789,
+          1011,
+          1213
+        ],
+        "statistic": 16.400000000000006
+      }
+    },
+    "noise_budget_paired_points": 330,
+    "noise_draws_per_point": [
+      10
+    ],
+    "noise_raw_records": 3300,
+    "primary_endpoint": 0.09,
+    "sensitivity_endpoint": 0.095,
+    "source_files": 75,
+    "source_manifest_sha256": "317dd2dfdcb8b99f7cd1688fa39137637e801936e1181c92d438fb3dc97ccb31",
+    "version": "CANONICAL v18"
+  },
+  "vits": {
+    "attack_configs": {
+      "learned": [
+        [
+          1600,
+          5,
+          0.05,
+          "global_rms"
+        ]
+      ],
+      "rope": [
+        [
+          200,
+          5,
+          0.05,
+          "global_rms"
+        ]
+      ],
+      "sinusoidal": [
+        [
+          200,
+          5,
+          0.05,
+          "global_rms"
+        ]
+      ]
+    },
+    "completion_markers": 6,
+    "convergence_audit": {
+      "all_pass": true,
+      "comparisons": [
+        {
+          "base_steps": 1600,
+          "budget": 0.005,
+          "delta_attack_loss": 1.2871949002235539e-05,
+          "delta_normalized_accuracy": 0.00037105751391464104,
+          "delta_rho_rel": 3.528304970412677e-07,
+          "double_steps": 3200,
+          "family": "learned",
+          "pass": true,
+          "restart_seeds": [
+            1659519264,
+            893837435,
+            1451093104,
+            688822001,
+            1762271505
+          ],
+          "restart_seeds_match": true,
+          "seed": 42,
+          "selection": {
+            "family": "learned",
+            "scout_normalized_accuracy": 0.84860853432282,
+            "scout_restarts": 1,
+            "scout_steps": 200,
+            "seed": 42,
+            "selected_budget": 0.005,
+            "selection_status": "weak_cliff_match",
+            "selection_target": 0.5
+          }
+        },
+        {
+          "base_steps": 200,
+          "budget": 0.007,
+          "delta_attack_loss": 0.0007268194109202319,
+          "delta_normalized_accuracy": 0.0003667033370003958,
+          "delta_rho_rel": 3.409687188803828e-05,
+          "double_steps": 400,
+          "family": "sinusoidal",
+          "pass": true,
+          "restart_seeds": [
+            1410545029,
+            1271842218,
+            717880631,
+            975517582,
+            991984799
+          ],
+          "restart_seeds_match": true,
+          "seed": 42,
+          "selection": {
+            "family": "sinusoidal",
+            "scout_normalized_accuracy": 0.5599559955995599,
+            "scout_restarts": 1,
+            "scout_steps": 100,
+            "seed": 42,
+            "selected_budget": 0.007,
+            "selection_status": "inside_cliff",
+            "selection_target": 0.5
+          }
+        },
+        {
+          "base_steps": 200,
+          "budget": 0.075,
+          "delta_attack_loss": 0.0001776136457918298,
+          "delta_normalized_accuracy": 0.00034746351633080375,
+          "delta_rho_rel": 2.441177988851684e-06,
+          "double_steps": 400,
+          "family": "rope",
+          "pass": true,
+          "restart_seeds": [
+            367210544,
+            1396019205,
+            2089605246,
+            826777867,
+            1998296305
+          ],
+          "restart_seeds_match": true,
+          "seed": 42,
+          "selection": {
+            "family": "rope",
+            "scout_normalized_accuracy": 0.3968033356497567,
+            "scout_restarts": 1,
+            "scout_steps": 50,
+            "seed": 42,
+            "selected_budget": 0.075,
+            "selection_status": "inside_cliff",
+            "selection_target": 0.5
+          }
+        },
+        {
+          "base_steps": 1600,
+          "budget": 0.005,
+          "delta_attack_loss": 1.8290802836329334e-05,
+          "delta_normalized_accuracy": 0.00037160906726108056,
+          "delta_rho_rel": 1.857238796088012e-07,
+          "double_steps": 3200,
+          "family": "learned",
+          "pass": true,
+          "restart_seeds": [
+            1507155255,
+            700337443,
+            142521452,
+            93557635,
+            1243940151
+          ],
+          "restart_seeds_match": true,
+          "seed": 123,
+          "selection": {
+            "family": "learned",
+            "scout_normalized_accuracy": 0.6514306949089557,
+            "scout_restarts": 1,
+            "scout_steps": 200,
+            "seed": 123,
+            "selected_budget": 0.005,
+            "selection_status": "inside_cliff",
+            "selection_target": 0.5
+          }
+        },
+        {
+          "base_steps": 200,
+          "budget": 0.0085,
+          "delta_attack_loss": 0.00037980973720586064,
+          "delta_normalized_accuracy": 0.0018348623853210455,
+          "delta_rho_rel": 7.567203576255843e-05,
+          "double_steps": 400,
+          "family": "sinusoidal",
+          "pass": true,
+          "restart_seeds": [
+            806820785,
+            756780823,
+            1534601499,
+            998455459,
+            1827706698
+          ],
+          "restart_seeds_match": true,
+          "seed": 123,
+          "selection": {
+            "family": "sinusoidal",
+            "scout_normalized_accuracy": 0.4711926605504587,
+            "scout_restarts": 1,
+            "scout_steps": 100,
+            "seed": 123,
+            "selected_budget": 0.0085,
+            "selection_status": "inside_cliff",
+            "selection_target": 0.5
+          }
+        },
+        {
+          "base_steps": 200,
+          "budget": 0.075,
+          "delta_attack_loss": 0.0009618580341337335,
+          "delta_normalized_accuracy": 0.001737921445950641,
+          "delta_rho_rel": 3.1466178991301774e-05,
+          "double_steps": 400,
+          "family": "rope",
+          "pass": true,
+          "restart_seeds": [
+            409280138,
+            569092863,
+            1061179960,
+            519226240,
+            414474124
+          ],
+          "restart_seeds_match": true,
+          "seed": 123,
+          "selection": {
+            "family": "rope",
+            "scout_normalized_accuracy": 0.42301007994438655,
+            "scout_restarts": 1,
+            "scout_steps": 50,
+            "seed": 123,
+            "selected_budget": 0.075,
+            "selection_status": "inside_cliff",
+            "selection_target": 0.5
+          }
+        }
+      ],
+      "criteria": {
+        "max_abs_delta_attack_loss": 0.005,
+        "max_abs_delta_normalized_accuracy": 0.003,
+        "max_abs_delta_rho_rel": 0.003
+      },
+      "family_pass": {
+        "learned": true,
+        "rope": true,
+        "sinusoidal": true
+      }
+    },
+    "final_integrity_audit": {
+      "clean_accuracy": {
+        "learned": {
+          "max": 78.23325635103926,
+          "mean": 77.93013856812934,
+          "min": 77.68475750577367,
+          "n": 6,
+          "range_pp": 0.5484988452655841,
+          "sd": 0.2211776132722595
+        },
+        "rope": {
+          "max": 83.08314087759815,
+          "mean": 82.82332563510393,
+          "min": 82.39030023094688,
+          "n": 6,
+          "range_pp": 0.6928406466512769,
+          "sd": 0.32813561751461423
+        },
+        "sinusoidal": {
+          "max": 79.3013856812933,
+          "mean": 78.5363741339492,
+          "min": 77.82909930715935,
+          "n": 6,
+          "range_pp": 1.4722863741339438,
+          "sd": 0.5078698639075963
+        }
+      },
+      "failures": [],
+      "protocol_id": "VITS_FP16_ATTACK_PROTOCOL_LOCKED_v1",
+      "status": "ok",
+      "units": [
+        {
+          "family": "learned",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_1_seed_42/attacks_learned.json",
+          "max_rho_rel": 0.11184532304847106,
+          "points": 7,
+          "seed": 42
+        },
+        {
+          "family": "sinusoidal",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_1_seed_42/attacks_sinusoidal.json",
+          "max_rho_rel": 0.0910491492117893,
+          "points": 10,
+          "seed": 42
+        },
+        {
+          "family": "rope",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_1_seed_42/attacks_rope.json",
+          "max_rho_rel": 0.1212689244789277,
+          "points": 6,
+          "seed": 42
+        },
+        {
+          "family": "learned",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_2_seed_123/attacks_learned.json",
+          "max_rho_rel": 0.09952385375916267,
+          "points": 7,
+          "seed": 123
+        },
+        {
+          "family": "sinusoidal",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_2_seed_123/attacks_sinusoidal.json",
+          "max_rho_rel": 0.0895809148347027,
+          "points": 10,
+          "seed": 123
+        },
+        {
+          "family": "rope",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_2_seed_123/attacks_rope.json",
+          "max_rho_rel": 0.12804234538442083,
+          "points": 6,
+          "seed": 123
+        },
+        {
+          "family": "learned",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_3_seed_456/attacks_learned.json",
+          "max_rho_rel": 0.10250007858335218,
+          "points": 7,
+          "seed": 456
+        },
+        {
+          "family": "sinusoidal",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_3_seed_456/attacks_sinusoidal.json",
+          "max_rho_rel": 0.09709398109180732,
+          "points": 10,
+          "seed": 456
+        },
+        {
+          "family": "rope",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_3_seed_456/attacks_rope.json",
+          "max_rho_rel": 0.10646703102864417,
+          "points": 6,
+          "seed": 456
+        },
+        {
+          "family": "learned",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_4_seed_789/attacks_learned.json",
+          "max_rho_rel": 0.10131931139064532,
+          "points": 7,
+          "seed": 789
+        },
+        {
+          "family": "sinusoidal",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_4_seed_789/attacks_sinusoidal.json",
+          "max_rho_rel": 0.09399385591012947,
+          "points": 10,
+          "seed": 789
+        },
+        {
+          "family": "rope",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_4_seed_789/attacks_rope.json",
+          "max_rho_rel": 0.13858794456698123,
+          "points": 6,
+          "seed": 789
+        },
+        {
+          "family": "learned",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_5_seed_1011/attacks_learned.json",
+          "max_rho_rel": 0.24749272810274703,
+          "points": 7,
+          "seed": 1011
+        },
+        {
+          "family": "sinusoidal",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_5_seed_1011/attacks_sinusoidal.json",
+          "max_rho_rel": 0.08734557159142926,
+          "points": 10,
+          "seed": 1011
+        },
+        {
+          "family": "rope",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_5_seed_1011/attacks_rope.json",
+          "max_rho_rel": 0.12239400296280072,
+          "points": 6,
+          "seed": 1011
+        },
+        {
+          "family": "learned",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_6_seed_1213/attacks_learned.json",
+          "max_rho_rel": 0.2575659468832938,
+          "points": 7,
+          "seed": 1213
+        },
+        {
+          "family": "sinusoidal",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_6_seed_1213/attacks_sinusoidal.json",
+          "max_rho_rel": 0.09370754545603203,
+          "points": 10,
+          "seed": 1213
+        },
+        {
+          "family": "rope",
+          "file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/final_n6/session_6_seed_1213/attacks_rope.json",
+          "max_rho_rel": 0.12187545140730031,
+          "points": 6,
+          "seed": 1213
+        }
+      ]
+    },
+    "locked_protocol": {
+      "architecture": {
+        "depth": 12,
+        "embed_dim": 384,
+        "head_dim": 64,
+        "name": "ViT-S/16",
+        "num_heads": 6,
+        "num_tokens": 197
+      },
+      "attack": {
+        "convergence_criteria": {
+          "max_abs_delta_attack_loss": 0.005,
+          "max_abs_delta_normalized_accuracy": 0.003,
+          "max_abs_delta_rho_rel": 0.003
+        },
+        "convergence_evidence_file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_fp16_robustness_v1/convergence_audit/VITS_FP16_CONVERGENCE_AUDIT.json",
+        "parameter_norm": "global_rms",
+        "pgd_alpha_ratio": 0.05,
+        "pgd_restarts": 5,
+        "pgd_steps_by_family": {
+          "learned": 1600,
+          "rope": 200,
+          "sinusoidal": 200
+        },
+        "restart_seed_tag_alpha_ratio": 0.05,
+        "restart_seed_tag_steps": 50,
+        "rope_parameterization": "phase"
+      },
+      "code_hashes": {
+        "architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf",
+        "engine_sha256": "98c5fa67e7bf089148840a60b16a283899939f754f6a6c9e65261a916cc9cffb"
+      },
+      "cohort_provenance": {
+        "checkpoint_storage_note": "AMP training normally stores FP32 master weights; tensor dtype alone is not used as precision provenance.",
+        "protocol_reference": "ImageNet-100 ViT-B training protocol; architecture-only scaling",
+        "training_precision": "CUDA AMP FP16 with dynamic GradScaler (user-confirmed original cohort)"
+      },
+      "convergence": {
+        "alpha_ratio": 0.05,
+        "base_steps_by_family": {
+          "learned": 1600,
+          "rope": 200,
+          "sinusoidal": 200
+        },
+        "criteria": {
+          "max_abs_delta_attack_loss": 0.005,
+          "max_abs_delta_normalized_accuracy": 0.003,
+          "max_abs_delta_rho_rel": 0.003
+        },
+        "development_seeds": [
+          42,
+          123
+        ],
+        "double_steps_by_family": {
+          "learned": 3200,
+          "rope": 400,
+          "sinusoidal": 400
+        },
+        "restart_seed_tag_alpha_ratio": 0.05,
+        "restart_seed_tag_steps": 50,
+        "restarts": 5,
+        "scope": "One critical cliff budget per family on each of seeds 42 and 123; same five restart initializations for N and 2N.",
+        "scout_restarts": 1,
+        "scout_steps_by_family": {
+          "learned": 200,
+          "rope": 50,
+          "sinusoidal": 100
+        },
+        "selection_rule": "Use a 1-restart scout on the prespecified final epsilon grid; select the nonzero budget nearest normalized accuracy 0.5. The scout is not a final result.",
+        "selection_target_normalized_accuracy": 0.5
+      },
+      "dataset": "ImageNet-100",
+      "expected_training_config": {
+        "architecture": "ViT-S/16",
+        "batch_size": 128,
+        "depth": 12,
+        "dropout": 0.1,
+        "embed_dim": 384,
+        "epochs": 300,
+        "img_size": 224,
+        "label_smoothing": 0.1,
+        "lr": 0.0003,
+        "mixup_alpha": 0.8,
+        "mlp_ratio": 4.0,
+        "num_classes": 100,
+        "num_heads": 6,
+        "patch_size": 16,
+        "protocol_reference": "ImageNet-100 ViT-B protocol; architecture-only scaling",
+        "use_mixup": true,
+        "warmup_epochs": 20,
+        "weight_decay": 0.1
+      },
+      "families": [
+        "learned",
+        "sinusoidal",
+        "rope"
+      ],
+      "initial_budget_grids": {
+        "fixed_noise_direction_across_budget_grid": true,
+        "noise": {
+          "learned": [
+            0.0,
+            0.0025,
+            0.005,
+            0.01,
+            0.02,
+            0.04,
+            0.06,
+            0.08,
+            0.12
+          ],
+          "rope": [
+            0.0,
+            0.025,
+            0.05,
+            0.1,
+            0.2,
+            0.4,
+            0.6
+          ],
+          "sinusoidal": [
+            0.0,
+            0.01,
+            0.025,
+            0.05,
+            0.1,
+            0.2,
+            0.3
+          ]
+        },
+        "noise_distribution": "gaussian",
+        "noise_draws": 10,
+        "paired_noise_seed_across_pe_families": true,
+        "pgd": {
+          "learned": [
+            0.0,
+            0.003,
+            0.004,
+            0.0045,
+            0.005,
+            0.006,
+            0.008
+          ],
+          "rope": [
+            0.0,
+            0.01,
+            0.025,
+            0.05,
+            0.075,
+            0.1
+          ],
+          "sinusoidal": [
+            0.0,
+            0.005,
+            0.006,
+            0.007,
+            0.0075,
+            0.008,
+            0.0085,
+            0.009,
+            0.0095,
+            0.01
+          ]
+        }
+      },
+      "input_invariants": {
+        "attack_images": 1280,
+        "calibration_images": 256,
+        "checkpoint_filename_policy": "best_model.pth only",
+        "checkpoint_manifest_sha256": "b3ec8d4a2b5449311f382ccafbf56c869ce76d304bb574cd2fc6a89fc9ad7dad",
+        "evaluation_images": 3464,
+        "overlap_required": 0,
+        "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+        "split_file_sha256": "43daa888eddd89047f2b73a42755554f974bf0da44c58b43f347d44bb9bd3259",
+        "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c"
+      },
+      "locked_at": "2026-07-29T04:33:14.677527+00:00",
+      "primary_endpoints": {
+        "auc": "lower-damage-frontier AUC on a common rho_rel domain",
+        "cliff_width": "rho20-rho80",
+        "rho50": "rho_rel mapped at epsilon crossing where normalized accuracy reaches 0.5"
+      },
+      "protocol_id": "VITS_FP16_ATTACK_PROTOCOL_LOCKED_v1",
+      "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ],
+      "split": {
+        "attack_images": 1280,
+        "calibration_images": 256,
+        "evaluation_images": 3464,
+        "split_seed": 0
+      },
+      "status": "VITS_FP16_ATTACK_PROTOCOL_LOCKED"
+    },
+    "protocol_ids": [
+      "VITS_FP16_ATTACK_PROTOCOL_LOCKED_v1"
+    ],
+    "sample_order_sha256": [
+      "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8"
+    ],
+    "sessions": 6,
+    "split_file_sha256": [
+      "43daa888eddd89047f2b73a42755554f974bf0da44c58b43f347d44bb9bd3259"
+    ],
+    "split_sha256": [
+      "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c"
+    ],
+    "zip_sha256": "52d1faa77bf2069d3d094d17c7ad8280feebed395da788fa4621cc65469c4381"
+  }
+}

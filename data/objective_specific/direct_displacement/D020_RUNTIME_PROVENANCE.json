@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-30T21:22:00.592037+00:00",
+  "status": "VALIDATED",
+  "hostname": "e29ad124e0a5",
+  "python": "3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0]",
+  "platform": "Linux-4.18.0-477.27.1.el8_8.x86_64-x86_64-with-glibc2.39",
+  "current_numerical_mode": {
+    "attack_forward_autocast": false,
+    "attack_backward_autocast": false,
+    "attack_input_dtype": "torch.float32",
+    "model_parameter_dtype_after_load_required": "torch.float32",
+    "grad_scaler_during_attack": false,
+    "sdpa_backend": "MATH",
+    "matmul_allow_tf32": true,
+    "cudnn_allow_tf32": true,
+    "float32_matmul_precision": "high",
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "torch_version": "2.8.0a0+5228986c39.nv25.06",
+    "cuda_version": "12.9",
+    "cudnn_version": 91002,
+    "gpu_name": "NVIDIA H200",
+    "gpu_capability": [
+      9,
+      0
+    ]
+  },
+  "uid_cache_report": {
+    "uid": 1545,
+    "euid": 1545,
+    "USER": "djoko.bandjur.ftnkm",
+    "LOGNAME": "djoko.bandjur.ftnkm",
+    "USERNAME": "djoko.bandjur.ftnkm",
+    "HOME": "/home/djoko.bandjur.ftnkm",
+    "getpass_user": "djoko.bandjur.ftnkm",
+    "cache_paths": {
+      "TMPDIR": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/tmp",
+        "writable": true
+      },
+      "TEMP": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/tmp",
+        "writable": true
+      },
+      "TMP": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/tmp",
+        "writable": true
+      },
+      "XDG_CACHE_HOME": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/xdg",
+        "writable": true
+      },
+      "TORCHINDUCTOR_CACHE_DIR": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/torchinductor",
+        "writable": true
+      },
+      "TRITON_CACHE_DIR": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/triton",
+        "writable": true
+      },
+      "TORCH_EXTENSIONS_DIR": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/torch_extensions",
+        "writable": true
+      },
+      "CUDA_CACHE_PATH": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/cuda",
+        "writable": true
+      },
+      "MPLCONFIGDIR": {
+        "path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/matplotlib",
+        "writable": true
+      }
+    },
+    "tempfile_path": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1/preflight/tmp/d020_uid_probe_6ft_9lnk"
+  },
+  "stable_numerical_lock_sha256": "ce6dcc6c94323c0b68d2a5f5bf9f10cd62d23fbb67ecb290bf281946a643114b"
+}

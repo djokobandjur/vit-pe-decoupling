@@ -1,0 +1,913 @@
+{
+  "architecture": {
+    "img_size": 224,
+    "patch_size": 16,
+    "num_classes": 100,
+    "embed_dim": 384,
+    "depth": 12,
+    "num_heads": 6,
+    "mlp_ratio": 4.0,
+    "dropout": 0.0
+  },
+  "architecture_source": "/home/djoko.bandjur.ftnkm/Notebooks/FMLE_IN100_VITS_CALIBRATION_v2/architecture/full_scale_experiment.py",
+  "architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf",
+  "dataset_root": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/reextract_test/imagenet100_resized",
+  "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/reextract_test/imagenet100_resized/val",
+  "split_file": "/home/djoko.bandjur.ftnkm/Notebooks/results/vits_in100_calibration_v2/input_audit/imagenet100_split_indices.json",
+  "split_file_sha256": "43daa888eddd89047f2b73a42755554f974bf0da44c58b43f347d44bb9bd3259",
+  "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+  "models_parent": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints",
+  "checkpoint_filename_policy": "best_model.pth only; no final_model/last_checkpoint fallback",
+  "rows": [
+    {
+      "family": "learned",
+      "seed": 42,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/learned_seed42/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "8a36b445de1173f0f4cbfa5a50182edf1dcc18db0ba560b3e7f0bcacbd1e8003",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": [
+          1,
+          197,
+          384
+        ],
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21704164,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 78.0
+    },
+    {
+      "family": "learned",
+      "seed": 123,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/learned_seed123/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "f53b5eef63e94d897243532a61ee884928690b30b53b89d7d653eef5160d9527",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": [
+          1,
+          197,
+          384
+        ],
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21704164,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 77.1
+    },
+    {
+      "family": "learned",
+      "seed": 456,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/learned_seed456/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "26745b37bc47479ed6523c6541958a70815b022e2e564c3c59a7b608acde3ae1",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": [
+          1,
+          197,
+          384
+        ],
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21704164,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 78.56
+    },
+    {
+      "family": "learned",
+      "seed": 789,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/learned_seed789/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "b5dbfab3b95620a869faf33d9b2d67acf4d0c70ee61f3ee1f25739e647d87ccd",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": [
+          1,
+          197,
+          384
+        ],
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21704164,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 77.48
+    },
+    {
+      "family": "learned",
+      "seed": 1011,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/learned_seed1011/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "f00701f3127f26450072b96810cd82fe7e7b1c0409170ab3829bcad2f8cd5bb4",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": [
+          1,
+          197,
+          384
+        ],
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21704164,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 78.4
+    },
+    {
+      "family": "learned",
+      "seed": 1213,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/learned_seed1213/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "c3ed360207356cd6ac69ee1ca2099f7073e0f43914d3af5950457551cd7b4110",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": [
+          1,
+          197,
+          384
+        ],
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21704164,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 77.6
+    },
+    {
+      "family": "sinusoidal",
+      "seed": 42,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed42/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "e11bba5a1ab879b50cb75cbf34f826811fc72e94bc5bb1342d631445905bf0c2",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 79.16
+    },
+    {
+      "family": "sinusoidal",
+      "seed": 123,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed123/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "f0bc4d890c71265606a215f32e01da4bae7099ba6466399f458a26105b99b15c",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 78.38
+    },
+    {
+      "family": "sinusoidal",
+      "seed": 456,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed456/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "128a1956a4a560efcad8c65deb02ed7532156c31163ea15b3b213fc7dc185ae2",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 78.98
+    },
+    {
+      "family": "sinusoidal",
+      "seed": 789,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed789/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "d22c01e9441df4f2b2252363e55a6fedf298bc037739447f6fee3a39ca7b9718",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 78.72
+    },
+    {
+      "family": "sinusoidal",
+      "seed": 1011,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed1011/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "4b8d4068f3c3a0f05d892e12e1e4fcbb907196a6937e9c62959284b98db32f48",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 78.62
+    },
+    {
+      "family": "sinusoidal",
+      "seed": 1213,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed1213/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 86873641,
+      "sha256": "ff17ed614c07cf386d1b2d0023ebb70146abc649e69eb4e7936bf6a7d57debcc",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 79.3
+    },
+    {
+      "family": "rope",
+      "seed": 42,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/rope_seed42/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 87190284,
+      "sha256": "2b34eaabdf21c1e0b994b717646d35e48372b69c0f47906944806e305bd5b473",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 82.9
+    },
+    {
+      "family": "rope",
+      "seed": 123,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/rope_seed123/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 87190284,
+      "sha256": "1f7d20cc55a7b13cc7d077968dd9cc15b12d97a8044466b9734e215ad59cf95d",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 82.48
+    },
+    {
+      "family": "rope",
+      "seed": 456,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/rope_seed456/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 87190284,
+      "sha256": "1d77ce6273748e203fc489f94bbea09aed61756f913670baeaa710f5439b49c1",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 83.32
+    },
+    {
+      "family": "rope",
+      "seed": 789,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/rope_seed789/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 87190284,
+      "sha256": "15430d954394609cabc6acbece325b33291d050a40cb304303640f3cb9c785a9",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 83.08
+    },
+    {
+      "family": "rope",
+      "seed": 1011,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/rope_seed1011/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 87190284,
+      "sha256": "089f5cd0bed2085b0f4ea3f9ad239f6b0996623eaee22d42455754e4decdd013",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 82.88
+    },
+    {
+      "family": "rope",
+      "seed": 1213,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/rope_seed1213/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 87190284,
+      "sha256": "58c67c49c54ef01511e07bb423f92bde077052a52c91fbac78cf3da0926c38fe",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 83.44
+    },
+    {
+      "family": "alibi",
+      "seed": 42,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/alibi_seed42/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 88441984,
+      "sha256": "e10f64d7bac00c1614767a6881330c48b822c1465ae1c5b891b3ea156366a65e",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 79.62
+    },
+    {
+      "family": "alibi",
+      "seed": 123,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/alibi_seed123/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 88441984,
+      "sha256": "b665115f090926c43f5e67edefd1bf702a477b10af99b55f3c021a7bcee122aa",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 79.22
+    },
+    {
+      "family": "alibi",
+      "seed": 456,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/alibi_seed456/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 88441984,
+      "sha256": "a3aeb369cce2d0abafcf4b5590f65f6f12d978c3ef1cdb2039b5f2495b7b5c02",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 79.08
+    },
+    {
+      "family": "alibi",
+      "seed": 789,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/alibi_seed789/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 88441984,
+      "sha256": "4f37f315a6d8087541da82c2b8c2e7547bc495ab8bb5023e9ab709a8af996e81",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 79.38
+    },
+    {
+      "family": "alibi",
+      "seed": 1011,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/alibi_seed1011/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 88441984,
+      "sha256": "6b9bcad5881a59b6f41fbc19333c75f09dd6bd00a4b4701b1c73ae441c11c945",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 79.2
+    },
+    {
+      "family": "alibi",
+      "seed": 1213,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/alibi_seed1213/best_model.pth",
+      "checkpoint_filename_policy": "best_model.pth only",
+      "exists": true,
+      "size_bytes": 88441984,
+      "sha256": "afa407f6f1d57adaa1e7d92be0a15fd06fa08fb93d784d89752b12c5f99bc2a6",
+      "inferred_shapes": {
+        "patch_embed_weight": [
+          384,
+          3,
+          16,
+          16
+        ],
+        "cls_token": [
+          1,
+          1,
+          384
+        ],
+        "head_weight": [
+          100,
+          384
+        ],
+        "learned_pos_embed": null,
+        "qkv0": [
+          1152,
+          384
+        ]
+      },
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "parameter_count": 21628516,
+      "strict_load_ok": true,
+      "full_val_clean_accuracy": 78.9
+    }
+  ],
+  "failures": [],
+  "complete": true
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "locked_at": "2026-08-03T14:20:00+02:00",
+  "decision_id": "D029-SESOI-v1",
+  "analysis_scope": "ViT-S/16 ImageNet-100 seed-matched comparison of AMP-trained and full-FP32-trained cohorts for Learned, Sinusoidal, and RoPE, n=6 seeds",
+  "primary_endpoint": "rho_rel mapped through the same epsilon bracket at normalized accuracy q=0.5",
+  "equivalence_margin_rho50_absolute": 0.01,
+  "equivalence_rule": "Family-level equivalence is established only when the two-sided 90% paired t confidence interval for mean delta (AMP minus FP32) lies wholly within [-0.01,+0.01]. Otherwise the result is INCONCLUSIVE, not evidence of difference.",
+  "epsilon50_role": "Reported descriptively in native family-specific epsilon units; no cross-family equivalence margin is imposed.",
+  "clean_accuracy_context_margin_pp": 1.0,
+  "secondary_metrics": [
+    "attack nAUC on an identical global rho support",
+    "noise nAUC on the same support",
+    "noise-minus-attack nAUC gap",
+    "family ranking preservation",
+    "per-seed sign consistency"
+  ],
+  "support_sensitivities": [1.0, 0.9, 0.75],
+  "statistics": {
+    "primary_ci": "paired t 90% CI for TOST-compatible equivalence decision",
+    "always_report": ["paired t 95% CI", "paired bootstrap percentile 95% CI", "exact sign-flip p-value"],
+    "bootstrap_repetitions": 200000,
+    "bootstrap_seed": 20260803
+  },
+  "claim_rule": "A regime-generalization claim requires all three PE families to satisfy the rho50 equivalence rule and descriptive ranking preservation. Any family-level failure yields an overall INCONCLUSIVE bridge.",
+  "pairing_label": "seed-matched unless bit-identical initialization and data-order provenance are independently demonstrated",
+  "input_archives": {
+    "vits_in100_fp16_robustness_v1.zip": "52d1faa77bf2069d3d094d17c7ad8280feebed395da788fa4621cc65469c4381",
+    "vits_in100_full_robustness_v1.zip": "fcfa346f6b6d8a4b19ca8d0e36e2a3ec184cade46789cb46e2ce9d040a2be468"
+  },
+  "anti_posthoc_note": "The SESOI and decision rule were written to disk before calculating cohort differences. The margin is a fixed dimensionless rho_rel tolerance and is not derived from observed family gaps."
+}

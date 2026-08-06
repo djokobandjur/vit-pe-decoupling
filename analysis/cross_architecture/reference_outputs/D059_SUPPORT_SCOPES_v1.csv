@@ -1,0 +1,7 @@
+scope,key,rho_endpoint,limiter_architecture,limiter_family,limiter_seed,limiter_curve,limiter_max_rho,limiter_n_points
+cross,all,0.087345571591429264,vits_amp,sinusoidal,1011,attack,0.087345571591429264,10
+architecture,vitb_amp,0.095748114392128297,,,,,,
+architecture,vits_amp,0.087345571591429264,,,,,,
+family,learned,0.099523853759162673,,,,,,
+family,sinusoidal,0.087345571591429264,,,,,,
+family,rope,0.10646703102864417,,,,,,

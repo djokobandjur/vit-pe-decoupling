@@ -1,0 +1,53 @@
+{
+  "internal_decision_codes": {
+    "source": 0,
+    "rendered_manuscript_and_supplement": 0,
+    "rendered_figure_text": 0
+  },
+  "internal_version_labels": {
+    "source": 0,
+    "rendered_manuscript_and_supplement": 0,
+    "rendered_figure_text": 0
+  },
+  "ceiling": {
+    "source": 0,
+    "rendered_manuscript_and_supplement": 0,
+    "rendered_figure_text": 0
+  },
+  "precision_invariance": {
+    "source": 0,
+    "rendered_manuscript_and_supplement": 0,
+    "rendered_figure_text": 0
+  },
+  "localization": {
+    "source": 0,
+    "rendered_manuscript_and_supplement": 0,
+    "rendered_figure_text": 0
+  },
+  "two_to_four_times": {
+    "source": 0,
+    "rendered_manuscript_and_supplement": 0,
+    "rendered_figure_text": 0
+  },
+  "all_points_converged": {
+    "source": 0,
+    "rendered_manuscript_and_supplement": 0,
+    "rendered_figure_text": 0
+  },
+  "all_restarts_converged": {
+    "source": 0,
+    "rendered_manuscript_and_supplement": 0,
+    "rendered_figure_text": 0
+  },
+  "caption_internal_codes": {
+    "source": 0,
+    "version_labels": 0
+  },
+  "build": {
+    "main_pages": 43,
+    "supplement_pages": 3,
+    "abstract_texcount": 233,
+    "latex_warnings_main": 0,
+    "latex_warnings_supplement": 0
+  }
+}

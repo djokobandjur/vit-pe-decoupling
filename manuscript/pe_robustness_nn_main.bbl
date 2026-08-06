@@ -1,0 +1,252 @@
+\begin{thebibliography}{27}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Inproceedings
+\bibitem[{Bai et~al.(2021)Bai, Mei, Yuille and Xie}]{bai2021transformers}
+\bibinfo{author}{Bai, Y.}, \bibinfo{author}{Mei, J.}, \bibinfo{author}{Yuille,
+  A.L.}, \bibinfo{author}{Xie, C.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Are transformers more robust than {CNNs}?}, in:
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}.
+%Type = Inproceedings
+\bibitem[{Chu et~al.(2023)Chu, Tian, Zhang, Wang and Shen}]{chu2023conditional}
+\bibinfo{author}{Chu, X.}, \bibinfo{author}{Tian, Z.}, \bibinfo{author}{Zhang,
+  B.}, \bibinfo{author}{Wang, X.}, \bibinfo{author}{Shen, C.},
+  \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Conditional positional encodings for vision
+  transformers}, in: \bibinfo{booktitle}{International Conference on Learning
+  Representations}.
+%Type = Inproceedings
+\bibitem[{Dinh et~al.(2017)Dinh, Pascanu, Bengio and Bengio}]{dinh2017sharp}
+\bibinfo{author}{Dinh, L.}, \bibinfo{author}{Pascanu, R.},
+  \bibinfo{author}{Bengio, S.}, \bibinfo{author}{Bengio, Y.},
+  \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Sharp minima can generalize for deep nets}, in:
+  \bibinfo{booktitle}{Proceedings of the 34th International Conference on
+  Machine Learning}, \bibinfo{publisher}{PMLR}. pp.
+  \bibinfo{pages}{1019--1028}.
+%Type = Inproceedings
+\bibitem[{Dosovitskiy et~al.(2021)Dosovitskiy, Beyer, Kolesnikov, Weissenborn,
+  Zhai, Unterthiner, Dehghani, Minderer, Heigold, Gelly, Uszkoreit and
+  Houlsby}]{dosovitskiy2021image}
+\bibinfo{author}{Dosovitskiy, A.}, \bibinfo{author}{Beyer, L.},
+  \bibinfo{author}{Kolesnikov, A.}, \bibinfo{author}{Weissenborn, D.},
+  \bibinfo{author}{Zhai, X.}, \bibinfo{author}{Unterthiner, T.},
+  \bibinfo{author}{Dehghani, M.}, \bibinfo{author}{Minderer, M.},
+  \bibinfo{author}{Heigold, G.}, \bibinfo{author}{Gelly, S.},
+  \bibinfo{author}{Uszkoreit, J.}, \bibinfo{author}{Houlsby, N.},
+  \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{An image is worth 16x16 words: Transformers for image
+  recognition at scale}, in: \bibinfo{booktitle}{International Conference on
+  Learning Representations}.
+%Type = Inproceedings
+\bibitem[{Foret et~al.(2021)Foret, Kleiner, Mobahi and
+  Neyshabur}]{foret2021sam}
+\bibinfo{author}{Foret, P.}, \bibinfo{author}{Kleiner, A.},
+  \bibinfo{author}{Mobahi, H.}, \bibinfo{author}{Neyshabur, B.},
+  \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Sharpness-aware minimization for efficiently
+  improving generalization}, in: \bibinfo{booktitle}{International Conference
+  on Learning Representations}.
+%Type = Inproceedings
+\bibitem[{Fu et~al.(2022)Fu, Zhang, Wu, Wan and Lin}]{fu2022patchfool}
+\bibinfo{author}{Fu, Y.}, \bibinfo{author}{Zhang, S.}, \bibinfo{author}{Wu,
+  S.}, \bibinfo{author}{Wan, C.}, \bibinfo{author}{Lin, Y.},
+  \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Patch-fool: Are vision transformers always robust
+  against adversarial perturbations?}, in: \bibinfo{booktitle}{International
+  Conference on Learning Representations}.
+%Type = Inproceedings
+\bibitem[{Garg et~al.(2020)Garg, Kumar, Goel and Liang}]{garg2020backdoors}
+\bibinfo{author}{Garg, S.}, \bibinfo{author}{Kumar, A.}, \bibinfo{author}{Goel,
+  V.}, \bibinfo{author}{Liang, Y.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Can adversarial weight perturbations inject neural
+  backdoors?}, in: \bibinfo{booktitle}{Proceedings of the 29th ACM
+  International Conference on Information and Knowledge Management},
+  \bibinfo{publisher}{Association for Computing Machinery}. pp.
+  \bibinfo{pages}{2029--2032}.
+\newblock \DOIprefix\doi{10.1145/3340531.3412130}.
+%Type = Inproceedings
+\bibitem[{Goodfellow et~al.(2015)Goodfellow, Shlens and
+  Szegedy}]{goodfellow2015explaining}
+\bibinfo{author}{Goodfellow, I.J.}, \bibinfo{author}{Shlens, J.},
+  \bibinfo{author}{Szegedy, C.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Explaining and harnessing adversarial examples}, in:
+  \bibinfo{booktitle}{International Conference on Learning Representations}.
+%Type = Inproceedings
+\bibitem[{Keskar et~al.(2017)Keskar, Mudigere, Nocedal, Smelyanskiy and
+  Tang}]{keskar2017largebatch}
+\bibinfo{author}{Keskar, N.S.}, \bibinfo{author}{Mudigere, D.},
+  \bibinfo{author}{Nocedal, J.}, \bibinfo{author}{Smelyanskiy, M.},
+  \bibinfo{author}{Tang, P.T.P.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{On large-batch training for deep learning:
+  Generalization gap and sharp minima}, in: \bibinfo{booktitle}{International
+  Conference on Learning Representations}.
+%Type = Inproceedings
+\bibitem[{Li et~al.(2018)Li, Xu, Taylor, Studer and Goldstein}]{li2018loss}
+\bibinfo{author}{Li, H.}, \bibinfo{author}{Xu, Z.}, \bibinfo{author}{Taylor,
+  G.}, \bibinfo{author}{Studer, C.}, \bibinfo{author}{Goldstein, T.},
+  \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Visualizing the loss landscape of neural nets}, in:
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}.
+%Type = Article
+\bibitem[{Li et~al.(2024)Li, Tao, Yan, Wu, Lei, Fang, He and
+  Huang}]{li2024randomweight}
+\bibinfo{author}{Li, T.}, \bibinfo{author}{Tao, Q.}, \bibinfo{author}{Yan, W.},
+  \bibinfo{author}{Wu, Y.}, \bibinfo{author}{Lei, Z.}, \bibinfo{author}{Fang,
+  K.}, \bibinfo{author}{He, M.}, \bibinfo{author}{Huang, X.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Revisiting random weight perturbation for efficiently
+  improving generalization}.
+\newblock \bibinfo{journal}{Transactions on Machine Learning Research} .
+%Type = Inproceedings
+\bibitem[{Liu et~al.(2023)Liu, Guo, Zhang and Yang}]{liu2023patched}
+\bibinfo{author}{Liu, L.}, \bibinfo{author}{Guo, Y.}, \bibinfo{author}{Zhang,
+  Y.}, \bibinfo{author}{Yang, J.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Understanding and defending patched-based adversarial
+  attacks for vision transformer}, in: \bibinfo{booktitle}{Proceedings of the
+  40th International Conference on Machine Learning},
+  \bibinfo{publisher}{PMLR}. pp. \bibinfo{pages}{21631--21657}.
+%Type = Inproceedings
+\bibitem[{Liu et~al.(2021)Liu, Lin, Cao, Hu, Wei, Zhang, Lin and
+  Guo}]{liu2021swin}
+\bibinfo{author}{Liu, Z.}, \bibinfo{author}{Lin, Y.}, \bibinfo{author}{Cao,
+  Y.}, \bibinfo{author}{Hu, H.}, \bibinfo{author}{Wei, Y.},
+  \bibinfo{author}{Zhang, Z.}, \bibinfo{author}{Lin, S.}, \bibinfo{author}{Guo,
+  B.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Swin transformer: Hierarchical vision transformer
+  using shifted windows}, in: \bibinfo{booktitle}{Proceedings of the IEEE/CVF
+  International Conference on Computer Vision}, pp.
+  \bibinfo{pages}{10012--10022}.
+%Type = Inproceedings
+\bibitem[{Madry et~al.(2018)Madry, Makelov, Schmidt, Tsipras and
+  Vladu}]{madry2018towards}
+\bibinfo{author}{Madry, A.}, \bibinfo{author}{Makelov, A.},
+  \bibinfo{author}{Schmidt, L.}, \bibinfo{author}{Tsipras, D.},
+  \bibinfo{author}{Vladu, A.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Towards deep learning models resistant to adversarial
+  attacks}, in: \bibinfo{booktitle}{International Conference on Learning
+  Representations}.
+%Type = Inproceedings
+\bibitem[{Mahmood et~al.(2021)Mahmood, Mahmood and van
+  Dijk}]{mahmood2021robustness}
+\bibinfo{author}{Mahmood, K.}, \bibinfo{author}{Mahmood, R.},
+  \bibinfo{author}{van Dijk, M.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{On the robustness of vision transformers to
+  adversarial examples}, in: \bibinfo{booktitle}{Proceedings of the IEEE/CVF
+  International Conference on Computer Vision}, pp.
+  \bibinfo{pages}{7838--7847}.
+%Type = Inproceedings
+\bibitem[{Mo et~al.(2022)Mo, Wu, Wang, Guo and
+  Wang}]{mo2022adversarialtraining}
+\bibinfo{author}{Mo, Y.}, \bibinfo{author}{Wu, D.}, \bibinfo{author}{Wang, Y.},
+  \bibinfo{author}{Guo, Y.}, \bibinfo{author}{Wang, Y.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{When adversarial training meets vision transformers:
+  Recipes from training to architecture}, in: \bibinfo{booktitle}{Advances in
+  Neural Information Processing Systems}.
+%Type = Inproceedings
+\bibitem[{Naseer et~al.(2021)Naseer, Ranasinghe, Khan, Hayat, Khan and
+  Yang}]{naseer2021intriguing}
+\bibinfo{author}{Naseer, M.M.}, \bibinfo{author}{Ranasinghe, K.},
+  \bibinfo{author}{Khan, S.H.}, \bibinfo{author}{Hayat, M.},
+  \bibinfo{author}{Khan, F.S.}, \bibinfo{author}{Yang, M.H.},
+  \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Intriguing properties of vision transformers}, in:
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}, pp.
+  \bibinfo{pages}{23296--23308}.
+%Type = Inproceedings
+\bibitem[{Press et~al.(2022)Press, Smith and Lewis}]{press2022train}
+\bibinfo{author}{Press, O.}, \bibinfo{author}{Smith, N.A.},
+  \bibinfo{author}{Lewis, M.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Train short, test long: Attention with linear biases
+  enables input length extrapolation}, in: \bibinfo{booktitle}{International
+  Conference on Learning Representations}.
+%Type = Inproceedings
+\bibitem[{Rakin et~al.(2019)Rakin, He and Fan}]{rakin2019bitflip}
+\bibinfo{author}{Rakin, A.S.}, \bibinfo{author}{He, Z.}, \bibinfo{author}{Fan,
+  D.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Bit-flip attack: Crushing neural network with
+  progressive bit search}, in: \bibinfo{booktitle}{Proceedings of the IEEE/CVF
+  International Conference on Computer Vision}, pp.
+  \bibinfo{pages}{1211--1220}.
+%Type = Article
+\bibitem[{Su et~al.(2024)Su, Lu, Pan, Murtadha, Wen and Liu}]{su2024roformer}
+\bibinfo{author}{Su, J.}, \bibinfo{author}{Lu, Y.}, \bibinfo{author}{Pan, S.},
+  \bibinfo{author}{Murtadha, A.}, \bibinfo{author}{Wen, B.},
+  \bibinfo{author}{Liu, Y.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{{RoFormer}: Enhanced transformer with rotary position
+  embedding}.
+\newblock \bibinfo{journal}{Neurocomputing} \bibinfo{volume}{568},
+  \bibinfo{pages}{127063}.
+\newblock \DOIprefix\doi{10.1016/j.neucom.2023.127063}.
+%Type = Inproceedings
+\bibitem[{Trinh et~al.(2024)Trinh, Heinonen, Acerbi and
+  Kaski}]{trinh2024multiplicative}
+\bibinfo{author}{Trinh, T.}, \bibinfo{author}{Heinonen, M.},
+  \bibinfo{author}{Acerbi, L.}, \bibinfo{author}{Kaski, S.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Improving robustness to corruptions with
+  multiplicative weight perturbations}, in: \bibinfo{booktitle}{Advances in
+  Neural Information Processing Systems}.
+%Type = Inproceedings
+\bibitem[{Tsai et~al.(2021)Tsai, Hsu, Yu and Chen}]{tsai2021formalizing}
+\bibinfo{author}{Tsai, Y.L.}, \bibinfo{author}{Hsu, C.Y.}, \bibinfo{author}{Yu,
+  C.M.}, \bibinfo{author}{Chen, P.Y.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Formalizing generalization and adversarial robustness
+  of neural networks to weight perturbations}, in: \bibinfo{booktitle}{Advances
+  in Neural Information Processing Systems}.
+%Type = Inproceedings
+\bibitem[{Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
+  Gomez, Kaiser and Polosukhin}]{vaswani2017attention}
+\bibinfo{author}{Vaswani, A.}, \bibinfo{author}{Shazeer, N.},
+  \bibinfo{author}{Parmar, N.}, \bibinfo{author}{Uszkoreit, J.},
+  \bibinfo{author}{Jones, L.}, \bibinfo{author}{Gomez, A.N.},
+  \bibinfo{author}{Kaiser, L.}, \bibinfo{author}{Polosukhin, I.},
+  \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Attention is all you need}, in:
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}.
+%Type = Inproceedings
+\bibitem[{Wu et~al.(2020)Wu, Xia and Wang}]{wu2020adversarial}
+\bibinfo{author}{Wu, D.}, \bibinfo{author}{Xia, S.T.}, \bibinfo{author}{Wang,
+  Y.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Adversarial weight perturbation helps robust
+  generalization}, in: \bibinfo{booktitle}{Advances in Neural Information
+  Processing Systems}.
+%Type = Inproceedings
+\bibitem[{Wu et~al.(2021a)Wu, Xiao, Codella, Liu, Dai, Yuan and
+  Zhang}]{wu2021cvt}
+\bibinfo{author}{Wu, H.}, \bibinfo{author}{Xiao, B.}, \bibinfo{author}{Codella,
+  N.}, \bibinfo{author}{Liu, M.}, \bibinfo{author}{Dai, X.},
+  \bibinfo{author}{Yuan, L.}, \bibinfo{author}{Zhang, L.},
+  \bibinfo{year}{2021}a.
+\newblock \bibinfo{title}{{CvT}: Introducing convolutions to vision
+  transformers}, in: \bibinfo{booktitle}{Proceedings of the IEEE/CVF
+  International Conference on Computer Vision}, pp. \bibinfo{pages}{22--31}.
+%Type = Inproceedings
+\bibitem[{Wu et~al.(2021b)Wu, Peng, Chen, Fu and Chao}]{wu2021irpe}
+\bibinfo{author}{Wu, K.}, \bibinfo{author}{Peng, H.}, \bibinfo{author}{Chen,
+  M.}, \bibinfo{author}{Fu, J.}, \bibinfo{author}{Chao, H.},
+  \bibinfo{year}{2021}b.
+\newblock \bibinfo{title}{Rethinking and improving relative position encoding
+  for vision transformer}, in: \bibinfo{booktitle}{Proceedings of the IEEE/CVF
+  International Conference on Computer Vision}, pp.
+  \bibinfo{pages}{10033--10041}.
+%Type = Inproceedings
+\bibitem[{Yu et~al.(2023)Yu, Wang and Gao}]{yu2023adversarial}
+\bibinfo{author}{Yu, L.}, \bibinfo{author}{Wang, Y.}, \bibinfo{author}{Gao,
+  X.S.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Adversarial parameter attack on deep neural
+  networks}, in: \bibinfo{booktitle}{Proceedings of the 40th International
+  Conference on Machine Learning}, \bibinfo{publisher}{PMLR}. pp.
+  \bibinfo{pages}{40354--40372}.
+
+\end{thebibliography}

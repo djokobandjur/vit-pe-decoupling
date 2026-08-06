@@ -1,0 +1,15 @@
+[project]
+name = "vit-pe-decoupling-repro"
+version = "1.0.0"
+description = "Analysis-level reproduction for positional-parameter robustness in Vision Transformers"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0,<3",
+  "pandas>=2.0,<3",
+  "scipy>=1.10,<2",
+  "matplotlib>=3.8,<4",
+  "openpyxl>=3.1,<4",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

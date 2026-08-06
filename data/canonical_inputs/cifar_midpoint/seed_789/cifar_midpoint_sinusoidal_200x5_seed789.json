@@ -1,0 +1,232 @@
+{
+  "metadata": {
+    "created_at": "2026-07-19T17:49:44.386654+00:00",
+    "script": "cross_family_rho_decoupling.py",
+    "protocol": "parameter-space perturbation reparameterised by achieved attention-logit rho",
+    "direct_rho_constrained_pgd": false,
+    "dataset": "cifar",
+    "device": "cuda",
+    "n_total_images": 10000,
+    "split": {
+      "seed": 0,
+      "n_calibration": 256,
+      "n_attack": 1280,
+      "n_eval": 8464,
+      "calibration_attack_overlap": 0,
+      "calibration_eval_overlap": 0,
+      "attack_eval_overlap": 0
+    },
+    "pe_types": [
+      "sinusoidal"
+    ],
+    "seeds": [
+      789
+    ],
+    "config": {
+      "stages": [
+        "attacks"
+      ],
+      "budgets_default": [
+        0.0,
+        0.001,
+        0.005,
+        0.01,
+        0.05,
+        0.1,
+        0.2,
+        0.5,
+        1.0
+      ],
+      "budgets_by_pe": {
+        "sinusoidal": [
+          0.0,
+          0.01125
+        ]
+      },
+      "parameter_norm": "global_rms",
+      "noise_draws": 10,
+      "noise_distribution": "gaussian",
+      "noise_pattern": "shared/coherent across RoPE/ALiBi blocks",
+      "fixed_noise_direction_across_budget_grid": true,
+      "paired_noise_seed_across_pe_families": true,
+      "pgd_steps": 200,
+      "pgd_restarts": 5,
+      "pgd_alpha_ratio": 0.05,
+      "pgd_seed_steps": 50,
+      "pgd_seed_alpha_ratio": 0.05,
+      "rope_parameterization": "phase",
+      "active_rope_targets": [
+        "phase -> cos_cached/sin_cached"
+      ],
+      "inactive_rope_inv_freq_excluded": true
+    },
+    "rho_definition": {
+      "absolute": "sqrt(mean_layer mean_{image,head,query,key} (Zpert-Zclean)^2)",
+      "relative": "rho_abs / sqrt(mean_layer mean_{image,head,query,key} Zclean^2)",
+      "layer_weighting": "equal",
+      "location": "pre-softmax attention logits after PE-specific transformation and ALiBi bias"
+    },
+    "updated_at": "2026-07-19T17:54:21.716784+00:00"
+  },
+  "results": {
+    "sinusoidal": {
+      "789": {
+        "status": "ok",
+        "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/CIFAR100_checkpoints/sinusoidal_seed789/best_model.pth",
+        "attacks": {
+          "pgd_pe": {
+            "0": {
+              "budget": 0.0,
+              "accuracy": 67.67485822306239,
+              "normalized_accuracy": 1.0,
+              "drop_from_clean_pp": 0.0,
+              "selected_attack_loss": null,
+              "restart_records": [],
+              "delta_metrics": {
+                "parameter_global_rms": 0.0,
+                "parameter_global_l2": 0.0,
+                "parameter_global_linf": 0.0,
+                "n_unique_delta_elements": 49920
+              },
+              "rho": {
+                "rho_abs": 0.0,
+                "rho_rel": 0.0,
+                "clean_logit_rms": 1.0860294141910036,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "layer_clean_logit_rms": [
+                  1.7184859246345423,
+                  1.7493374285491299,
+                  1.8864255404838768,
+                  1.3295813037319266,
+                  0.9063179179753664,
+                  0.6290610401328023,
+                  0.5008037652088616,
+                  0.423682915295579,
+                  0.3834535986599461,
+                  0.4333356849689894,
+                  0.5299223867135809,
+                  0.7420780201524845
+                ]
+              },
+              "elapsed_sec": 0.8498404026031494
+            },
+            "0.01125": {
+              "budget": 0.01125,
+              "accuracy": 40.81994328922495,
+              "normalized_accuracy": 0.603177374301676,
+              "drop_from_clean_pp": 26.854914933837435,
+              "selected_attack_loss": 2.7143855333328246,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 183389511,
+                  "attack_loss": 2.7143855333328246
+                },
+                {
+                  "restart": 1,
+                  "seed": 310166740,
+                  "attack_loss": 2.714194989204407
+                },
+                {
+                  "restart": 2,
+                  "seed": 209951714,
+                  "attack_loss": 2.71438090801239
+                },
+                {
+                  "restart": 3,
+                  "seed": 1918059412,
+                  "attack_loss": 2.714329409599304
+                },
+                {
+                  "restart": 4,
+                  "seed": 790100798,
+                  "attack_loss": 2.7143430709838867
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.011250000447034836,
+                "parameter_global_l2": 2.513563394546509,
+                "parameter_global_linf": 0.8507720828056335,
+                "n_unique_delta_elements": 49920
+              },
+              "rho": {
+                "rho_abs": 0.20746147925057773,
+                "rho_rel": 0.19102749570104258,
+                "clean_logit_rms": 1.0860294141910036,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.05187381877240116,
+                  0.28007221308790653,
+                  0.2757404486324,
+                  0.19573214272034434,
+                  0.2107554379638154,
+                  0.13422448114733973,
+                  0.13771240486763003,
+                  0.11604637778377758,
+                  0.12477654035593407,
+                  0.16318713620356964,
+                  0.25028883744192865,
+                  0.34827965392033244
+                ],
+                "layer_clean_logit_rms": [
+                  1.7184859246345423,
+                  1.7493374285491299,
+                  1.8864255404838768,
+                  1.3295813037319266,
+                  0.9063179179753664,
+                  0.6290610401328023,
+                  0.5008037652088616,
+                  0.423682915295579,
+                  0.3834535986599461,
+                  0.4333356849689894,
+                  0.5299223867135809,
+                  0.7420780201524845
+                ]
+              },
+              "elapsed_sec": 259.49378848075867
+            }
+          }
+        },
+        "noise": {
+          "pattern": "shared",
+          "fixed_direction_across_budget_grid": true,
+          "draws": []
+        },
+        "clean_acc_eval": 67.67485822306239,
+        "target_adapter": {
+          "parameterization": "native-additive",
+          "unique_delta_groups": {
+            "pe": {
+              "n_shared_instances": 1,
+              "unique_delta_shape": [
+                1,
+                65,
+                768
+              ],
+              "unique_delta_numel": 49920
+            }
+          },
+          "unit_circle_preserved": null
+        },
+        "parameter_norm": "global_rms",
+        "completed_at": "2026-07-19T17:54:20.209797+00:00"
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "version": "CANONICAL v18",
+  "source_files": 75,
+  "source_manifest_sha256": "317dd2dfdcb8b99f7cd1688fa39137637e801936e1181c92d438fb3dc97ccb31",
+  "noise_raw_records": 3300,
+  "noise_budget_paired_points": 330,
+  "noise_draws_per_point": [
+    10
+  ],
+  "attack_points": 444,
+  "curve_keys_primary": 96,
+  "primary_endpoint": 0.09,
+  "sensitivity_endpoint": 0.095,
+  "cifar_wide_endpoint": 0.23,
+  "canonical_checks": {
+    "cifar_alibi_noise_primary_mean": 0.9935255412556439,
+    "cifar_alibi_noise_wide_mean": 0.964138272128801,
+    "expected_primary_rounded": "0.9935",
+    "expected_wide_rounded": "0.9641"
+  },
+  "figure_sha256": {
+    "pdf": "e94705cc815a8a0f7e066bb9ba0a984d5db4b0c749a5312d4149dcf4f933f9ae",
+    "png": "e14d1c744ce38eef4b222487cb50dfe06394c1c7e243e8a2050c353d8a8654a3",
+    "svg": "50dd900fd56053412bafeba131788d7a781165419879fa6ae29212c7fb3daf82"
+  },
+  "friedman": {
+    "imagenet_0p09": {
+      "statistic": 16.400000000000006,
+      "exact_permutation_p_value": 8.037551440329219e-06,
+      "exact_tail_count": 1536,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0009387420550450392,
+      "family_order": [
+        "learned",
+        "sinusoidal",
+        "rope",
+        "alibi"
+      ],
+      "seed_order": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ]
+    },
+    "cifar_0p09": {
+      "statistic": 15.0,
+      "exact_permutation_p_value": 9.46924029063786e-05,
+      "exact_tail_count": 18096,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0018166489665723214,
+      "family_order": [
+        "learned",
+        "sinusoidal",
+        "rope",
+        "alibi"
+      ],
+      "seed_order": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ]
+    },
+    "imagenet_0p095": {
+      "statistic": 16.400000000000006,
+      "exact_permutation_p_value": 8.037551440329219e-06,
+      "exact_tail_count": 1536,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0009387420550450392,
+      "family_order": [
+        "learned",
+        "sinusoidal",
+        "rope",
+        "alibi"
+      ],
+      "seed_order": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ]
+    },
+    "cifar_0p095": {
+      "statistic": 15.0,
+      "exact_permutation_p_value": 9.46924029063786e-05,
+      "exact_tail_count": 18096,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0018166489665723214,
+      "family_order": [
+        "learned",
+        "sinusoidal",
+        "rope",
+        "alibi"
+      ],
+      "seed_order": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ]
+    }
+  }
+}

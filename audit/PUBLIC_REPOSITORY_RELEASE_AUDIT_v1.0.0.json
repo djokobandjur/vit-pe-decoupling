@@ -1,0 +1,85 @@
+{
+  "release": "v1.0.0",
+  "date": "2026-08-06",
+  "status": "PASS_PUBLIC_REPOSITORY_RELEASE_CANDIDATE",
+  "scope": {
+    "analysis_level_reproduction": "complete_without_gpu",
+    "attack_level_rerun": "requires_separately_published_checkpoints",
+    "training_from_scratch": "requires_licensed_datasets_and_gpu_resources"
+  },
+  "verification": {
+    "repository_integrity": "PASS",
+    "pytest": {
+      "status": "PASS",
+      "passed": 3
+    },
+    "full_analysis_reproduction": {
+      "status": "PASS_REPRODUCTION_COMPLETE",
+      "new_gpu_experiment_required": false
+    },
+    "exact_output_checks": {
+      "status": "PASS",
+      "passed": 13
+    },
+    "cross_architecture_internal_QA": {
+      "status": "PASS",
+      "passed": 31
+    },
+    "figure_render_comparison": {
+      "status": "PASS",
+      "figures": {
+        "fig_primary_robustness_curves": {
+          "changed_pages": 0,
+          "pages": 1,
+          "dpi": 150
+        },
+        "fig_cross_architecture_robustness": {
+          "changed_pages": 0,
+          "pages": 1,
+          "dpi": 150
+        },
+        "fig_layerwise_displacement_profiles": {
+          "changed_pages": 0,
+          "pages": 1,
+          "dpi": 150
+        },
+        "fig_amp_matched_attack_nauc": {
+          "changed_pages": 0,
+          "pages": 1,
+          "dpi": 150
+        }
+      },
+      "all_pixel_identical": true
+    },
+    "portable_archive_extraction": {
+      "status": "PASS",
+      "exact_output_checks": 13,
+      "pytest_passed": 3
+    }
+  },
+  "reviewer_facing_hygiene": {
+    "internal_workflow_codes_in_main_tex": 0,
+    "internal_workflow_codes_in_supplement_tex": 0,
+    "obsolete_package_version_wording": 0
+  },
+  "release_policy": {
+    "image_data_included": false,
+    "checkpoint_binaries_in_git": false,
+    "processed_outputs_sufficient_for_all_tables_and_figures": true,
+    "code_license_default": "MIT — author confirmation required before first public push",
+    "citation_url_and_doi": "to be added after GitHub and Zenodo publication"
+  },
+  "key_file_hashes": {
+    "main_tex": "864e6d5034aab91977f7bf381acfb519388b8142767cceca4369db8725fce617",
+    "main_pdf": "8e19be5f9409120f295272c45b6328a4da73deb923cf7ce32327f2edbef8f750",
+    "supplement_tex": "e1c8e77e5bfe7f2e3b9dca99e87d27d3293bcc0e69b51e629d448e1ed05a8d4b",
+    "supplement_pdf": "76b3a28eab4d49ea30e9141647a9cbfcfc83033ad5105004f20115aa5510a0d4",
+    "reproduction_report": "5295d7bc361a5e8507d70d484ee00b8d479fd9094a1991f3bf5e1346ac83b57f"
+  },
+  "repository_tree": {
+    "tracked_candidate_files": 263,
+    "tracked_candidate_bytes": 16897455,
+    "largest_file_bytes": 1448766,
+    "largest_file": "data/canonical_inputs/cifar_base/session_1_seeds_42_123/noise_all_families.json"
+  }
+}

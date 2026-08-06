@@ -1,0 +1,22 @@
+{
+  "title": "ViT Positional-Encoding Decoupling: Reproducibility Package",
+  "description": "Code, processed seed-level results, configurations, manifests, and audit artifacts accompanying the manuscript 'Random and Adversarial Positional-Parameter Robustness Decouple Across Positional-Encoding Families'.",
+  "creators": [
+    {
+      "name": "Banđur, Đoko",
+      "affiliation": "Faculty of Technical Sciences, University of Priština, Kosovska Mitrovica, Serbia"
+    }
+  ],
+  "keywords": [
+    "Vision Transformer",
+    "positional encoding",
+    "adversarial parameter perturbation",
+    "random parameter noise",
+    "attention robustness",
+    "reproducibility"
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "upload_type": "software",
+  "version": "1.0.0"
+}

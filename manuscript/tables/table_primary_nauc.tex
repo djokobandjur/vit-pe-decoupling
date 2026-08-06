@@ -1,0 +1,32 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Primary normalized area under the robustness curve over
+$\rho_{\mathrm{rel}}\in[0,0.09]$. Values are mean $\pm$ sample SD across
+six paired training seeds. Random-noise curves use the budget-paired
+ten-draw aggregation defined in Section~\ref{subsec:statistics}.
+Confidence intervals are paired seed-level bootstrap intervals for the
+noise-minus-adversarial gap and are pointwise, not simultaneous. The
+eight exact two-sided sign-flip tests each yielded the minimum attainable
+unadjusted value $p=0.03125$ at $n=6$; they are secondary
+directional-consistency checks and do not support multiplicity-adjusted
+individual significance claims (see Section~\ref{subsec:statistics}).}
+\label{tab:primary-nauc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccccc}
+\toprule
+Dataset & PE family & Noise nAUC & Adversarial nAUC & Gap & 95\% CI & Seeds with gap $>0$ \\
+\midrule
+ImageNet-100 & Learned & $0.9980 \pm 0.0011$ & $0.9935 \pm 0.0025$ & $0.0045 \pm 0.0027$ & $[0.0027,0.0066]$ & 6/6 \\
+              & Sinusoidal & $0.9983 \pm 0.0012$ & $0.8610 \pm 0.0205$ & $0.1373 \pm 0.0211$ & $[0.1219,0.1529]$ & 6/6 \\
+              & RoPE & $0.9990 \pm 0.0005$ & $0.9516 \pm 0.0134$ & $0.0474 \pm 0.0137$ & $[0.0382,0.0582]$ & 6/6 \\
+              & ALiBi & $0.9602 \pm 0.0081$ & $0.8336 \pm 0.0206$ & $0.1266 \pm 0.0231$ & $[0.1074,0.1390]$ & 6/6 \\
+\midrule
+CIFAR-100 & Learned & $0.9998 \pm 0.0009$ & $0.9844 \pm 0.0125$ & $0.0154 \pm 0.0122$ & $[0.0072,0.0244]$ & 6/6 \\
+              & Sinusoidal & $0.9989 \pm 0.0010$ & $0.9584 \pm 0.0043$ & $0.0405 \pm 0.0044$ & $[0.0379,0.0441]$ & 6/6 \\
+              & RoPE & $0.9988 \pm 0.0005$ & $0.9902 \pm 0.0060$ & $0.0087 \pm 0.0060$ & $[0.0044,0.0131]$ & 6/6 \\
+              & ALiBi & $0.9935 \pm 0.0010$ & $0.9733 \pm 0.0046$ & $0.0203 \pm 0.0037$ & $[0.0175,0.0229]$ & 6/6 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "sessions": 6,
+  "attack_points": 162,
+  "noise_raw_records": 1620,
+  "noise_budget_points": 162,
+  "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+  "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+  "manifest_files": 48,
+  "unique_checkpoint_hashes": 24
+}

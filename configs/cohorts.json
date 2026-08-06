@@ -1,0 +1,42 @@
+{
+  "canonical": {
+    "checkpoints": 72,
+    "ViT-B/16": {
+      "training": "AMP",
+      "datasets": [
+        "CIFAR-100",
+        "ImageNet-100"
+      ],
+      "families": [
+        "Learned",
+        "Sinusoidal",
+        "RoPE",
+        "ALiBi"
+      ],
+      "seeds": 6
+    },
+    "ViT-S/16": {
+      "training": "full FP32",
+      "datasets": [
+        "ImageNet-100"
+      ],
+      "families": [
+        "Learned",
+        "Sinusoidal",
+        "RoPE",
+        "ALiBi"
+      ],
+      "seeds": 6
+    }
+  },
+  "auxiliary_ViT-S_AMP": {
+    "checkpoints": 18,
+    "families": [
+      "Learned",
+      "Sinusoidal",
+      "RoPE"
+    ],
+    "seeds": 6,
+    "ALiBi": "all six attempted runs diverged"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "ImageNet-100": {
+    "total": 5000,
+    "calibration": 256,
+    "attack": 1280,
+    "evaluation": 3464,
+    "split_seed": 0
+  },
+  "CIFAR-100": {
+    "total": 10000,
+    "calibration": 256,
+    "attack": 1280,
+    "evaluation": 8464,
+    "split_seed": 0
+  }
+}

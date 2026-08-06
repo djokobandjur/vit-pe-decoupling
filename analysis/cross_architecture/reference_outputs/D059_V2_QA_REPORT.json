@@ -1,0 +1,162 @@
+{
+  "checks": [
+    {
+      "detail": "",
+      "name": "three attack families",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "learned sign count 6",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "sinusoidal sign count 6",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "rope sign count 5",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "learned p floor",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "sinusoidal p floor",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "rope adjacent rung",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "ordinal has six seeds",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "modal order 5 of 6",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "seed42 exception",
+      "pass": true
+    },
+    {
+      "detail": "{'learned': 8.0, 'sinusoidal': 11.0, 'rope': 17.0}",
+      "name": "rank sums 8 11 17",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "DID learned-rope 5/6",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "DID sinusoidal-rope 6/6",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "DID learned-sinusoidal 5/6",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "DID sinusoidal-rope CI below zero",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "Welch three attack families",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "Welch attack intervals below zero",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "paired and Welch same direction",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "Learned SD ratio ~29.41",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "RoPE SD ratio ~4.665",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "Sinusoidal SD ratio ~1.097",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "Learned LOO ratio stays > 19",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "noise Learned 3 negative",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "noise Sinusoidal 2 negative",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "noise RoPE 3 negative",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "one nAUC above one record",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "above-one record is ViT-S sinusoidal seed123",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "above-one value ~1.0009374",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "summary no new GPU",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "summary revision v2",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "sign-flip step 2/64",
+      "pass": true
+    }
+  ],
+  "n_checks": 31,
+  "passed": 31,
+  "status": "PASS"
+}

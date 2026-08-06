@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the software release and the associated article."
+title: "ViT Positional-Encoding Decoupling: Reproducibility Package"
+type: software
+authors:
+  - family-names: "Banđur"
+    given-names: "Đoko"
+version: "1.0.0"
+date-released: "2026-08-06"
+license: MIT
+repository-code: "https://github.com/djokobandjur/vit-pe-decoupling"
+url: "https://github.com/djokobandjur/vit-pe-decoupling"
+preferred-citation:
+  type: article
+  title: "Random and Adversarial Positional-Parameter Robustness Decouple Across Positional-Encoding Families"
+  authors:
+    - family-names: "Banđur"
+      given-names: "Đoko"
+  journal: "Neural Networks"
+  year: 2026
+  status: "submitted"

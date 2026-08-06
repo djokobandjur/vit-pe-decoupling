@@ -1,0 +1,12 @@
+metric,support_multiplier,amp_order,fp32_order,exact_order_preserved,spearman_rho,spearman_p,rho_endpoint
+rho50,,learned > rope > sinusoidal,learned > rope > sinusoidal,True,1.0,0.0,
+epsilon50,,rope > sinusoidal > learned,rope > sinusoidal > learned,True,1.0,0.0,
+attack_nauc,1.0,rope > learned > sinusoidal,rope > learned > sinusoidal,True,1.0,0.0,0.07923839733806452
+noise_nauc,1.0,rope > sinusoidal > learned,rope > sinusoidal > learned,True,1.0,0.0,0.07923839733806452
+noise_minus_attack_gap,1.0,rope > learned > sinusoidal,rope > learned > sinusoidal,True,1.0,0.0,0.07923839733806452
+attack_nauc,0.9,rope > learned > sinusoidal,rope > learned > sinusoidal,True,1.0,0.0,0.07131455760425807
+noise_nauc,0.9,rope > sinusoidal > learned,rope > sinusoidal > learned,True,1.0,0.0,0.07131455760425807
+noise_minus_attack_gap,0.9,rope > learned > sinusoidal,rope > learned > sinusoidal,True,1.0,0.0,0.07131455760425807
+attack_nauc,0.75,rope > learned > sinusoidal,rope > learned > sinusoidal,True,1.0,0.0,0.05942879800354839
+noise_nauc,0.75,rope > sinusoidal > learned,rope > sinusoidal > learned,True,1.0,0.0,0.05942879800354839
+noise_minus_attack_gap,0.75,rope > learned > sinusoidal,rope > learned > sinusoidal,True,1.0,0.0,0.05942879800354839

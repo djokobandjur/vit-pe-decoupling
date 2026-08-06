@@ -1,0 +1,10 @@
+support_multiplier,rho_endpoint,metric,vitb_order,vits_order,exact_order_preserved
+1,0.087345571591429264,attack_nauc,learned > rope > sinusoidal,rope > learned > sinusoidal,False
+1,0.087345571591429264,noise_nauc,rope > sinusoidal > learned,rope > sinusoidal > learned,True
+1,0.087345571591429264,noise_minus_attack_gap,learned > rope > sinusoidal,rope > learned > sinusoidal,False
+0.90000000000000002,0.078611014432286339,attack_nauc,learned > rope > sinusoidal,rope > learned > sinusoidal,False
+0.90000000000000002,0.078611014432286339,noise_nauc,rope > sinusoidal > learned,rope > sinusoidal > learned,True
+0.90000000000000002,0.078611014432286339,noise_minus_attack_gap,learned > rope > sinusoidal,rope > learned > sinusoidal,False
+0.75,0.065509178693571951,attack_nauc,learned > rope > sinusoidal,rope > learned > sinusoidal,False
+0.75,0.065509178693571951,noise_nauc,rope > learned > sinusoidal,rope > sinusoidal > learned,False
+0.75,0.065509178693571951,noise_minus_attack_gap,learned > rope > sinusoidal,rope > learned > sinusoidal,False

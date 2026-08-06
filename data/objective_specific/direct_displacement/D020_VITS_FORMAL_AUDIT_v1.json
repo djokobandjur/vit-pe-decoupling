@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "audit_id": "D020_VITS_FORMAL_AUDIT_v1",
+  "created_at": "2026-08-02T06:29:11.966322+00:00",
+  "status": "PASS",
+  "audited_runs": 20,
+  "expected_runs": 20,
+  "formal_preflight_status": "PASS",
+  "formal_convergence_status": "PASS",
+  "schedule_lock_consequence": "LOCK_200x5_FOR_D020_VITS",
+  "paired_hash_checks": 10,
+  "recomputed_delta_tensor_hashes": 20,
+  "actual_sum_run_time_gpu_hours": 3.012238381372558,
+  "run_card_sha256": "537294513e2bb0c6d9fcef1153f618bd45b3931cf38f206801fa1ebd82984dd6",
+  "formal_runner_sha256": "908613499f07242e7f3bf6db9069b97cc390a65f69363166288be6904eb7395c",
+  "audit_runner_sha256": "ee4e8cc09343749e71fcf02fa4c2733771469120308377f5b7d4c1842f517dcf",
+  "core_sha256": "1a0510fd301f61008c331ecc5755c18deb21a817196b9c3c9b8a7bfb58665422",
+  "formal_result_sha256": "7a994126b447ce397f81bc5fa3312e056e66e653da79cd795d9e4ce75d1dba17",
+  "central_endpoint_sha256": "0e389fe945b66a7fd27bd97b268e54493859b30395167619e6d260acf6a0629a",
+  "issues": [],
+  "support_boundary": "Direct-rho results remain objective-specific structural evidence and do not enter canonical task-loss AUC, rho_common, or rho50 support."
+}

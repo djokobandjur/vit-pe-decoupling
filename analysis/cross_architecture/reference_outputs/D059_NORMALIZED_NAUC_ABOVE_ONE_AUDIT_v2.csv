@@ -1,0 +1,2 @@
+architecture,family,seed,noise_nauc,interpretation
+vits_amp,sinusoidal,123,1.0009374037935579,Allowed: perturbation-averaged normalized accuracy can marginally exceed 1 when noisy accuracy exceeds the clean reference on the fixed evaluation split.

@@ -1,0 +1,232 @@
+{
+  "attack_eval_numerical_mode_lock": "ATTACK_EVAL_NUMERICAL_MODE_v1; historical reconciliation remains a declared provenance limit",
+  "common_rho_support": 0.07923839733806452,
+  "cross_cohort_protocol_checks": {
+    "all_18_checkpoint_hashes_differ": true,
+    "different_checkpoint_hashes_expected": true,
+    "same_attack_budget_grids_three_families": true,
+    "same_attack_configs_three_families": true,
+    "same_noise_budget_grids_three_families": true,
+    "same_sample_order_sha256": true,
+    "same_split_file_sha256": true,
+    "same_split_sha256": true
+  },
+  "endpoint_validation_against_fp16_final_audit_max_abs_delta": 0.0,
+  "fp16": {
+    "architecture_hashes": [
+      "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf"
+    ],
+    "attack_budget_grids": {
+      "learned": [
+        0.0,
+        0.003,
+        0.004,
+        0.0045,
+        0.005,
+        0.006,
+        0.008
+      ],
+      "rope": [
+        0.0,
+        0.01,
+        0.025,
+        0.05,
+        0.075,
+        0.1
+      ],
+      "sinusoidal": [
+        0.0,
+        0.005,
+        0.006,
+        0.007,
+        0.0075,
+        0.008,
+        0.0085,
+        0.009,
+        0.0095,
+        0.01
+      ]
+    },
+    "attack_configs": {
+      "learned": [
+        1600,
+        5,
+        0.05,
+        "global_rms"
+      ],
+      "rope": [
+        200,
+        5,
+        0.05,
+        "global_rms"
+      ],
+      "sinusoidal": [
+        200,
+        5,
+        0.05,
+        "global_rms"
+      ]
+    },
+    "attack_points": 138,
+    "engine_hashes": [
+      "98c5fa67e7bf089148840a60b16a283899939f754f6a6c9e65261a916cc9cffb"
+    ],
+    "noise_budget_averaged_points": 138,
+    "noise_budget_grids": {
+      "learned": [
+        0.0,
+        0.0025,
+        0.005,
+        0.01,
+        0.02,
+        0.04,
+        0.06,
+        0.08,
+        0.12
+      ],
+      "rope": [
+        0.0,
+        0.025,
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.6
+      ],
+      "sinusoidal": [
+        0.0,
+        0.01,
+        0.025,
+        0.05,
+        0.1,
+        0.2,
+        0.3
+      ]
+    },
+    "noise_raw_points": 1380,
+    "protocol_ids": [
+      "VITS_FP16_ATTACK_PROTOCOL_LOCKED_v1"
+    ],
+    "regime": "amp_fp16_trained",
+    "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+    "sessions_complete": 6,
+    "split_file_sha256": "43daa888eddd89047f2b73a42755554f974bf0da44c58b43f347d44bb9bd3259",
+    "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+    "unique_checkpoint_hashes": 18
+  },
+  "fp32": {
+    "architecture_hashes": [],
+    "attack_budget_grids": {
+      "learned": [
+        0.0,
+        0.003,
+        0.004,
+        0.0045,
+        0.005,
+        0.006,
+        0.008
+      ],
+      "rope": [
+        0.0,
+        0.01,
+        0.025,
+        0.05,
+        0.075,
+        0.1
+      ],
+      "sinusoidal": [
+        0.0,
+        0.005,
+        0.006,
+        0.007,
+        0.0075,
+        0.008,
+        0.0085,
+        0.009,
+        0.0095,
+        0.01
+      ]
+    },
+    "attack_configs": {
+      "learned": [
+        1600,
+        5,
+        0.05,
+        "global_rms"
+      ],
+      "rope": [
+        200,
+        5,
+        0.05,
+        "global_rms"
+      ],
+      "sinusoidal": [
+        200,
+        5,
+        0.05,
+        "global_rms"
+      ]
+    },
+    "attack_points": 138,
+    "engine_hashes": [],
+    "noise_budget_averaged_points": 138,
+    "noise_budget_grids": {
+      "learned": [
+        0.0,
+        0.0025,
+        0.005,
+        0.01,
+        0.02,
+        0.04,
+        0.06,
+        0.08,
+        0.12
+      ],
+      "rope": [
+        0.0,
+        0.025,
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.6
+      ],
+      "sinusoidal": [
+        0.0,
+        0.01,
+        0.025,
+        0.05,
+        0.1,
+        0.2,
+        0.3
+      ]
+    },
+    "noise_raw_points": 1380,
+    "protocol_ids": [
+      "VITS_IN100_LOCKED_PROTOCOL_v16"
+    ],
+    "regime": "full_fp32_trained",
+    "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+    "sessions_complete": 6,
+    "split_file_sha256": "43daa888eddd89047f2b73a42755554f974bf0da44c58b43f347d44bb9bd3259",
+    "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+    "unique_checkpoint_hashes": 18
+  },
+  "status": "PASS_WITH_PAIRING_PROVENANCE_LIMIT",
+  "strict_pairing_provenance": {
+    "analysis_label": "SEED_MATCHED",
+    "bit_identical_initial_state_hash_available": false,
+    "consequence": "Do not call the comparison strictly paired; use seed-matched terminology and do not attribute differences solely to numerical precision.",
+    "data_order_identity": "same evaluation split/sample order proven; training sampler order and initial state hash not packaged",
+    "gradscaler_skip_count_available": false,
+    "status": "NOT_DEMONSTRATED_IN_RESULTS_PACKAGE"
+  },
+  "support_limiter": {
+    "curve": "attack",
+    "family": "sinusoidal",
+    "max_rho": 0.07923839733806452,
+    "n_points": 10,
+    "regime": "full_fp32_trained",
+    "seed": 456
+  }
+}

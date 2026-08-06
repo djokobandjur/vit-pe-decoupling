@@ -1,0 +1,57 @@
+{
+  "alibi_scope": "ViT-B-only robustness plus separate ViT-S AMP training-collapse evidence; excluded from symmetric cross-architecture robustness metrics.",
+  "architecture_by_pe_interaction": {
+    "Q": 7.0,
+    "asymptotic_p": 0.0301973834223185,
+    "exact_p": 0.028935185185185185,
+    "n_blocks": 6,
+    "n_families": 3,
+    "rank_sums": {
+      "learned": 8.0,
+      "rope": 17.0,
+      "sinusoidal": 11.0
+    }
+  },
+  "attack_eval_regime": "FP32",
+  "comparison": "AMP-matched cross-architecture ViT-B/16 vs ViT-S/16",
+  "families": [
+    "learned",
+    "sinusoidal",
+    "rope"
+  ],
+  "learned_q50_full_n6": "NOT_ESTIMABLE: ViT-B q50 not bracketed for seeds 123, 456, 1011",
+  "main_interpretation": "AMP-matched backbone scaling changes adversarial robustness in a PE-dependent way while random-noise nAUC remains nearly unchanged. The ViT-B Learned>RoPE ordering reverses to RoPE>Learned in ViT-S. This is not a universal scaling law and does not include matched ALiBi robustness.",
+  "nauc_arch_endpoints": {
+    "vitb_amp": 0.0957481143921283,
+    "vits_amp": 0.08734557159142926
+  },
+  "nauc_cross_rho_endpoint": 0.08734557159142926,
+  "nauc_family_endpoints": {
+    "learned": 0.09952385375916267,
+    "rope": 0.10646703102864417,
+    "sinusoidal": 0.08734557159142926
+  },
+  "new_gpu_experiment_required": false,
+  "primary_attack_ranking_vitb": "learned > rope > sinusoidal",
+  "primary_attack_ranking_vits": "rope > learned > sinusoidal",
+  "primary_noise_ranking_vitb": "rope > sinusoidal > learned",
+  "primary_noise_ranking_vits": "rope > sinusoidal > learned",
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011,
+    1213
+  ],
+  "status": "PASS_ANALYSIS_COMPLETE",
+  "support_limiter": {
+    "architecture": "vits_amp",
+    "curve": "attack",
+    "family": "sinusoidal",
+    "max_rho": 0.08734557159142926,
+    "n_points": 10,
+    "seed": 1011
+  },
+  "training_regime": "AMP/mixed precision for both cohorts"
+}

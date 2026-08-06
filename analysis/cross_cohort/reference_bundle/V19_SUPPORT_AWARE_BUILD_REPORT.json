@@ -1,0 +1,76 @@
+{
+  "version": "CANONICAL v19",
+  "status": "PASS",
+  "policy": {
+    "tau_abs": 5e-07,
+    "tau_rel": 5e-06,
+    "canonical_only": true,
+    "D019_D020_support_extension": false,
+    "noise_aggregation": "budget-paired mean over 10 fixed directions",
+    "adversarial_selection": "loss-selected best of 5 at each native budget",
+    "adversarial_envelope": "cumulative minimum after achieved-rho ordering",
+    "no_extrapolation": true
+  },
+  "rho_common": {
+    "vitb": 0.0957481143921283,
+    "vits": 0.07923839733806452,
+    "cross_architecture": 0.07923839733806452,
+    "family_cross_architecture": {
+      "learned": 0.09492790714885053,
+      "sinusoidal": 0.07923839733806452,
+      "rope": 0.10411208324905995,
+      "alibi": 0.1204982513921675
+    }
+  },
+  "n_curves_canonical": 96,
+  "friedman": {
+    "vitb_gap_1": {
+      "status": "PASS",
+      "statistic": 17.0,
+      "exact_permutation_p_value": 2.3861480838477368e-06,
+      "exact_tail_count": 456,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0007067423923370282
+    },
+    "vitb_gap_0.9": {
+      "status": "PASS",
+      "statistic": 17.0,
+      "exact_permutation_p_value": 2.3861480838477368e-06,
+      "exact_tail_count": 456,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0007067423923370282
+    },
+    "vitb_gap_0.75": {
+      "status": "PASS",
+      "statistic": 17.0,
+      "exact_permutation_p_value": 2.3861480838477368e-06,
+      "exact_tail_count": 456,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0007067423923370282
+    },
+    "vits_gap_1": {
+      "status": "PASS",
+      "statistic": 15.0,
+      "exact_permutation_p_value": 9.46924029063786e-05,
+      "exact_tail_count": 18096,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0018166489665723214
+    },
+    "vits_gap_0.9": {
+      "status": "PASS",
+      "statistic": 15.0,
+      "exact_permutation_p_value": 9.46924029063786e-05,
+      "exact_tail_count": 18096,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0018166489665723214
+    },
+    "vits_gap_0.75": {
+      "status": "PASS",
+      "statistic": 15.0,
+      "exact_permutation_p_value": 9.46924029063786e-05,
+      "exact_tail_count": 18096,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0018166489665723214
+    }
+  }
+}

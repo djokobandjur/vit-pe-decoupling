@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "created_at": "2026-08-02T06:29:11.967579+00:00",
+  "audit_path": "/home/djoko.bandjur.ftnkm/Notebooks/results/d020_direct_rho_convergence_v1/formal_convergence/vits/seed_42/D020_VITS_FORMAL_AUDIT_v1.json",
+  "audit_sha256": "9ce8035f47fa6102417eed6b3402f56c4cecd7d1daae146f2618614416244963",
+  "formal_result_sha256": "7a994126b447ce397f81bc5fa3312e056e66e653da79cd795d9e4ce75d1dba17",
+  "central_endpoint_sha256": "0e389fe945b66a7fd27bd97b268e54493859b30395167619e6d260acf6a0629a"
+}

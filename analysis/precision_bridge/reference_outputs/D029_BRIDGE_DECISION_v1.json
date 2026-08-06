@@ -1,0 +1,12 @@
+{
+  "allowed_claim": "The seed-matched n=6 analysis does not establish a general AMP-to-FP32 robustness bridge. Report the two training regimes separately; INCONCLUSIVE is not evidence that the regimes differ.",
+  "analysis_label": "seed-matched",
+  "family_rho50_equivalence": {
+    "learned": "INCONCLUSIVE",
+    "rope": "INCONCLUSIVE",
+    "sinusoidal": "EQUIVALENT"
+  },
+  "overall_status": "INCONCLUSIVE",
+  "rho50_rank_order_preserved": true,
+  "strict_pairing_provenance": "NOT_DEMONSTRATED_IN_RESULTS_PACKAGE"
+}

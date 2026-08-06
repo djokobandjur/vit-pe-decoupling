@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "lock_id": "D020_DIRECT_RHO_INPUT_LOCK_v1",
+  "created_at": "2026-07-30",
+  "status": "LOCKED",
+  "plan_file": "/home/djoko.bandjur.ftnkm/Notebooks/D020_DIRECT_RHO_CONVERGENCE_v1/protocol/D020_DIRECT_RHO_CONVERGENCE_PLAN_v1.json",
+  "plan_sha256": "a2bd0035df77dc4c591c04e5963b58421e297e144b907d91bf7531014547632d",
+  "objective_lock_file": "/home/djoko.bandjur.ftnkm/Notebooks/D020_DIRECT_RHO_CONVERGENCE_v1/protocol/O008_DIRECT_RHO_OBJECTIVE_LOCK_v1.md",
+  "objective_lock_sha256": "fb6e5367025c0b88278b3b4c18b08953281505b9701b1db893f33df088ede302",
+  "source_d019_input_lock_sha256": "7e1cc094d1284e376189895eecb1134f52e2052e26b4ad858b91876954ee2e9b",
+  "split_file": "/home/djoko.bandjur.ftnkm/Notebooks/D020_DIRECT_RHO_CONVERGENCE_v1/inputs/imagenet100_split_indices.json",
+  "split_file_sha256": "43daa888eddd89047f2b73a42755554f974bf0da44c58b43f347d44bb9bd3259",
+  "dataset_reports": {
+    "vitb": {
+      "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/imagenet100_resized/val",
+      "n_images": 5000,
+      "n_classes": 100,
+      "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+      "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+      "counts": {
+        "calibration": 256,
+        "attack": 1280,
+        "evaluation": 3464
+      }
+    },
+    "vits": {
+      "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/reextract_test/imagenet100_resized/val",
+      "n_images": 5000,
+      "n_classes": 100,
+      "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+      "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+      "counts": {
+        "calibration": 256,
+        "attack": 1280,
+        "evaluation": 3464
+      }
+    }
+  },
+  "checkpoint_rows": [
+    {
+      "architecture": "vits",
+      "family": "sinusoidal",
+      "seed": 42,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed42/best_model.pth",
+      "sha256": "e11bba5a1ab879b50cb75cbf34f826811fc72e94bc5bb1342d631445905bf0c2",
+      "size_bytes": 86873641,
+      "prior_manifest_sha256_match": true,
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      },
+      "strict_load_ok": true,
+      "missing_keys": [],
+      "unexpected_keys": []
+    },
+    {
+      "architecture": "vitb",
+      "family": "sinusoidal",
+      "seed": 42,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints/sinusoidal_seed42/best_model.pth",
+      "sha256": "15a95418f02a736056c3f8a6fc9e6ee691f4f8305493a6ddc0e01094234bb66b",
+      "size_bytes": 343559209,
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      },
+      "strict_load_ok": true,
+      "missing_keys": [],
+      "unexpected_keys": []
+    }
+  ],
+  "uid_cache_policy": {
+    "HOME": "/home/djoko.bandjur.ftnkm",
+    "USER": "djoko.bandjur.ftnkm",
+    "cache_root": "/home/djoko.bandjur.ftnkm/.cache/d020_direct_rho_convergence_v1",
+    "shared_tmp_forbidden": true
+  },
+  "package_code": {
+    "direct_rho_core_sha256": "1a0510fd301f61008c331ecc5755c18deb21a817196b9c3c9b8a7bfb58665422",
+    "preflight_sha256": "67e397e0a334dc8497a19f0f3e36014816828363468a2d0dd9a02704872f46b2",
+    "vits_architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf",
+    "vitb_architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf"
+  }
+}

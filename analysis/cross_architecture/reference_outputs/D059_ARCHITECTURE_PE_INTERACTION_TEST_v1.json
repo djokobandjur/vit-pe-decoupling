@@ -1,0 +1,12 @@
+{
+  "Q": 7.0,
+  "asymptotic_p": 0.0301973834223185,
+  "exact_p": 0.028935185185185185,
+  "n_blocks": 6,
+  "n_families": 3,
+  "rank_sums": {
+    "learned": 8.0,
+    "rope": 17.0,
+    "sinusoidal": 11.0
+  }
+}

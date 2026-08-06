@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Cross-architecture ImageNet-100 normalized AUC over the locked common-support interval $\rho_{\mathrm{rel}}\in[0,0.07924]$. Values are mean $\pm$ sample SD across the same six training seeds. D019 and D020 are excluded from this canonical support.}
+\label{tab:v19-cross-architecture-nauc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccc}
+\toprule
+Architecture & PE family & Noise nAUC & Adversarial nAUC & Gap \\
+\midrule
+ViT-B/16 & Learned & $0.9983 \pm 0.0010$ & $0.9945 \pm 0.0023$ & $0.0039 \pm 0.0024$ \\
+ & Sinusoidal & $0.9984 \pm 0.0010$ & $0.9034 \pm 0.0105$ & $0.0950 \pm 0.0110$ \\
+ & RoPE & $0.9992 \pm 0.0005$ & $0.9669 \pm 0.0083$ & $0.0323 \pm 0.0086$ \\
+ & ALiBi & $0.9685 \pm 0.0061$ & $0.8701 \pm 0.0185$ & $0.0983 \pm 0.0201$ \\
+\midrule
+ViT-S/16 & Learned & $0.9981 \pm 0.0007$ & $0.8509 \pm 0.0374$ & $0.1471 \pm 0.0374$ \\
+ & Sinusoidal & $0.9988 \pm 0.0011$ & $0.7664 \pm 0.0385$ & $0.2324 \pm 0.0390$ \\
+ & RoPE & $0.9992 \pm 0.0008$ & $0.8662 \pm 0.0397$ & $0.1330 \pm 0.0396$ \\
+ & ALiBi & $0.9717 \pm 0.0070$ & $0.9046 \pm 0.0064$ & $0.0670 \pm 0.0066$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

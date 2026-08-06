@@ -1,0 +1,109 @@
+{
+  "version": "CANONICAL v18",
+  "method": {
+    "seed_unit_of_replication": true,
+    "noise_aggregation": "budget-paired mean of achieved rho and normalized accuracy over ten fixed draws within seed and native budget",
+    "per_draw_nauc_not_used": true,
+    "union_grid_across_noise_draws_not_used": true,
+    "exact_clean_anchor": [
+      0.0,
+      1.0
+    ],
+    "noise_lower_envelope": false,
+    "adversarial_restart_rule": "highest attack loss among five restarts at each native budget",
+    "adversarial_lower_envelope": true,
+    "curve_coordinate": "achieved rho_rel",
+    "interpolation": "piecewise linear",
+    "integration": "numpy.trapezoid",
+    "normalized_accuracy_clipping": false,
+    "sample_sd_ddof": 1,
+    "bootstrap_repetitions": 200000,
+    "bootstrap_seed": 20260718
+  },
+  "friedman": {
+    "imagenet_0p09": {
+      "statistic": 16.400000000000006,
+      "exact_permutation_p_value": 8.037551440329219e-06,
+      "exact_tail_count": 1536,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0009387420550450392,
+      "family_order": [
+        "learned",
+        "sinusoidal",
+        "rope",
+        "alibi"
+      ],
+      "seed_order": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ]
+    },
+    "cifar_0p09": {
+      "statistic": 15.0,
+      "exact_permutation_p_value": 9.46924029063786e-05,
+      "exact_tail_count": 18096,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0018166489665723214,
+      "family_order": [
+        "learned",
+        "sinusoidal",
+        "rope",
+        "alibi"
+      ],
+      "seed_order": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ]
+    },
+    "imagenet_0p095": {
+      "statistic": 16.400000000000006,
+      "exact_permutation_p_value": 8.037551440329219e-06,
+      "exact_tail_count": 1536,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0009387420550450392,
+      "family_order": [
+        "learned",
+        "sinusoidal",
+        "rope",
+        "alibi"
+      ],
+      "seed_order": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ]
+    },
+    "cifar_0p095": {
+      "statistic": 15.0,
+      "exact_permutation_p_value": 9.46924029063786e-05,
+      "exact_tail_count": 18096,
+      "n_total_permutations": 191102976,
+      "asymptotic_p_value": 0.0018166489665723214,
+      "family_order": [
+        "learned",
+        "sinusoidal",
+        "rope",
+        "alibi"
+      ],
+      "seed_order": [
+        42,
+        123,
+        456,
+        789,
+        1011,
+        1213
+      ]
+    }
+  }
+}

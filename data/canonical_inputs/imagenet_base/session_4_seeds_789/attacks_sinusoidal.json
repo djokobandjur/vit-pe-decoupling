@@ -1,0 +1,771 @@
+{
+  "metadata": {
+    "created_at": "2026-07-16T07:21:51.684846+00:00",
+    "script": "cross_family_rho_decoupling.py",
+    "protocol": "parameter-space perturbation reparameterised by achieved attention-logit rho",
+    "direct_rho_constrained_pgd": false,
+    "dataset": "imagenet",
+    "device": "cuda",
+    "n_total_images": 5000,
+    "split": {
+      "seed": 0,
+      "n_calibration": 256,
+      "n_attack": 1280,
+      "n_eval": 3464,
+      "calibration_attack_overlap": 0,
+      "calibration_eval_overlap": 0,
+      "attack_eval_overlap": 0
+    },
+    "pe_types": [
+      "sinusoidal"
+    ],
+    "seeds": [
+      789
+    ],
+    "config": {
+      "stages": [
+        "attacks"
+      ],
+      "budgets_default": [
+        0.0,
+        0.001,
+        0.005,
+        0.01,
+        0.05,
+        0.1,
+        0.2,
+        0.5,
+        1.0
+      ],
+      "budgets_by_pe": {
+        "sinusoidal": [
+          0.0,
+          0.0025,
+          0.005,
+          0.006,
+          0.007,
+          0.008,
+          0.009,
+          0.01,
+          0.02
+        ]
+      },
+      "parameter_norm": "global_rms",
+      "noise_draws": 10,
+      "noise_distribution": "gaussian",
+      "noise_pattern": "shared/coherent across RoPE/ALiBi blocks",
+      "fixed_noise_direction_across_budget_grid": true,
+      "paired_noise_seed_across_pe_families": true,
+      "pgd_steps": 400,
+      "pgd_restarts": 5,
+      "pgd_alpha_ratio": 0.05,
+      "pgd_seed_steps": 50,
+      "pgd_seed_alpha_ratio": 0.05,
+      "rope_parameterization": "phase",
+      "active_rope_targets": [
+        "phase -> cos_cached/sin_cached"
+      ],
+      "inactive_rope_inv_freq_excluded": true
+    },
+    "rho_definition": {
+      "absolute": "sqrt(mean_layer mean_{image,head,query,key} (Zpert-Zclean)^2)",
+      "relative": "rho_abs / sqrt(mean_layer mean_{image,head,query,key} Zclean^2)",
+      "layer_weighting": "equal",
+      "location": "pre-softmax attention logits after PE-specific transformation and ALiBi bias"
+    },
+    "updated_at": "2026-07-16T16:23:40.360212+00:00"
+  },
+  "results": {
+    "sinusoidal": {
+      "789": {
+        "status": "ok",
+        "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints/sinusoidal_seed789/best_model.pth",
+        "attacks": {
+          "pgd_pe": {
+            "0": {
+              "budget": 0.0,
+              "accuracy": 81.69745958429561,
+              "normalized_accuracy": 1.0,
+              "drop_from_clean_pp": 0.0,
+              "selected_attack_loss": null,
+              "restart_records": [],
+              "delta_metrics": {
+                "parameter_global_rms": 0.0,
+                "parameter_global_l2": 0.0,
+                "parameter_global_linf": 0.0,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.0,
+                "rho_rel": 0.0,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 3.1177523136138916
+            },
+            "0.0025": {
+              "budget": 0.0025,
+              "accuracy": 80.45612009237875,
+              "normalized_accuracy": 0.9848056537102473,
+              "drop_from_clean_pp": 1.241339491916861,
+              "selected_attack_loss": 0.8980085078626872,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 1471295926,
+                  "attack_loss": 0.8979926033411175
+                },
+                {
+                  "restart": 1,
+                  "seed": 1563768699,
+                  "attack_loss": 0.898001845786348
+                },
+                {
+                  "restart": 2,
+                  "seed": 1146083243,
+                  "attack_loss": 0.8979823593050241
+                },
+                {
+                  "restart": 3,
+                  "seed": 1202070781,
+                  "attack_loss": 0.8980085078626872
+                },
+                {
+                  "restart": 4,
+                  "seed": 2004353915,
+                  "attack_loss": 0.8980008216109127
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.0024999999441206455,
+                "parameter_global_l2": 0.9724196195602417,
+                "parameter_global_linf": 0.12850236892700195,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.00962503648423903,
+                "rho_rel": 0.007077614218340129,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.005266950685648491,
+                  0.01426825933089492,
+                  0.014712753397784818,
+                  0.011565817450996977,
+                  0.011176882850607967,
+                  0.01008246799897573,
+                  0.00922479294746085,
+                  0.007959620395910857,
+                  0.007588122744737611,
+                  0.00606602972882642,
+                  0.005545537594729217,
+                  0.005475230087473794
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 4487.142992258072
+            },
+            "0.005": {
+              "budget": 0.005,
+              "accuracy": 78.69515011547344,
+              "normalized_accuracy": 0.9632508833922261,
+              "drop_from_clean_pp": 3.002309468822176,
+              "selected_attack_loss": 1.013153479155153,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 265168480,
+                  "attack_loss": 1.013153479155153
+                },
+                {
+                  "restart": 1,
+                  "seed": 334198618,
+                  "attack_loss": 1.0131294732913374
+                },
+                {
+                  "restart": 2,
+                  "seed": 1875582045,
+                  "attack_loss": 1.0131008830387145
+                },
+                {
+                  "restart": 3,
+                  "seed": 210568933,
+                  "attack_loss": 1.0131480757612734
+                },
+                {
+                  "restart": 4,
+                  "seed": 884413952,
+                  "attack_loss": 1.0131413808092475
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.004999999888241291,
+                "parameter_global_l2": 1.944839358329773,
+                "parameter_global_linf": 0.2522452771663666,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.025025799538733125,
+                "rho_rel": 0.018402315142462652,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.015736250460409325,
+                  0.03977455985108751,
+                  0.040054554938588546,
+                  0.02810128696365854,
+                  0.02727026269863608,
+                  0.026167678451729938,
+                  0.0232959406924824,
+                  0.019901678947444348,
+                  0.018711299334871628,
+                  0.014958989452056183,
+                  0.013495829675098787,
+                  0.012983798083217382
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 3412.1245312690735
+            },
+            "0.006": {
+              "budget": 0.006,
+              "accuracy": 76.41454965357968,
+              "normalized_accuracy": 0.9353356890459364,
+              "drop_from_clean_pp": 5.282909930715931,
+              "selected_attack_loss": 1.0898726063314825,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 1040161608,
+                  "attack_loss": 1.0898726063314825
+                },
+                {
+                  "restart": 1,
+                  "seed": 1007288679,
+                  "attack_loss": 1.089865846093744
+                },
+                {
+                  "restart": 2,
+                  "seed": 811040687,
+                  "attack_loss": 1.089860844379291
+                },
+                {
+                  "restart": 3,
+                  "seed": 734234580,
+                  "attack_loss": 1.0898601102642715
+                },
+                {
+                  "restart": 4,
+                  "seed": 664125222,
+                  "attack_loss": 1.0898502348456531
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.005999999586492777,
+                "parameter_global_l2": 2.3338072299957275,
+                "parameter_global_linf": 0.4145990312099457,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.04595617854053935,
+                "rho_rel": 0.033793129323895166,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.02717423239780676,
+                  0.07020011404856566,
+                  0.08836769393801577,
+                  0.05281646650056214,
+                  0.051713042243800786,
+                  0.04444517885457022,
+                  0.03664113230380044,
+                  0.03068641789803073,
+                  0.02855139172266727,
+                  0.022579818386388895,
+                  0.020311602829091044,
+                  0.02018137531583015
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 3952.217967271805
+            },
+            "0.007": {
+              "budget": 0.007,
+              "accuracy": 70.26558891454965,
+              "normalized_accuracy": 0.8600706713780918,
+              "drop_from_clean_pp": 11.431870669745962,
+              "selected_attack_loss": 1.3031608121935279,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 1036400086,
+                  "attack_loss": 1.3030661148484797
+                },
+                {
+                  "restart": 1,
+                  "seed": 760085915,
+                  "attack_loss": 1.303125682566315
+                },
+                {
+                  "restart": 2,
+                  "seed": 684329515,
+                  "attack_loss": 1.3031181160360574
+                },
+                {
+                  "restart": 3,
+                  "seed": 1805482847,
+                  "attack_loss": 1.3031431763898582
+                },
+                {
+                  "restart": 4,
+                  "seed": 2042092277,
+                  "attack_loss": 1.3031608121935279
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.007000000216066837,
+                "parameter_global_l2": 2.7227752208709717,
+                "parameter_global_linf": 0.6129928231239319,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.0904035966079384,
+                "rho_rel": 0.0664768161439356,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.04227055133574514,
+                  0.11403156513819111,
+                  0.1911719644406824,
+                  0.10015779784110247,
+                  0.12222845193491984,
+                  0.0904965631231343,
+                  0.061618013066319074,
+                  0.05131403995270175,
+                  0.050220072589162244,
+                  0.03923920612652765,
+                  0.036338959699991506,
+                  0.041997594345803885
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 4184.684927225113
+            },
+            "0.008": {
+              "budget": 0.008,
+              "accuracy": 55.86027713625866,
+              "normalized_accuracy": 0.6837455830388692,
+              "drop_from_clean_pp": 25.837182448036955,
+              "selected_attack_loss": 1.880691079236567,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 1045758796,
+                  "attack_loss": 1.8806304034776986
+                },
+                {
+                  "restart": 1,
+                  "seed": 75882403,
+                  "attack_loss": 1.8806461192667485
+                },
+                {
+                  "restart": 2,
+                  "seed": 1756701243,
+                  "attack_loss": 1.8806414080783724
+                },
+                {
+                  "restart": 3,
+                  "seed": 640944711,
+                  "attack_loss": 1.8806452883407474
+                },
+                {
+                  "restart": 4,
+                  "seed": 800721952,
+                  "attack_loss": 1.880691079236567
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.007999999448657036,
+                "parameter_global_l2": 3.1117427349090576,
+                "parameter_global_linf": 0.6920145750045776,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.11194907308794749,
+                "rho_rel": 0.08231993226360206,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.04747866280672301,
+                  0.13131573070371494,
+                  0.22427422277780035,
+                  0.123805248274085,
+                  0.15708805989757638,
+                  0.11869927705004059,
+                  0.0806270966596474,
+                  0.06962579414294835,
+                  0.06973756873615072,
+                  0.05524748855838549,
+                  0.053368848390343,
+                  0.06624140852903943
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 4266.493218421936
+            },
+            "0.009": {
+              "budget": 0.009,
+              "accuracy": 38.481524249422634,
+              "normalized_accuracy": 0.47102473498233216,
+              "drop_from_clean_pp": 43.21593533487298,
+              "selected_attack_loss": 2.7719237454235555,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 1791722321,
+                  "attack_loss": 2.7719237454235555
+                },
+                {
+                  "restart": 1,
+                  "seed": 1225614019,
+                  "attack_loss": 2.7719104323536157
+                },
+                {
+                  "restart": 2,
+                  "seed": 1463976116,
+                  "attack_loss": 2.7719118162989616
+                },
+                {
+                  "restart": 3,
+                  "seed": 1947839249,
+                  "attack_loss": 2.7719061937183143
+                },
+                {
+                  "restart": 4,
+                  "seed": 2117010704,
+                  "attack_loss": 2.771868833899498
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.008999998681247234,
+                "parameter_global_l2": 3.5007104873657227,
+                "parameter_global_linf": 0.7516778111457825,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.12191240403025462,
+                "rho_rel": 0.08964630581603189,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.050015445587030034,
+                  0.14211196026782247,
+                  0.23716056250489703,
+                  0.1345423183170775,
+                  0.1669922090238981,
+                  0.12987545050151095,
+                  0.09089539705432172,
+                  0.0805031548911537,
+                  0.08121471835034832,
+                  0.06559927754038798,
+                  0.06483303426968642,
+                  0.08190427039612798
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 4169.531788825989
+            },
+            "0.01": {
+              "budget": 0.01,
+              "accuracy": 24.884526558891455,
+              "normalized_accuracy": 0.30459363957597174,
+              "drop_from_clean_pp": 56.81293302540416,
+              "selected_attack_loss": 3.6330587111413477,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 593400146,
+                  "attack_loss": 3.6330587111413477
+                },
+                {
+                  "restart": 1,
+                  "seed": 1131694039,
+                  "attack_loss": 3.632982013747096
+                },
+                {
+                  "restart": 2,
+                  "seed": 573135107,
+                  "attack_loss": 3.633037684112787
+                },
+                {
+                  "restart": 3,
+                  "seed": 1396114269,
+                  "attack_loss": 3.632988145202398
+                },
+                {
+                  "restart": 4,
+                  "seed": 1423798858,
+                  "attack_loss": 3.6330509833991527
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.009999999776482582,
+                "parameter_global_l2": 3.889678478240967,
+                "parameter_global_linf": 0.7804840207099915,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.12507684013824238,
+                "rho_rel": 0.09197322250124108,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.05097210369772863,
+                  0.14596462628284584,
+                  0.23932667028459514,
+                  0.13830672536831648,
+                  0.1693369043471389,
+                  0.1338853554248437,
+                  0.09526996602601376,
+                  0.08525306518027564,
+                  0.08605053643738476,
+                  0.0705661010164368,
+                  0.07019765661186646,
+                  0.08464071624678088
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 4140.129408121109
+            },
+            "0.02": {
+              "budget": 0.02,
+              "accuracy": 2.338337182448037,
+              "normalized_accuracy": 0.028621908127208478,
+              "drop_from_clean_pp": 79.35912240184757,
+              "selected_attack_loss": 7.015483653545379,
+              "restart_records": [
+                {
+                  "restart": 0,
+                  "seed": 1828487151,
+                  "attack_loss": 7.015483653545379
+                },
+                {
+                  "restart": 1,
+                  "seed": 583286425,
+                  "attack_loss": 7.01546677350998
+                },
+                {
+                  "restart": 2,
+                  "seed": 1752892927,
+                  "attack_loss": 7.0154792189598085
+                },
+                {
+                  "restart": 3,
+                  "seed": 913125121,
+                  "attack_loss": 7.015477466583252
+                },
+                {
+                  "restart": 4,
+                  "seed": 2053579798,
+                  "attack_loss": 7.015453436970711
+                }
+              ],
+              "delta_metrics": {
+                "parameter_global_rms": 0.019999999552965164,
+                "parameter_global_l2": 7.779357433319092,
+                "parameter_global_linf": 1.3759607076644897,
+                "n_unique_delta_elements": 151296
+              },
+              "rho": {
+                "rho_abs": 0.1385558818483962,
+                "rho_rel": 0.10188481685349114,
+                "clean_logit_rms": 1.3599266910165575,
+                "n_calibration_images": 256,
+                "n_layers": 12,
+                "layer_rho_abs": [
+                  0.06521370697290102,
+                  0.18109383202026685,
+                  0.2698655346828588,
+                  0.1353723493374756,
+                  0.16620652385053059,
+                  0.1282817138462641,
+                  0.11069097320734306,
+                  0.1057740622218001,
+                  0.10719405821953285,
+                  0.0923324251739875,
+                  0.08915605035185126,
+                  0.08176680715895479
+                ],
+                "layer_clean_logit_rms": [
+                  1.7075809885494846,
+                  1.7260530786150454,
+                  2.4726171912291814,
+                  1.7444284069242781,
+                  1.7235161803988057,
+                  1.2844828831536639,
+                  0.8883607995883428,
+                  0.7902056276195113,
+                  0.6785134642269579,
+                  0.49197812442662747,
+                  0.4872917432059644,
+                  0.4086056423325649
+                ]
+              },
+              "elapsed_sec": 3885.1098206043243
+            }
+          }
+        },
+        "noise": {
+          "pattern": "shared",
+          "fixed_direction_across_budget_grid": true,
+          "draws": []
+        },
+        "clean_acc_eval": 81.69745958429561,
+        "target_adapter": {
+          "parameterization": "native-additive",
+          "unique_delta_groups": {
+            "pe": {
+              "n_shared_instances": 1,
+              "unique_delta_shape": [
+                1,
+                197,
+                768
+              ],
+              "unique_delta_numel": 151296
+            }
+          },
+          "unit_circle_preserved": null
+        },
+        "parameter_norm": "global_rms",
+        "completed_at": "2026-07-16T16:23:40.315878+00:00"
+      }
+    }
+  }
+}

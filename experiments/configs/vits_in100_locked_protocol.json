@@ -1,0 +1,221 @@
+{
+  "protocol_id": "VITS_IN100_LOCKED_PROTOCOL_v17",
+  "protocol_version": "v17",
+  "calibration_package_version": "v3_locked",
+  "locked_date": "2026-07-25",
+  "status": "VITS_FP32_ATTACK_PROTOCOL_LOCKED_AND_VITB_HARMONIZATION_CLOSED",
+  "dataset": "ImageNet-100",
+  "architecture": {
+    "name": "ViT-S/16",
+    "embed_dim": 384,
+    "depth": 12,
+    "num_heads": 6,
+    "head_dim": 64,
+    "num_tokens": 197
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011,
+    1213
+  ],
+  "calibration_roles": {
+    "development_seed": 42,
+    "prespecified_confirmation_seed": 123,
+    "untouched_final_evaluation_seeds": [
+      456,
+      789,
+      1011,
+      1213
+    ]
+  },
+  "input_invariants": {
+    "checkpoint_filename_policy": "best_model.pth only",
+    "checkpoint_manifest_sha256": "a6c2945e9fc6eb08c607f3721274b3f48dd1f6ee56cf4801f00c7d9bed46a8b3",
+    "split_file_sha256": "43daa888eddd89047f2b73a42755554f974bf0da44c58b43f347d44bb9bd3259",
+    "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+    "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+    "calibration_images": 256,
+    "attack_images": 1280,
+    "evaluation_images": 3464,
+    "overlap_required": 0
+  },
+  "attack": {
+    "parameter_norm": "global_rms",
+    "pgd_restarts": 5,
+    "pgd_alpha_ratio": 0.05,
+    "restart_seed_tag_steps": 50,
+    "restart_seed_tag_alpha_ratio": 0.05,
+    "pgd_steps_by_family": {
+      "learned": 1600,
+      "sinusoidal": 200,
+      "rope": 200,
+      "alibi": 200
+    },
+    "step_count_scope": "One fixed step count per architecture x PE family, applied to every budget and all six seeds.",
+    "learned_step_evidence": {
+      "restart_stability": "5 restarts at 1600 steps",
+      "step_stability": [
+        "budget 0.005: 1600x5 vs 3200x2 and 6400x1",
+        "budget 0.0045: 1600x5 vs 3200x1 with matched restart initialization"
+      ],
+      "wording_constraint": "Do not claim that 3200x5 or 6400x5 was run."
+    },
+    "convergence_criteria": {
+      "max_abs_delta_normalized_accuracy": 0.003,
+      "max_abs_delta_attack_loss": 0.005,
+      "max_abs_delta_rho_rel": 0.003
+    },
+    "pe_parameterizations": {
+      "learned": "native additive delta on 1x197x384 positional embedding",
+      "sinusoidal": "native additive delta on 1x197x384 positional encoding",
+      "rope": "one tied phase delta of shape 197x32 across 12 blocks; inv_freq excluded",
+      "alibi": "one tied six-slope delta across 12 blocks"
+    }
+  },
+  "coverage": {
+    "primary_rho_rel_interval": [
+      0.0,
+      0.09
+    ],
+    "sensitivity_rho_rel_interval": [
+      0.0,
+      0.095
+    ],
+    "formal_pilot_buffer_target": 0.105,
+    "sinusoidal_max_attack_rho_rel_seed42": 0.09694533226034639,
+    "provenance_flag_all_attack_coverage_pass": false,
+    "interpretation": "Primary 0.09 and sensitivity 0.095 are covered; the formal 0.105 pilot buffer is not covered by Sinusoidal and remains recorded as a provenance caveat."
+  },
+  "initial_budget_grids": {
+    "pgd": {
+      "learned": [
+        0.0,
+        0.003,
+        0.004,
+        0.0045,
+        0.005,
+        0.006,
+        0.008
+      ],
+      "sinusoidal": [
+        0.0,
+        0.005,
+        0.006,
+        0.007,
+        0.0075,
+        0.008,
+        0.0085,
+        0.009,
+        0.0095,
+        0.01
+      ],
+      "rope": [
+        0.0,
+        0.01,
+        0.025,
+        0.05,
+        0.075,
+        0.1
+      ],
+      "alibi": [
+        0.0,
+        0.001,
+        0.0025,
+        0.005,
+        0.01,
+        0.015,
+        0.025,
+        0.04
+      ]
+    },
+    "noise": {
+      "learned": [
+        0.0,
+        0.0025,
+        0.005,
+        0.01,
+        0.02,
+        0.04,
+        0.06,
+        0.08,
+        0.12
+      ],
+      "sinusoidal": [
+        0.0,
+        0.01,
+        0.025,
+        0.05,
+        0.1,
+        0.2,
+        0.3
+      ],
+      "rope": [
+        0.0,
+        0.025,
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.6
+      ],
+      "alibi": [
+        0.0,
+        0.001,
+        0.0025,
+        0.005,
+        0.01,
+        0.025,
+        0.05,
+        0.075
+      ]
+    },
+    "noise_draws": 10,
+    "noise_distribution": "gaussian",
+    "fixed_noise_direction_across_budget_grid": true,
+    "paired_noise_seed_across_pe_families": true
+  },
+  "adaptive_threshold_refinement": {
+    "control_axis": "nominal parameter budget epsilon",
+    "targets_normalized_accuracy": [
+      0.8,
+      0.5,
+      0.2
+    ],
+    "rule": "After the family step count is locked, add only budget midpoints needed to bracket each target; do not change steps, restarts, alpha ratio, split, or checkpoint selection.",
+    "rho_mapping": "Find epsilon_q on the monotone lower envelope versus epsilon, then interpolate rho_rel using the same epsilon bracket. Do not invert or naively sort a non-monotone raw rho_rel path.",
+    "crossing_statuses": [
+      "identified",
+      "interval_censored",
+      "not_bracketed"
+    ],
+    "no_unregistered_extrapolation": true
+  },
+  "primary_endpoints": {
+    "rho50": "rho_rel mapped at the epsilon crossing where normalized accuracy reaches 0.5",
+    "cliff_width": "rho20 - rho80; co-primary structural endpoint",
+    "auc": "Area under the empirical lower damage frontier on a common rho_rel domain",
+    "seed_variability": "Report per-seed values/statuses, median, IQR, min-max; mean+SD only when all thresholds are identified."
+  },
+  "auc_domain_rule": "The integration domain is the intersection of support over every seed and architecture included in the specific comparison. AUC values integrated over different domains must not be compared directly.",
+  "pending": {
+    "vitb_harmonization": "Complete in v17 on prespecified confirmation seed 123.",
+    "vits_full_n6": "Not yet run under the locked protocol.",
+    "manuscript_numerical_update": "Deferred until final ViT-S n=6, threshold refinement, and cross-backbone analysis are complete."
+  },
+  "updated_date": "2026-07-26",
+  "vitb_reference_harmonization": {
+    "status": "complete",
+    "confirmation_seed": 123,
+    "locked_pgd_steps_by_family": {
+      "learned": 400,
+      "sinusoidal": 400,
+      "rope": 200,
+      "alibi": 200
+    },
+    "restarts": 5,
+    "closure_record": "vitb_harmonization/VITB_HARMONIZATION_LOCKED_PROTOCOL.json"
+  }
+}
