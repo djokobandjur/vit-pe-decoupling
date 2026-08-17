@@ -97,10 +97,34 @@ The verification path confirms, among other sentinels:
 ## Data and checkpoint policy
 
 ImageNet images are not redistributed. The class/split construction must be
-performed from a licensed ImageNet copy. Model checkpoint binaries are also
-not included in Git. Processed result JSON/CSV files are sufficient to
-reproduce every reported table and figure. Publishing checkpoints through a
-long-term archive is recommended for full attack-level reproducibility.
+performed from a licensed ImageNet copy.
+
+Model checkpoint binaries are not stored in Git because of their size. The
+exact checkpoints used in the study are available from the shared read-only
+Google Drive archive:
+
+**Checkpoint archive:**  
+https://drive.google.com/drive/folders/1UojvGk3oeoQui7jy8DSFM_0U6Xkwx-IB?usp=sharing
+
+The archive contains 90 checkpoints in total:
+
+- 48 ViT-B/16 AMP checkpoints: 24 ImageNet-100 and 24 CIFAR-100;
+- 24 canonical ViT-S/16 full-FP32 ImageNet-100 checkpoints; and
+- 18 auxiliary ViT-S/16 AMP-FP16 ImageNet-100 checkpoints.
+
+The 72 canonical checkpoints consist of the 48 ViT-B/16 models and the
+24 ViT-S/16 full-FP32 models. The additional 18 ViT-S/16 AMP-FP16
+checkpoints form the auxiliary training-regime comparison cohort.
+
+Checkpoint-level SHA-256 manifests are provided in `checkpoints/`, and all
+90 checkpoint files were verified against their reference SHA-256 values
+after transfer to the shared archive. See `checkpoints/README.md` for the
+archive layout, checkpoint cohorts, integrity manifests, and expected
+directory structure.
+
+Processed result JSON/CSV files included in this repository are sufficient
+to reproduce every reported table and figure without downloading the model
+checkpoint binaries.
 
 ## Manuscript build
 
