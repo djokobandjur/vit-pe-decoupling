@@ -137,7 +137,7 @@ python scripts/build_manuscript.py
 
 ## Release and citation
 
-The archived reproducibility package for release v1.0.0 is available on
+The archived reproducibility package is available on
 Zenodo under DOI `10.5281/zenodo.21979816`. Citation metadata are provided
 in `CITATION.cff`.
 
