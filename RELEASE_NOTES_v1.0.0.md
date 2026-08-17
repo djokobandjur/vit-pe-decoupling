@@ -1,6 +1,6 @@
 # ViT Positional-Encoding Decoupling v1.0.0 — submission reproducibility release
 
-This release accompanies the Neural Networks submission
+This release accompanies the research manuscript
 “Random and Adversarial Positional-Parameter Robustness Decouple Across
 Positional-Encoding Families.”
 

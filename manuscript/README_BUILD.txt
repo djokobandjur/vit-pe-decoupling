@@ -1,4 +1,4 @@
-Neural Networks submission source package
+Research manuscript source package
 
 Main manuscript:
   pe_robustness_nn_main.tex

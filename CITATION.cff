@@ -14,7 +14,8 @@ authors:
     email: "milos.bandjur@pr.ac.rs"
     orcid: "https://orcid.org/0009-0007-0124-3943"
 version: "1.0.0"
-date-released: "2026-08-06"
+date-released: "2026-08-17"
+doi: "10.5281/zenodo.21979816"
 license: MIT
 repository-code: "https://github.com/djokobandjur/vit-pe-decoupling"
 url: "https://github.com/djokobandjur/vit-pe-decoupling"
@@ -30,6 +31,5 @@ preferred-citation:
       given-names: "Miloš"
       affiliation: "Faculty of Technical Sciences, University of Priština, Kosovska Mitrovica, Serbia"
       orcid: "https://orcid.org/0009-0007-0124-3943"
-  journal: "Neural Networks"
   year: 2026
   status: "submitted"

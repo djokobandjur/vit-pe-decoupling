@@ -75,7 +75,7 @@ analysis/                 numerical pipelines and locked reference outputs
 configs/                  cohorts, splits, seeds, and numerical mode
 data/                     processed seed-level inputs; no ImageNet images
 experiments/              upstream training and attack research scripts
-manuscript/               clean Neural Networks submission source and PDFs
+manuscript/               manuscript source, supplement, rendered PDFs, tables, and figures
 audit/                    final claim/evidence and language audits
 provenance/               internal-to-public identifier map
 scripts/                  one-command reproduction and verification tools
@@ -137,8 +137,8 @@ python scripts/build_manuscript.py
 
 ## Release and citation
 
-`CITATION.cff` includes the public GitHub repository URL. After an archival
-DOI is issued, add the DOI to that file. Instructions for the
-first push, tag, and release assets are in `UPLOAD_TO_GITHUB.md`.
+The archived reproducibility package for release v1.0.0 is available on
+Zenodo under DOI `10.5281/zenodo.21979816`. Citation metadata are provided
+in `CITATION.cff`.
 
 The root MIT licence applies to project code only; see `LICENSE_SCOPE.md`.
