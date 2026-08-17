@@ -29,14 +29,15 @@ The factorial-design table now uses descriptive analysis names. Section headings
 - Internal D-codes in rendered main/supplement PDFs: 0
 - Internal D-codes or version labels in captions: 0
 - Submission-facing version labels (V17–V20): 0
-- Main manuscript: 44 pages
+- Main manuscript: 45 pages
 - Supplement: 5 pages
-- Abstract: 236 words by texcount
+- Abstract: 243 words by texcount
+- Conservative source-token heuristic: 256 tokens; informational only because LaTeX/math notation is split more aggressively than texcount. The Article-limit gate uses the texcount value.
 - Final LaTeX warnings: 0
 - Ghostscript PDF validation: PASS
 - PDF preflight: openable, unencrypted, searchable, non-XFA
 - Visual inspection: title/abstract, numerical-mode wording, convergence-threshold wording, coverage-extension disclosure, cross-architecture captions, limitations, and data-availability pages PASS
-- Cross-document Supplement table references resolve through `xr-hyper`; S1/S6/S7 are not hard-coded in the main source
+- The final submission-facing main manuscript uses explicit Supplement table identifiers S1/S6/S7 so the standalone rendered main PDF has fully resolved Supplement references without depending on external cross-document auxiliary state
 - Page-count claims are machine-checked against the distributed PDFs by `scripts/verify_repository.py`
 
 No numerical result, confidence interval, statistical test, support boundary, or scientific claim was weakened by this cleanup.

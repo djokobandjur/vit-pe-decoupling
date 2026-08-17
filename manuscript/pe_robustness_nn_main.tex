@@ -7,10 +7,8 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{xr-hyper}
 \usepackage{placeins}
 \hypersetup{hidelinks}
-\externaldocument{pe_robustness_nn_supplement}
 
 \journal{}
 
@@ -49,12 +47,12 @@ The gap was positive throughout, but its magnitude and adversarial ordering
 varied across dataset and architecture. An 18-checkpoint ViT-S/16 AMP cohort
 enabled an AMP-matched comparison with ViT-B/16. ViT-S/16 had lower
 adversarial nAUC for Learned, Sinusoidal, and RoPE but nearly unchanged noise
-nAUC; the architecture effect varied by family (exact Friedman $p=0.02894$)
+nAUC; the AMP-matched cross-architecture contrast varied by family (exact Friedman $p=0.02894$)
 and reversed the Learned--RoPE ordering. Within ViT-S/16, family rankings
-were preserved across AMP and full-FP32 training, but formal $\rho_{50}$
+were preserved across AMP and full-FP32 training, but formal $\rho(\varepsilon_{50})$
 equivalence held only for Sinusoidal. The ViT-S/16 AMP--FP16 ALiBi
 cohort did not yield valid checkpoints, whereas the recipe was stable for ViT-B/16 AMP and
-ViT-S/16 full-FP32, indicating an architecture-dependent trainability boundary. At a single ViT-S/16 Sinusoidal checkpoint (seed 42) and budget 0.0095,
+ViT-S/16 full-FP32, indicating a cohort-specific trainability boundary rather than an isolated architecture effect. At a single ViT-S/16 Sinusoidal checkpoint (seed 42) and budget 0.0095,
 direct-displacement optimization produced larger displacement
 ($\rho_{\mathrm{rel}}=0.1021$ versus $0.0938$) yet retained 76.70\% versus
 7.36\% accuracy under task-loss optimization. An all-restart audit ruled
@@ -118,8 +116,8 @@ AMP-matched cross-architecture comparison. Within an architecture, random and ad
 are compared on the same checkpoints and seed identities. Across
 architectures, equal seed labels provide seed-aligned descriptive contrasts
 but not strict training pairs because initialization dimensionality and
-optimization trajectories differ. We organize the three available contrasts as a factorial
-decomposition: the four-family canonical cross-cohort comparison jointly
+optimization trajectories differ. We organize the three available contrasts as complementary pathwise
+comparisons rather than a complete factorial design: the four-family canonical cross-cohort comparison jointly
 changes architecture and training precision; the within-ViT-S/16
 training-regime comparison holds architecture fixed and varies training
 precision; and the AMP-matched cross-architecture comparison holds AMP
@@ -158,7 +156,7 @@ The principal contributions are:
     ViT-B/16 on two datasets and a full-FP32 ViT-S/16 ImageNet-100
     replication, plus an 18-checkpoint ViT-S/16 AMP auxiliary cohort;
 
-    \item a factorial architecture--precision decomposition with stable
+    \item complementary architecture--training-regime contrasts with stable
     random-noise extremes but PE-dependent adversarial ranking, mean backbone
     effects, and seed dispersion;
 
@@ -737,9 +735,9 @@ not use an a priori numerical convergence threshold; the retained schedules
 were supported by an observed empirical separation between stable and extended
 configurations. The confirmation seed 123 and the subsequent canonical grids
 were fixed separately, so the empirical development criterion is not presented
-as a prespecified threshold. The public repository redistributes the
-harmonization runner and run ledger, but not the original row-level comparison
-JSONs or the v17/v18 closure file; we therefore do not claim public row-level
+as a prespecified threshold. The public repository redistributes the harmonization
+runner and run ledger, but not the original row-level comparison JSONs or the
+corresponding historical closure record; we therefore do not claim public row-level
 reproduction of that historical schedule decision.
 
 For CIFAR-100, the final attack configurations are:
@@ -868,7 +866,7 @@ achieved displacement. Random-noise curves instead estimate the mean response
 to isotropically sampled directions and are averaged across draws rather than
 enveloped. Audit-only budgets do not alter this locked primary estimand. A
 no-envelope sensitivity analysis (Supplementary Section~5,
-Table~\ref{tab:s-no-envelope}) preserves all 48 positive seed-level gaps and
+Table~S6) preserves all 48 positive seed-level gaps and
 all within-seed family rank configurations; the largest family-mean change is
 CIFAR-100 Learned, $0.015369\to0.014591$.
 
@@ -1033,7 +1031,7 @@ reported as a consistency check, together with the paired effect sizes in
 Table~\ref{tab:primary-nauc}.
 
 These conclusions do not depend on the adversarial lower-envelope
-construction. In Supplementary Section~5 and Table~\ref{tab:s-no-envelope}, all
+construction. In Supplementary Section~5 and Table~S6, all
 48 gaps remain positive, all within-seed family rank configurations and
 positive-seed counts are preserved, and the exact Friedman results are
 unchanged.
@@ -1064,7 +1062,8 @@ taken from the same robustness-evaluation subset used to normalize each
 seed-level curve. On CIFAR-100, the four family means are perfectly inversely
 ranked (Spearman $\rho=-1.000$); across all 24 seed-level observations,
 $\rho=-0.774$ ($p=9.25\times10^{-6}$), and after centering both variables
-within family the association is $\rho=-0.395$ ($p=0.056$). The same pattern
+within family the association is $\rho=-0.395$ (within-family permutation
+$p=0.062$; 500,000 permutations). The same pattern
 does not reproduce on ImageNet-100: ViT-B/16 gives $\rho=+0.317$
 ($p=0.131$), while the full-FP32 ViT-S/16 cohort gives $\rho=-0.311$
 ($p=0.140$). Baseline accuracy can therefore covary with the gap within a
@@ -1157,14 +1156,17 @@ reported descriptively rather than as multiplicity-adjusted tests.
 
 % ============================================================
 % ============================================================
-\section{Factorial Architecture--Precision Decomposition and Objective-Specific Audits}
+\section{Architecture--Training-Regime Contrasts and Objective-Specific Audits}
 \label{sec:cross-architecture-audits}
 % ============================================================
 
 The three cross-cohort contrasts answer different questions and are
 interpreted jointly rather than as independent robustness tests.
 Table~\ref{tab:factorial-comparison-design} makes explicit which factor is
-held fixed in each comparison.
+held fixed in each comparison. Because the available cohorts do not populate a
+complete architecture $\times$ training-regime factorial design, these three
+comparisons are interpreted as complementary pathwise contrasts rather than as
+identifiable main and interaction effects from a full factorial model.
 
 \input{tables/table_factorial_comparison_design.tex}
 
@@ -1192,7 +1194,7 @@ estimand retains the prespecified canonical native-budget grids. Post-lock
 all-restart audit points and direct-displacement points are excluded, even when
 their achieved displacement falls inside the integration interval. Table~\ref{tab:cross-architecture-nauc} and
 Fig.~\ref{fig:cross-architecture-curves} summarize this support-matched
-comparison; Supplementary Section~6 and Table~\ref{tab:s-postlock-grid} quantify the later
+comparison; Supplementary Section~6 and Table~S7 quantify the later
 ViT-S/16 Sinusoidal budget-0.020 sensitivity.
 
 \input{tables/table_cross_architecture_nauc.tex}
@@ -1225,7 +1227,7 @@ sensitivity adds its loss-selected $0.020$ point to each seed curve while
 retaining the same cross-architecture endpoint. Its mean adversarial nAUC decreases
 from $0.766366$ to $0.721777$ ($\Delta=-0.044589$), increasing rather than
 weakening the random--adversarial gap; the qualitative family ordering is
-unchanged (Supplementary Table~\ref{tab:s-postlock-grid}).
+unchanged (Supplementary Table~S7).
 
 For all eight combinations of architecture and family, the
 noise-minus-adversarial gap is positive in all six seeds. Exact Friedman permutation
@@ -1247,9 +1249,10 @@ training-sampler hashes, and per-run GradScaler skip counts were not packaged,
 we describe this as a \emph{seed-matched}, rather than strictly paired,
 comparison.
 
-The primary endpoint was $\rho(\varepsilon_{50})$, obtained by interpolating
-$\rho$ through the same $\varepsilon$ bracket in which the monotone accuracy
-envelope crossed 50\% of clean accuracy. Before calculating cohort differences,
+The primary endpoint was $\rho(\varepsilon_{50})$, where $\varepsilon_{50}$
+denotes the native perturbation budget at which the monotone accuracy envelope
+crosses 50\% of clean accuracy and $\rho(\varepsilon_{50})$ is the achieved
+displacement interpolated through that same $\varepsilon$ bracket. Before calculating cohort differences,
 we fixed an absolute equivalence margin of $\pm0.01$ in $\rho_{\mathrm{rel}}$;
 equivalence required the two-sided 90\% seed-matched confidence interval for
 the mean AMP-minus-FP32 difference to lie fully inside this margin.
@@ -1292,7 +1295,7 @@ between the families. Per-family $p$-values are therefore not treated as
 primary evidence; effect sizes, intervals, seed signs, and the omnibus
 interaction carry the interpretation. Unpaired Welch sensitivity
 intervals are nearly identical to the seed-aligned intervals and remain
-below zero for all three families (Supplementary Table~\ref{tab:s-welch}).
+below zero for all three families (Supplementary Table~S1).
 
 \begin{figure}[!htbp]
 \centering
@@ -1339,9 +1342,9 @@ clipped at one and the noisy model marginally exceeds its clean reference
 on the finite evaluation split.
 
 Threshold results remain consistent with the nAUC analysis. For RoPE,
-mean $\epsilon_{50}$ is essentially unchanged (0.067108 versus 0.067075),
-but mean $\rho_{50}$ decreases from 0.116608 in ViT-B/16 to 0.083618 in
-ViT-S/16. For Sinusoidal, both $\epsilon_{50}$ and $\rho_{50}$ decrease.
+mean $\varepsilon_{50}$ is essentially unchanged (0.067108 versus 0.067075),
+but mean $\rho(\varepsilon_{50})$ decreases from 0.116608 in ViT-B/16 to 0.083618 in
+ViT-S/16. For Sinusoidal, both $\varepsilon_{50}$ and $\rho(\varepsilon_{50})$ decrease.
 The ViT-B/16 Learned curve does not bracket 50\% normalized accuracy in
 three seeds and does not bracket 20\% in any seed; consequently, a full
 $n=6$ Learned threshold contrast is not reported. This censoring does not
@@ -1358,7 +1361,9 @@ a strict causal estimate of model size.
 
 The all-restart audit records all five Sinusoidal task-loss restarts at 48
 combinations of architecture, seed, and budget, completing all 240
-planned restarts.
+planned restarts. The audited native-budget sets were
+$\{0.009,0.010,0.015,0.020\}$ for ViT-B/16 and
+$\{0.009,0.0095,0.010,0.020\}$ for ViT-S/16.
 Under the task-loss objective, larger native budget can increase loss and
 reduce accuracy while the loss-selected global displacement stagnates or
 decreases. We therefore call the observed boundary a
@@ -1402,8 +1407,8 @@ are shown at the same nominal budgets.}
 As shown in Fig.~\ref{fig:layerwise-displacement-profiles}, direct-$\rho$ perturbations are substantially more concentrated across
 layers than task-loss perturbations. The effective number of layers is
 4.04 versus 9.22 at budget $0.0095$ and 4.45 versus 10.98 at budget
-$0.020$. Direct-$\rho$ profiles are dominated by layer 2, whereas the
-task-loss profiles peak at layer 4; their profile cosines are 0.589 and
+$0.020$. Using one-based Transformer-block numbering (1--12), direct-$\rho$
+profiles are dominated by layer 2, whereas the task-loss profiles peak at layer 4; their profile cosines are 0.589 and
 0.613. This supports direction-dependent inter-layer redistribution but
 does not identify particular heads or tokens and does not establish a
 causal mechanism.
@@ -1516,7 +1521,10 @@ magnitude. Because $\gamma$ is a finite-radius local gain evaluated at
 $r_0=10^{-4}$, the numerical value of $R_{\gamma}$ is radius dependent.
 The family ordering is preserved when gains are recomputed as secants at the
 calibrated $\rho_{\mathrm{rel}}\approx0.03$ operating point, but the
-magnitudes are not scale invariant.
+magnitudes are not scale invariant. Because the native perturbation spaces differ
+substantially in dimension, $R_{\gamma}$ is not dimension-normalized; its most
+direct interpretation is therefore the within-family contrast between the
+task-gradient direction and typical Gaussian directions.
 
 
 \subsection{Task-selective damage efficiency}
@@ -1684,7 +1692,8 @@ ALiBi is strongest and Learned falls below RoPE for ViT-S/16. This is a descript
 training precision jointly vary, not an isolated architecture effect or a
 universal scaling law.
 
-The three contrasts form a factorial decomposition. The canonical
+The three contrasts form a complementary pathwise decomposition, not a complete
+factorial design. The canonical
 comparison shows system-level transfer when architecture and precision
 jointly vary; the within-ViT-S/16 comparison holds architecture fixed and
 varies training regime; and the AMP-matched comparison holds AMP training
@@ -1728,7 +1737,13 @@ Learned is a high-dimensional additive space, Sinusoidal changes
 deterministic positional state, RoPE is tied through phase rotations, and
 ALiBi uses low-dimensional slopes shared across blocks. Architecture changes
 therefore alter both the native perturbation space and its mapping into
-attention.
+attention. The very low dimensionality of the ALiBi perturbation space is also
+a plausible competing geometric explanation for its distinctive random-noise
+behavior: random directions in a small space can have greater overlap with
+task-relevant directions than random directions in a very high-dimensional
+space. The present experiments do not isolate this dimensionality mechanism
+causally, so the ALiBi noise behavior should not be attributed uniquely to its
+positional-bias form.
 
 The strong early-raster prior of the studied ALiBi-style implementation
 may contribute to its distinctive behavior, but the experiments do not
@@ -1880,10 +1895,14 @@ includes the later numerical-mode lock, its engine-source provenance report,
 and the Sinusoidal audit input lock that verifies identical ImageNet-100 sample
 ordering/split hashes across the original ViT-B/16 validation copy and the
 re-extracted ViT-S/16 copy. These later audit records are not presented as
-contemporaneous environment captures for the historical canonical runs. The archived reproducibility package for release v1.0.0 is available on
-Zenodo at \href{https://doi.org/10.5281/zenodo.21979816}
+contemporaneous environment captures for the historical canonical runs. The archived reproducibility package is available on Zenodo at
+\href{https://doi.org/10.5281/zenodo.21979816}
 {\texttt{doi:10.5281/zenodo.21979816}}.
 
+
+\section*{Declaration of Generative AI and AI-assisted technologies in the writing process}
+
+During the preparation of this work, the authors used OpenAI ChatGPT to assist with manuscript organization, language refinement, editorial compression, and consistency checking. The authors independently designed the study, conducted the experiments, verified the quantitative results and source material, reviewed and edited all AI-assisted output as needed, and take full responsibility for the content of the published article.
 
 \bibliographystyle{elsarticle-harv}
 \bibliography{references}

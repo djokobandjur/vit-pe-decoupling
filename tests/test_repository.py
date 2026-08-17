@@ -285,10 +285,11 @@ def test_v6_schedule_threshold_semantics_and_supplement_refs():
     assert harm["historical_development_threshold_semantics"] == "EMPIRICAL_SEPARATION_NOT_A_PRIORI_THRESHOLD"
     flat = re.sub(r"\s+", " ", main)
     assert "did not use an a priori numerical convergence threshold" in flat
-    assert "Table~S6" not in main and "Table~S7" not in main
-    assert "\\ref{tab:s-no-envelope}" in main
-    assert "\\ref{tab:s-postlock-grid}" in main
-    assert "\\externaldocument{pe_robustness_nn_supplement}" in main
+    assert "Supplementary Table~S1" in main
+    assert "Table~S6" in main
+    assert "Table~S7" in main
+    assert "\\ref{tab:s-no-envelope}" not in main
+    assert "\\ref{tab:s-postlock-grid}" not in main
 
 
 def test_v6_release_build_artifact_and_page_count_guards():
@@ -362,7 +363,10 @@ def test_v8_abstract_texcount_metadata_is_consistent():
     label_count = int(m.group(1))
     release = json.loads((ROOT / "audit/PUBLIC_REPOSITORY_RELEASE_AUDIT_v1.0.0.json").read_text(encoding="utf-8"))
     release_count = int(release["verification"]["manuscript_build"]["abstract_words_texcount"])
-    assert label_count == release_count == 236
+    # v1.0.0 is an immutable historical audit; v1.0.2 tracks the current
+    # submission-synchronized manuscript.
+    assert release_count == 236
+    assert label_count == 243
     texcount = shutil.which("texcount")
     if texcount:
         main = (ROOT / "manuscript/pe_robustness_nn_main.tex").read_text(encoding="utf-8")
@@ -376,7 +380,7 @@ def test_v8_abstract_texcount_metadata_is_consistent():
             out = subprocess.run([texcount, "-brief", name], check=True, capture_output=True, text=True).stdout
             live = re.search(r"(^|\n)\s*(\d+)\+\d+\+\d+", out)
             assert live
-            assert int(live.group(2)) == 236
+            assert int(live.group(2)) == label_count
         finally:
             if name:
                 Path(name).unlink(missing_ok=True)

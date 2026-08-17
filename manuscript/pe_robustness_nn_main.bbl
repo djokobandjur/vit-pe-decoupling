@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{34}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -16,7 +16,8 @@
 \bibinfo{author}{Bai, Y.}, \bibinfo{author}{Mei, J.}, \bibinfo{author}{Yuille,
   A.L.}, \bibinfo{author}{Xie, C.}, \bibinfo{year}{2021}.
 \newblock \bibinfo{title}{Are transformers more robust than {CNNs}?}, in:
-  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}.
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}, pp.
+  \bibinfo{pages}{26831--26843}.
 %Type = Inproceedings
 \bibitem[{Chu et~al.(2023)Chu, Tian, Zhang, Wang and Shen}]{chu2023conditional}
 \bibinfo{author}{Chu, X.}, \bibinfo{author}{Tian, Z.}, \bibinfo{author}{Zhang,
@@ -48,6 +49,15 @@
 \newblock \bibinfo{title}{An image is worth 16x16 words: Transformers for image
   recognition at scale}, in: \bibinfo{booktitle}{International Conference on
   Learning Representations}.
+%Type = Article
+\bibitem[{Dufter et~al.(2022)Dufter, Schmitt and
+  Sch{\"u}tze}]{dufter2022position}
+\bibinfo{author}{Dufter, P.}, \bibinfo{author}{Schmitt, M.},
+  \bibinfo{author}{Sch{\"u}tze, H.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Position information in transformers: An overview}.
+\newblock \bibinfo{journal}{Computational Linguistics} \bibinfo{volume}{48},
+  \bibinfo{pages}{733--763}.
+\newblock \DOIprefix\doi{10.1162/coli_a_00445}.
 %Type = Inproceedings
 \bibitem[{Foret et~al.(2021)Foret, Kleiner, Mobahi and
   Neyshabur}]{foret2021sam}
@@ -82,6 +92,12 @@
   \bibinfo{author}{Szegedy, C.}, \bibinfo{year}{2015}.
 \newblock \bibinfo{title}{Explaining and harnessing adversarial examples}, in:
   \bibinfo{booktitle}{International Conference on Learning Representations}.
+%Type = Article
+\bibitem[{He and Xing(2025)}]{he2025impact}
+\bibinfo{author}{He, W.}, \bibinfo{author}{Xing, Y.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Impact of positional encoding: Clean and adversarial
+  rademacher complexity for transformers under in-context regression}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2512.09275} .
 %Type = Inproceedings
 \bibitem[{Keskar et~al.(2017)Keskar, Mudigere, Nocedal, Smelyanskiy and
   Tang}]{keskar2017largebatch}
@@ -92,12 +108,21 @@
   Generalization gap and sharp minima}, in: \bibinfo{booktitle}{International
   Conference on Learning Representations}.
 %Type = Inproceedings
+\bibitem[{Kwon et~al.(2021)Kwon, Kim, Park and Choi}]{kwon2021asam}
+\bibinfo{author}{Kwon, J.}, \bibinfo{author}{Kim, J.}, \bibinfo{author}{Park,
+  H.}, \bibinfo{author}{Choi, I.K.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Asam: Adaptive sharpness-aware minimization for
+  scale-invariant learning of deep neural networks}, in:
+  \bibinfo{booktitle}{Proceedings of the 38th International Conference on
+  Machine Learning}, pp. \bibinfo{pages}{5905--5914}.
+%Type = Inproceedings
 \bibitem[{Li et~al.(2018)Li, Xu, Taylor, Studer and Goldstein}]{li2018loss}
 \bibinfo{author}{Li, H.}, \bibinfo{author}{Xu, Z.}, \bibinfo{author}{Taylor,
   G.}, \bibinfo{author}{Studer, C.}, \bibinfo{author}{Goldstein, T.},
   \bibinfo{year}{2018}.
 \newblock \bibinfo{title}{Visualizing the loss landscape of neural nets}, in:
-  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}.
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}, pp.
+  \bibinfo{pages}{6389--6399}.
 %Type = Article
 \bibitem[{Li et~al.(2024)Li, Tao, Yan, Wu, Lei, Fang, He and
   Huang}]{li2024randomweight}
@@ -108,6 +133,16 @@
 \newblock \bibinfo{title}{Revisiting random weight perturbation for efficiently
   improving generalization}.
 \newblock \bibinfo{journal}{Transactions on Machine Learning Research} .
+%Type = Inproceedings
+\bibitem[{Liang et~al.(2019)Liang, Poggio, Rakhlin and
+  Stokes}]{liang2019fisherrao}
+\bibinfo{author}{Liang, T.}, \bibinfo{author}{Poggio, T.},
+  \bibinfo{author}{Rakhlin, A.}, \bibinfo{author}{Stokes, J.},
+  \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Fisher-rao metric, geometry, and complexity of neural
+  networks}, in: \bibinfo{booktitle}{Proceedings of the Twenty-Second
+  International Conference on Artificial Intelligence and Statistics}, pp.
+  \bibinfo{pages}{888--896}.
 %Type = Inproceedings
 \bibitem[{Liu et~al.(2023)Liu, Guo, Zhang and Yang}]{liu2023patched}
 \bibinfo{author}{Liu, L.}, \bibinfo{author}{Guo, Y.}, \bibinfo{author}{Zhang,
@@ -152,7 +187,7 @@
   \bibinfo{author}{Guo, Y.}, \bibinfo{author}{Wang, Y.}, \bibinfo{year}{2022}.
 \newblock \bibinfo{title}{When adversarial training meets vision transformers:
   Recipes from training to architecture}, in: \bibinfo{booktitle}{Advances in
-  Neural Information Processing Systems}.
+  Neural Information Processing Systems}, pp. \bibinfo{pages}{18599--18611}.
 %Type = Inproceedings
 \bibitem[{Naseer et~al.(2021)Naseer, Ranasinghe, Khan, Hayat, Khan and
   Yang}]{naseer2021intriguing}
@@ -163,6 +198,15 @@
 \newblock \bibinfo{title}{Intriguing properties of vision transformers}, in:
   \bibinfo{booktitle}{Advances in Neural Information Processing Systems}, pp.
   \bibinfo{pages}{23296--23308}.
+%Type = Inproceedings
+\bibitem[{Petzka et~al.(2021)Petzka, Kamp, Adilova, Sminchisescu and
+  Boley}]{petzka2021relative}
+\bibinfo{author}{Petzka, H.}, \bibinfo{author}{Kamp, M.},
+  \bibinfo{author}{Adilova, L.}, \bibinfo{author}{Sminchisescu, C.},
+  \bibinfo{author}{Boley, M.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Relative flatness and generalization}, in:
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}, pp.
+  \bibinfo{pages}{18420--18432}.
 %Type = Inproceedings
 \bibitem[{Press et~al.(2022)Press, Smith and Lewis}]{press2022train}
 \bibinfo{author}{Press, O.}, \bibinfo{author}{Smith, N.A.},
@@ -203,7 +247,16 @@
   C.M.}, \bibinfo{author}{Chen, P.Y.}, \bibinfo{year}{2021}.
 \newblock \bibinfo{title}{Formalizing generalization and adversarial robustness
   of neural networks to weight perturbations}, in: \bibinfo{booktitle}{Advances
-  in Neural Information Processing Systems}.
+  in Neural Information Processing Systems}, pp. \bibinfo{pages}{19692--19704}.
+%Type = Inproceedings
+\bibitem[{Tsuzuku et~al.(2020)Tsuzuku, Sato and
+  Sugiyama}]{tsuzuku2020normalized}
+\bibinfo{author}{Tsuzuku, Y.}, \bibinfo{author}{Sato, I.},
+  \bibinfo{author}{Sugiyama, M.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Normalized flat minima: Exploring scale invariant
+  definition of flat minima for neural networks using pac-bayesian analysis},
+  in: \bibinfo{booktitle}{Proceedings of the 37th International Conference on
+  Machine Learning}, pp. \bibinfo{pages}{9636--9647}.
 %Type = Inproceedings
 \bibitem[{Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
   Gomez, Kaiser and Polosukhin}]{vaswani2017attention}
@@ -213,14 +266,22 @@
   \bibinfo{author}{Kaiser, L.}, \bibinfo{author}{Polosukhin, I.},
   \bibinfo{year}{2017}.
 \newblock \bibinfo{title}{Attention is all you need}, in:
-  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}.
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}, pp.
+  \bibinfo{pages}{5998--6008}.
+%Type = Article
+\bibitem[{Wang et~al.(2023)Wang, Wang, Xuan and Qi}]{wang2023adpe}
+\bibinfo{author}{Wang, X.}, \bibinfo{author}{Wang, Y.}, \bibinfo{author}{Xuan,
+  Z.}, \bibinfo{author}{Qi, G.J.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Adpe: Adversarial positional embeddings for
+  pretraining vision transformers via mae+}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2303.07598} .
 %Type = Inproceedings
 \bibitem[{Wu et~al.(2020)Wu, Xia and Wang}]{wu2020adversarial}
 \bibinfo{author}{Wu, D.}, \bibinfo{author}{Xia, S.T.}, \bibinfo{author}{Wang,
   Y.}, \bibinfo{year}{2020}.
 \newblock \bibinfo{title}{Adversarial weight perturbation helps robust
   generalization}, in: \bibinfo{booktitle}{Advances in Neural Information
-  Processing Systems}.
+  Processing Systems}, pp. \bibinfo{pages}{2958--2969}.
 %Type = Inproceedings
 \bibitem[{Wu et~al.(2021a)Wu, Xiao, Codella, Liu, Dai, Yuan and
   Zhang}]{wu2021cvt}

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.2 — 2026-08-17
+
+- Synchronized the public manuscript source/PDF with the version submitted to *Neural Networks*.
+- Replaced the rendered manuscript PDF containing unresolved supplementary cross-reference markers with the fully resolved submission PDF.
+- Incorporated final audit-driven wording and methodological clarifications without changing experimental data or canonical numerical results.
+- Updated the packaged bibliography output so all manuscript citations resolve.
+- Added the submitted generative-AI disclosure to the manuscript.
+- Bumped repository/Zenodo release metadata to v1.0.2; the stable concept DOI remains `10.5281/zenodo.21979816`.
+
 ## v8 metadata-consistency hardening (2026-08-07)
 
 - corrected the stale public-release abstract texcount claim from 242 to the actual `texcount` result of 237;
