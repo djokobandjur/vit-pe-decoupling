@@ -2,6 +2,10 @@
 name = "vit-pe-decoupling-repro"
 version = "1.0.0"
 description = "Analysis-level reproduction for positional-parameter robustness in Vision Transformers"
+authors = [
+  {name = "Đoko Banđur", email = "djoko.bandjur@pr.ac.rs"},
+  {name = "Miloš Banđur", email = "milos.bandjur@pr.ac.rs"},
+]
 requires-python = ">=3.11"
 dependencies = [
   "numpy>=2.0,<3",

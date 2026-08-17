@@ -279,7 +279,7 @@ def write_tables(out,report,agg,contrast):
         '\\begin{table*}[t]',
         '\\centering',
         '\\small',
-        f'\\caption{{Cross-architecture ImageNet-100 normalized AUC over the locked common-support interval $\\rho_{{\\mathrm{{rel}}}}\\in[0,{end:.5f}]$. Values are mean $\\pm$ sample SD across the same six training seeds. D019 and D020 are excluded from this canonical support.}}',
+        f'\\caption{{Cross-architecture ImageNet-100 normalized AUC over the locked common-support interval $\\rho_{{\\mathrm{{rel}}}}\\in[0,{end:.5f}]$. Values are mean $\\pm$ sample SD across the same six training seeds. The primary estimand uses the prespecified canonical native-budget grids; post-lock task-loss points and direct-displacement points are reported separately.}}',
         '\\label{tab:v19-cross-architecture-nauc}',
         '\\resizebox{\\textwidth}{!}{%',
         '\\begin{tabular}{llccc}',

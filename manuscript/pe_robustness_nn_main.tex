@@ -7,8 +7,10 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{xr-hyper}
 \usepackage{placeins}
 \hypersetup{hidelinks}
+\externaldocument{pe_robustness_nn_supplement}
 
 \journal{Neural Networks}
 
@@ -19,9 +21,17 @@
 \title{Random and Adversarial Positional-Parameter Robustness
 Decouple Across Positional-Encoding Families}
 
-\author{\DJ{}oko Ban{\dj}ur}
+\author[aff1]{\DJ{}oko Ban{\dj}ur\corref{cor1}}
+\ead{djoko.bandjur@pr.ac.rs}
+\ead[url]{https://orcid.org/0000-0001-9034-6854}
 
-\address{
+\author[aff1]{Milo\v{s} Ban{\dj}ur}
+\ead{milos.bandjur@pr.ac.rs}
+\ead[url]{https://orcid.org/0009-0007-0124-3943}
+
+\cortext[cor1]{Corresponding author}
+
+\address[aff1]{
 Faculty of Technical Sciences,
 University of Priština,
 Kosovska Mitrovica, Serbia
@@ -35,24 +45,22 @@ RMS displacement of pre-softmax attention logits ($\rho_{\mathrm{rel}}$)
 as a common scale. Across 72 canonical checkpoints spanning ViT-B/16 on
 CIFAR-100 and ImageNet-100 and ViT-S/16 on ImageNet-100, the mapping from
 displacement to classification damage depended on PE family and architecture.
-The noise-minus-adversarial nAUC gap was positive for every seed and family
-in every dataset--backbone cohort. A separate 18-checkpoint ViT-S/16 AMP
-cohort enabled an AMP-matched comparison with ViT-B/16. ViT-S/16 had lower
+The gap was positive throughout, but its magnitude and adversarial ordering
+varied across dataset and architecture. An 18-checkpoint ViT-S/16 AMP cohort
+enabled an AMP-matched comparison with ViT-B/16. ViT-S/16 had lower
 adversarial nAUC for Learned, Sinusoidal, and RoPE but nearly unchanged noise
 nAUC; the architecture effect varied by family (exact Friedman $p=0.02894$)
 and reversed the Learned--RoPE ordering. Within ViT-S/16, family rankings
 were preserved across AMP and full-FP32 training, but formal $\rho_{50}$
-equivalence held only for Sinusoidal. All six ViT-S/16 AMP ALiBi runs
-diverged, although the same recipe was stable for ViT-B/16 AMP and
-ViT-S/16 full-FP32, revealing an architecture-dependent trainability
-boundary. At one ViT-S/16 Sinusoidal checkpoint and budget 0.0095,
+equivalence held only for Sinusoidal. The ViT-S/16 AMP--FP16 ALiBi
+cohort did not yield valid checkpoints, whereas the recipe was stable for ViT-B/16 AMP and
+ViT-S/16 full-FP32, indicating an architecture-dependent trainability boundary. At a single ViT-S/16 Sinusoidal checkpoint (seed 42) and budget 0.0095,
 direct-displacement optimization produced larger displacement
 ($\rho_{\mathrm{rel}}=0.1021$ versus $0.0938$) yet retained 76.70\% versus
 7.36\% accuracy under task-loss optimization. An all-restart audit ruled
 out restart selection as the cause of the Sinusoidal task-loss frontier;
-layerwise profiles showed objective-dependent redistribution. Together,
-these results show that architecture, objective, training regime, random
-stability, and global displacement require separate evaluation.
+layerwise profiles showed objective-dependent redistribution. These results show that architecture, objective, training regime, random
+stability, and displacement require separate evaluation.
 \end{abstract}
 
 \begin{keyword}
@@ -99,7 +107,7 @@ loss. Equal $\rho_{\mathrm{rel}}$ controls aggregate displacement
 magnitude but not its orientation, layer allocation, head or token
 structure, or alignment with task-critical directions. Consequently,
 random robustness can fail as a proxy for task-aligned robustness even
-after functional magnitude is matched.
+after achieved attention-logit displacement magnitude is matched.
 
 We evaluate Learned, Sinusoidal, RoPE, and ALiBi in a canonical
 AMP-trained ViT-B/16 cohort on CIFAR-100 and ImageNet-100 and in an
@@ -122,8 +130,8 @@ without treating equal seed labels as strict training pairs.
 The ViT-B/16 results show a positive noise-minus-adversarial robustness
 gap in every seed, dataset, and family, together with dataset- and
 family-dependent gap magnitudes and a wider-range CIFAR-100 ordering
-reversal. The ViT-S/16 replication preserves the random-noise ranking but
-changes the adversarial ordering substantially. In particular, Learned PE
+reversal. The ViT-S/16 replication preserves the random-noise extremes---RoPE
+highest and ALiBi lowest---but changes the adversarial ordering substantially. In particular, Learned PE
 is strongest adversarially for ViT-B/16 but falls below ALiBi and RoPE for
 ViT-S/16, while ALiBi changes from the weakest ViT-B/16 adversarial family
 to the strongest ViT-S/16 family over the locked architecture-common
@@ -150,10 +158,9 @@ The principal contributions are:
     ViT-B/16 on two datasets and a full-FP32 ViT-S/16 ImageNet-100
     replication, plus an 18-checkpoint ViT-S/16 AMP auxiliary cohort;
 
-    \item a factorial architecture--precision decomposition showing that
-    random-noise ranking can remain stable while adversarial ranking, mean
-    backbone effects, and seed dispersion depend on positional-encoding
-    family;
+    \item a factorial architecture--precision decomposition with stable
+    random-noise extremes but PE-dependent adversarial ranking, mean backbone
+    effects, and seed dispersion;
 
     \item an all-restart and direct-displacement analysis establishing an
     objective-specific Sinusoidal task-loss frontier and separating global
@@ -170,180 +177,128 @@ The principal contributions are:
 
 \subsection{Positional encoding in Transformers and Vision Transformers}
 
-Self-attention does not encode token order by itself, motivating the
-addition of positional information to the original Transformer
-architecture. \citet{vaswani2017attention} introduced fixed
-sinusoidal positional encodings and also considered learned positional
-embeddings. Vision Transformer subsequently adopted learned absolute
-positional embeddings for sequences of image patches
-\citep{dosovitskiy2021image}. Rotary positional encoding (RoPE) injects
-relative-position structure through position-dependent rotations of
-queries and keys \citep{su2024roformer}, whereas Attention with Linear
-Biases (ALiBi) adds head-dependent distance penalties directly to the
-pre-softmax attention scores \citep{press2022train}.
+Self-attention does not encode token order by itself, motivating explicit
+positional information in the original Transformer
+\citep{vaswani2017attention}. Vision Transformer adopted learned absolute
+embeddings for image-patch sequences \citep{dosovitskiy2021image}; RoPE
+injects relative structure through position-dependent query--key rotations
+\citep{su2024roformer}; and ALiBi adds head-dependent distance penalties
+directly to pre-softmax attention scores \citep{press2022train}.
+\citet{dufter2022position} surveys these mechanisms in a unified notation,
+emphasizing that positional information can enter a Transformer through
+structurally different operations.
 
-Vision-specific studies show that positional information can be supplied
-through substantially different computational mechanisms. Image relative
-position encoding (iRPE) systematically compared absolute and relative
-schemes and introduced directional two-dimensional relative encodings for
-vision attention \citep{wu2021irpe}. Conditional positional encoding instead
-generates position information from the local token neighbourhood, making
-the encoding input dependent and improving extrapolation to unseen input
-sizes \citep{chu2023conditional}. Swin Transformer uses learned relative
-position biases inside shifted local windows, illustrating how positional
-bias can be integrated with hierarchical and locality-constrained
-attention \citep{liu2021swin}. Conversely, CvT showed that explicit
-positional embeddings can become unnecessary when convolutional token
-embedding and projection already provide a spatial inductive bias
-\citep{wu2021cvt}.
-
-These works are relevant because they establish that ``positional
-encoding'' is not a single architectural operation: additive token
-embeddings, query--key rotations, attention-score biases, input-conditioned
-generators, and convolutionally supplied spatial priors have different
-parameterisations and different locations in the computation graph. Their
-main evaluations concern accuracy, resolution or length generalisation,
-and efficiency. The present work asks a complementary post-training
-question: whether structurally different PE mechanisms preserve the same
-family ordering under random and task-aligned perturbations when the
-resulting functional displacement is matched.
+Vision-specific alternatives reinforce this heterogeneity. iRPE develops
+directional two-dimensional relative encodings \citep{wu2021irpe};
+conditional positional encoding derives position information from the local
+token neighbourhood \citep{chu2023conditional}; Swin uses learned relative
+biases inside shifted local windows \citep{liu2021swin}; and CvT shows that
+convolutional token embedding and projection can partly replace explicit
+positional embeddings \citep{wu2021cvt}. These studies mainly evaluate
+accuracy, efficiency, and resolution or length generalization. We instead
+ask a post-training robustness question: whether structurally different PE
+mechanisms retain the same ordering under random and task-aligned
+perturbations when achieved attention-logit displacement is matched.
 
 \subsection{Input-space adversarial robustness of Vision Transformers}
 
-Most adversarial-robustness research studies perturbations of the model
-input. Early gradient-based attacks demonstrated that small,
-norm-constrained input changes can produce large prediction changes
-\citep{goodfellow2015explaining}, and projected-gradient methods established
-a widely used first-order framework for evaluating and improving
-worst-case input robustness \citep{madry2018towards}.
+Most adversarial-robustness work perturbs the input. Gradient-based and
+projected-gradient attacks established the standard norm-constrained
+threat model \citep{goodfellow2015explaining,madry2018towards}. ViT studies
+then examined white- and black-box attacks, transferability, corruptions,
+occlusions, spatial permutations, and architecture-controlled comparisons
+\citep{mahmood2021robustness,naseer2021intriguing,bai2021transformers}.
+Attack design itself can change apparent rankings: Patch-Fool adapts the
+attack to patch and attention structure \citep{fu2022patchfool}, while
+adversarial training and patch-focused studies show sensitivity to
+pretraining, optimization, and perturbation allocation
+\citep{mo2022adversarialtraining,liu2023patched}.
 
-Several studies have examined how Vision Transformers behave under this
-threat model. \citet{mahmood2021robustness} evaluated ViTs
-under multiple white-box and black-box attacks and analysed transferability
-between convolutional and Transformer models. \citet{naseer2021intriguing} broadened the comparison to occlusions,
-domain shifts, natural corruptions, spatial permutations, and adversarial
-perturbations, linking some observed robustness to the dynamic receptive
-fields of self-attention. \citet{bai2021transformers} showed that
-claims of a universal Transformer robustness advantage can disappear when
-model scale and training recipes are controlled, making the evaluation
-protocol itself part of the robustness conclusion.
-
-Attack design can also reverse an apparent architecture ranking.
-Patch-Fool uses attention-aware patch optimisation and demonstrated that
-ViTs are not uniformly more robust than CNNs under attacks adapted to
-their patch and attention structure \citep{fu2022patchfool}. Related work on
-adversarially training ViTs further showed that robustness depends on
-pretraining, optimisation choices, and how gradients or perturbations are
-distributed across attention blocks and image patches
-\citep{mo2022adversarialtraining}. Patch-based attacks and defences have
-likewise exposed vulnerabilities tied specifically to token and attention
-structure \citep{liu2023patched}.
-
-This literature is important to our motivation because it demonstrates
-that robustness rankings depend on the threat model and experimental
-controls, rather than following automatically from a broad architecture
-label. However, these studies perturb pixels or patches while leaving the
-trained positional mechanism unchanged. In our setting the image is fixed,
-all non-positional parameters are frozen, and the attack surface is the
-PE-specific parameter or inference-time positional state.
+Most directly related to our attack surface, Adversarial Positional
+Embeddings (AdPE) perturbs absolute or relative positional information
+during masked-image pretraining, using embedding- and coordinate-based
+forms to harden the pretext task \citep{wang2023adpe}. Its goal is
+representation learning rather than post-training robustness evaluation,
+but it establishes PE itself as an adversarially manipulable ViT
+component. In our setting the image is fixed, all non-positional parameters
+are frozen, and only the PE-specific parameter or inference-time positional
+state is perturbed.
 
 \subsection{Robustness to neural-network parameter perturbations}
 
-Perturbations of model parameters have been studied from optimisation,
-generalisation, and deployment-security perspectives. Adversarial Weight
-Perturbation (AWP) regularises adversarial training by optimising against
-locally harmful weight changes and relates the weight-loss landscape to
-robust generalisation \citep{wu2020adversarial}. Theoretical work has
-analysed how bounded weight perturbations affect margins, generalisation,
-and adversarial robustness \citep{tsai2021formalizing}. Random and
-multiplicative weight perturbations have also been used as training-time
-regularisers for robustness to common corruptions
-\citep{trinh2024multiplicative}.
+Parameter perturbations have been studied in optimization, generalization,
+and deployment security. Adversarial Weight Perturbation optimizes against
+locally harmful weight changes during adversarial training
+\citep{wu2020adversarial}; bounded weight perturbations have also been
+analysed theoretically \citep{tsai2021formalizing}, and random or
+multiplicative perturbations used as regularizers
+\citep{trinh2024multiplicative}. Random-neighbourhood and SAM/AWP-style
+worst-case objectives likewise probe different local properties
+\citep{li2024randomweight}.
 
-The distinction between random and objective-aligned weight changes has
-also appeared in optimisation research. Random weight perturbation
-optimises an expected neighbourhood objective, whereas SAM/AWP-style
-methods emphasise a locally worst-case neighbourhood; \citet{li2024randomweight} directly compared these training-time
-paradigms and showed that their behaviour depends strongly on perturbation
-magnitude and optimisation design. This is conceptually relevant to our
-random-versus-adversarial comparison, but their objective is to improve
-training and generalisation, not to evaluate the post-training robustness
-ordering of heterogeneous PE mechanisms.
-
-From a security perspective, highly targeted post-training changes can be
-far more damaging than unstructured noise. The Bit-Flip Attack identified
-a small number of vulnerable stored weight bits that can collapse network
-accuracy, while substantially more random flips have little effect
-\citep{rakin2019bitflip}. Small parameter changes can also implant backdoors
-while preserving clean behaviour \citep{garg2020backdoors}, and adversarial
-parameter attacks can selectively degrade a deployed model's robustness
-without an equally conspicuous loss of clean accuracy
-\citep{yu2023adversarial}. These results provide an important qualitative
-precedent for our central question: stability under random parameter noise
-need not characterise sensitivity to task-aligned directions.
-
-Most prior parameter-space methods nevertheless perturb broad collections
-of weights or use perturbations as a training mechanism. Their magnitudes
-are typically specified in the native parameter space. That convention is
-appropriate within one parameterisation, but it does not directly support
-comparisons between Learned, Sinusoidal, RoPE, and ALiBi, whose positional
-states have different dimensions, constraints, sharing patterns, and
-direct effects on attention. We therefore freeze all non-positional
-parameters and compare perturbations through the attention-logit
-displacement they actually produce.
+Post-training security work provides a qualitative precedent for our
+central question. Targeted bit flips can collapse accuracy while many
+random flips do little \citep{rakin2019bitflip}; small parameter changes can
+implant backdoors \citep{garg2020backdoors}; and adversarial parameter
+attacks can selectively reduce robustness without equally conspicuous clean
+degradation \citep{yu2023adversarial}. These studies usually perturb broad
+weight collections and measure magnitude in native parameter coordinates.
+That is appropriate within one parameterization, but does not directly
+compare Learned, Sinusoidal, RoPE, and ALiBi, whose positional states differ
+in dimension, sharing, constraints, and computational effect. We therefore
+freeze all non-positional parameters and compare perturbations by the
+attention-logit displacement they induce.
 
 \subsection{Random and adversarial directions in local model geometry}
 
-Loss-landscape research provides useful context for interpreting random
-and objective-aligned parameter directions. Large-batch training was
-associated empirically with sharper minima and weaker generalisation
-\citep{keskar2017largebatch}, while \citet{li2018loss} developed
-filter-normalised random-direction visualisations to make landscape
-comparisons less sensitive to layer scale. Sharpness-Aware Minimisation
-explicitly optimises a worst-case loss in a parameter neighbourhood
-\citep{foret2021sam}, illustrating why an objective-aligned direction and a
-random direction probe different properties even at nominally similar
-parameter magnitudes.
+Loss-landscape research helps interpret random versus objective-aligned
+directions. Sharp minima have been linked empirically to weaker
+generalization \citep{keskar2017largebatch}; filter-normalized random
+directions reduce sensitivity to layer scale in landscape visualization
+\citep{li2018loss}; and SAM explicitly optimizes worst-case loss in a local
+parameter neighbourhood \citep{foret2021sam}. These results illustrate why
+random and task-aligned directions can probe different properties even at
+similar nominal magnitudes.
 
-At the same time, parameter-space sharpness is not invariant to benign
-reparameterisations. \citet{dinh2017sharp} constructed
-functionally equivalent networks with arbitrarily different apparent
-sharpness, showing why native-coordinate geometry must be interpreted with
-care. This observation is especially relevant when comparing PE families
-whose parameters have different semantics: equality of a raw RMS or
-$\ell_p$ perturbation does not imply equality of the induced change in the
-network computation.
+Native-coordinate sharpness is itself reparameterization dependent:
+\citet{dinh2017sharp} constructed functionally equivalent networks with
+arbitrarily different apparent sharpness. Fisher--Rao
+\citep{liang2019fisherrao}, normalized and relative flatness
+\citep{tsuzuku2020normalized,petzka2021relative}, and ASAM
+\citep{kwon2021asam} address related scale or reparameterization
+dependence. Our comparability problem is different: a high-dimensional
+additive table, deterministic sinusoidal state, phase rotations, and a few
+shared ALiBi slopes are semantically different perturbation spaces. We
+therefore normalize by induced change in a common internal quantity,
+pre-softmax attention logits, rather than by PE-parameter scale.
 
-Our study does not estimate a full Hessian, a full Jacobian singular-value
-decomposition, or a global worst case. Instead, isotropic Gaussian
-perturbations sample typical directions in each PE-specific parameter
-space, while task gradients and restarted PGD search objective-aligned
-harmful directions. We compare the two regimes on a shared functional
-metric---achieved pre-softmax attention-logit displacement---and treat the
-independently trained checkpoint/seed as the unit of replication. The
-local geometry probe then separates parameter-to-attention amplification
-from classification damage per unit of actually achieved displacement.
+We do not estimate a full Hessian, Jacobian spectrum, or global worst case.
+Gaussian perturbations sample typical directions in each PE-specific
+space, whereas task gradients and restarted PGD search objective-aligned
+harmful directions. The local geometry probe then separates
+parameter-to-attention amplification from classification damage per unit of
+achieved displacement.
 
 \subsection{Position of the present study}
 
-The closest literature can therefore be distinguished along three axes.
-First, the \emph{threat model} differs: standard ViT robustness studies
-modify pixels or patches, whereas we modify only the positional mechanism
-of an otherwise frozen trained model. Second, the \emph{comparison metric}
-differs: parameter-attack and landscape studies usually constrain a native
-weight norm, whereas we match the achieved displacement in pre-softmax
-attention logits across heterogeneous PE parameterisations. Third, the
-\emph{statistical unit} differs: random directions are repeated
-measurements within a checkpoint, not independent replicates; inference is
-performed on six shared training-seed identities per family. This
-combination enables a direct test of whether random positional-parameter
-stability predicts adversarial positional robustness, rather than merely
-confirming that a gradient-aligned perturbation is stronger than a random
-one.
+A recent theoretical complement studies trainable positional encoding in a
+single-layer Transformer for in-context regression and derives clean and
+adversarial Rademacher-complexity bounds, finding a larger vulnerability
+contribution from positional encoding under attack \citep{he2025impact}.
+Its setting is not vision, does not compare the four PE families considered
+here, and does not perturb a frozen post-training positional mechanism.
+
+Our position is therefore defined by three differences. First, the threat
+model modifies only the positional mechanism of an otherwise frozen trained
+ViT, rather than pixels or patches. Second, heterogeneous PE families are
+compared through achieved pre-softmax attention-logit displacement rather
+than a shared native parameter norm. Third, the trained checkpoint/seed is
+the replication unit; random directions are repeated within-checkpoint
+measurements. This combination directly tests whether random
+positional-parameter stability predicts adversarial positional robustness.
 
 
-% ============================================================
-\section{Functional Displacement Framework}
+\section{Attention-Logit Displacement Framework}
 \label{sec:framework}
 % ============================================================
 
@@ -408,9 +363,11 @@ vector is perturbed.
 
 The resulting numbers of scalar perturbation degrees of freedom are
 $N d$ for Learned and Sinusoidal PE, $N d_h/2$ for RoPE, and $H$ for
-ALiBi. They are, respectively, $151{,}296$, $151{,}296$, $6{,}304$, and
-$12$ on ImageNet-100 ($N=197$), and $49{,}920$, $49{,}920$, $2{,}080$,
-and $12$ on CIFAR-100 ($N=65$).
+ALiBi. For ViT-B/16 on ImageNet-100 ($N=197$, $d=768$, $H=12$), these
+are $151{,}296$, $151{,}296$, $6{,}304$, and $12$, respectively. For
+ViT-S/16 on ImageNet-100 ($d=384$, $H=6$), they are $75{,}648$,
+$75{,}648$, $6{,}304$, and $6$. The ViT-B/16 CIFAR-100 cohort
+($N=65$) uses $49{,}920$, $49{,}920$, $2{,}080$, and $12$.
 
 \subsection{Achieved attention-logit displacement}
 
@@ -461,7 +418,12 @@ The relative displacement is
 The quantity $\rho_{\mathrm{rel}}$ is dimensionless and controls the
 aggregate magnitude of the induced change in pre-softmax attention
 logits. It does not constrain the direction of that change or its
-distribution across layers, heads, queries, and keys.
+distribution across layers, heads, queries, and keys. Because the metric is
+defined before softmax, it also retains row-constant logit shifts even though
+$\operatorname{softmax}(z+c\mathbf{1})=\operatorname{softmax}(z)$. Equal
+$\rho_{\mathrm{rel}}$ should therefore be interpreted as equal aggregate
+pre-softmax attention-logit displacement on the stated metric, not as equality
+of softmax-effective or attention-probability displacement across PE families.
 
 
 \subsection{Random and adversarial perturbation regimes}
@@ -649,13 +611,10 @@ depends on the content-dependent query--key logits.
 
 \subsection{Architecture and training}
 
-The canonical ViT-B/16 backbone uses embedding dimension $d=768$, 12
-Transformer blocks, 12 attention heads, head dimension 64, an MLP
-expansion ratio of 4, and dropout probability 0.1. The independent
-ViT-S/16 ImageNet-100 replication uses $d=384$, 12 blocks, 6 heads, the
-same head dimension 64, MLP ratio 4, and dropout probability 0.1. Within
-each architecture, models differ only in their positional-encoding
-mechanism.
+ViT-B/16 uses $d=768$, 12 blocks, 12 heads, head dimension 64, MLP
+ratio 4, and dropout 0.1; ViT-S/16 uses $d=384$, 12 blocks, 6 heads, and
+the same head dimension, MLP ratio, and dropout. Within each architecture,
+models differ only in positional encoding.
 
 For ImageNet-100, images are evaluated at $224\times224$ with
 $16\times16$ patches, producing 196 patch tokens and sequence length
@@ -666,7 +625,8 @@ patches, producing 64 patch tokens and $N=65$.
 All 72 canonical checkpoints are trained from scratch for 300 epochs
 using AdamW with initial learning rate $3\times10^{-4}$, weight decay 0.1,
 cosine annealing, 20 warmup epochs, batch size 128, label smoothing 0.1,
-and Mixup with $\alpha=0.8$. The ViT-B/16 checkpoints are trained with
+Mixup with $\alpha=0.8$, and global gradient-norm clipping at 1.0. The
+ViT-B/16 checkpoints are trained with
 CUDA automatic mixed precision and dynamic loss scaling; the canonical
 ViT-S/16 checkpoints are trained in full FP32. An auxiliary 18-checkpoint
 ViT-S/16 AMP cohort (three families by six seeds) follows the same training
@@ -676,10 +636,19 @@ parameters in one group, without positional-parameter, bias, or
 normalization exclusions from weight decay. Thus, the Learned positional
 table and trainable \texttt{[CLS]} token receive weight decay, whereas
 the Sinusoidal table, RoPE phase construction, and ALiBi slope state are
-fixed buffers during training. All canonical and auxiliary robustness
-attacks and evaluations are conducted in FP32 under the locked numerical
-protocol; attack/evaluation precision is therefore distinct from training
-precision.
+fixed buffers during training. Canonical attack engines use float32 inputs and float32 model parameters
+without autocast or gradient scaling. They explicitly select the MATH
+scaled-dot-product attention backend where the installed PyTorch exposes
+\texttt{torch.nn.attention} (as in the locked PyTorch 2.8 audit environment);
+older-PyTorch fallback paths are not asserted to force MATH. The later audit numerical-mode capture records
+\texttt{matmul\_allow\_tf32=true} and \texttt{cudnn\_allow\_tf32=true}; hence
+``FP32'' here denotes tensor/model dtype and the absence of mixed-precision
+autocast, not strict exclusion of TF32 matrix-multiply kernels. The detailed
+environment lock was captured for the later audit runs, whereas historical
+canonical-cohort environment reconciliation is explicitly retained as pending
+in the provenance report. Attack/evaluation precision is therefore distinct
+from training precision, and historical numerical-mode claims are made at the
+engine-source level rather than as a contemporaneous environment lock.
 
 \subsection{Checkpoint cohort and clean performance}
 
@@ -700,33 +669,17 @@ initialization, and training trajectories differ. Ordinary model weights
 remain frozen throughout robustness evaluation; only the family-specific
 positional representation is perturbed.
 
-Table~\ref{tab:clean-accuracy} reports clean accuracy. ViT-B/16 values
-are measured on the complete ImageNet-100 validation and CIFAR-100 test
-sets. ViT-S/16 values are measured on the fixed 3464-image evaluation
-split used by its canonical robustness protocol. Robustness curves use
-each seed's clean accuracy on the corresponding evaluation split as the
-normalization anchor.
+Table~\ref{tab:clean-accuracy} reports clean accuracy on the same fixed
+evaluation populations used to normalize the robustness curves. ImageNet-100
+uses the common 3,464-image evaluation split for both architectures, and
+CIFAR-100 uses the 8,464-image evaluation split. The ViT-S/16 runs used a
+re-extracted physical copy of the ImageNet-100 validation directory; the audit
+input lock verifies that the ViT-B/16 and ViT-S/16 copies have identical
+5,000-image sample-order SHA-256 and identical 256/1,280/3,464 split SHA-256,
+so this path difference does not change the evaluated population. Every table
+cell is generated from the public seed-level clean-accuracy records.
 
-\begin{table}[t]
-\centering
-\caption{Clean classification accuracy. Values are mean $\pm$ sample
-standard deviation over six independently trained seeds. ViT-B/16 values
-use the complete dataset evaluation set; ViT-S/16 values use its fixed
-3464-image ImageNet-100 evaluation split.}
-\label{tab:clean-accuracy}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{lccc}
-\toprule
-PE family & ViT-B ImageNet-100 & ViT-B CIFAR-100 & ViT-S ImageNet-100 \\
-\midrule
-Learned     & $79.46 \pm 0.51$ & $67.92 \pm 0.46$ & $77.95 \pm 0.41$ \\
-Sinusoidal  & $81.62 \pm 0.41$ & $67.22 \pm 0.47$ & $78.86 \pm 0.38$ \\
-RoPE        & $84.56 \pm 0.30$ & $73.18 \pm 0.19$ & $82.64 \pm 0.34$ \\
-ALiBi       & $81.01 \pm 0.36$ & $67.76 \pm 0.30$ & $79.21 \pm 0.28$ \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
+\input{tables/table_clean_accuracy.tex}
 
 The Learned table is the only positional state directly subject to AdamW
 weight decay. This optimizer asymmetry is part of the complete as-trained
@@ -734,14 +687,10 @@ implementation and was not isolated as a separate causal factor.
 
 \subsection{Random parameter-noise protocol}
 
-Random robustness is evaluated using Gaussian directions sampled in the
-unique PE parameter space. Each direction is normalized according to the
-global RMS convention.
-
-For a given model and random draw, the same direction is retained across
-the complete native budget grid. This produces a coherent path through
-parameter space rather than a collection of independently resampled
-perturbations.
+Random robustness uses Gaussian directions in the unique PE parameter
+space, normalized by the global RMS convention. For each model and draw,
+the same direction is retained across the native budget grid, producing a
+coherent parameter-space path rather than independently resampled points.
 
 Ten random directions are evaluated per model in the main robustness
 experiment. For PE family $f$, training seed $s$, native noise budget $b$,
@@ -775,16 +724,23 @@ The step size is set to a fixed fraction of the native RMS budget:
 \]
 
 Family-specific optimization lengths were first selected in a seed-42
-development audit and then subjected to a prespecified harmonization check on
-confirmation seed 123. For matched $N$-to-$2N$ comparisons, a retained
-schedule had to satisfy absolute changes of at most $0.003$ in normalized
-accuracy, $0.005$ in selected attack loss, and $0.003$ in achieved
-$\rho_{\mathrm{rel}}$, with identical five-restart seeds. Learned $400\times5$,
-Sinusoidal $400\times5$, and RoPE $200\times5$ passed at all three tested
-transition budgets. ALiBi $100\times5$ failed the accuracy tolerance at native
-budget $0.02$; a targeted $200\times5$-to-$400\times5$ comparison at that
-budget then passed all criteria. The complete matched comparisons, including
-the initial development sequence, are retained in the reproducibility package.
+development audit and then checked on the prespecified confirmation seed 123.
+For ViT-B/16 ImageNet-100, the retained historical harmonization runner performs
+matched $N$-to-$2N$ comparisons with identical five-restart seeds on the fixed
+256/1280/3464 calibration/attack/evaluation split. The run ledger records
+Learned $400\times5$-to-$800\times5$, Sinusoidal $400\times5$-to-$800\times5$,
+RoPE $200\times5$-to-$400\times5$, and ALiBi $100\times5$-to-$200\times5$
+confirmation runs, followed by a targeted ALiBi $200\times5$-to-$400\times5$
+run at native budget $0.02$. These records document the historical schedule-lock
+decision used below. The initial seed-42 step-doubling development audit did
+not use an a priori numerical convergence threshold; the retained schedules
+were supported by an observed empirical separation between stable and extended
+configurations. The confirmation seed 123 and the subsequent canonical grids
+were fixed separately, so the empirical development criterion is not presented
+as a prespecified threshold. The public repository redistributes the
+harmonization runner and run ledger, but not the original row-level comparison
+JSONs or the v17/v18 closure file; we therefore do not claim public row-level
+reproduction of that historical schedule decision.
 
 For CIFAR-100, the final attack configurations are:
 \begin{itemize}
@@ -826,7 +782,7 @@ $\rho_{\mathrm{rel}}$.
 The mapping from native parameter budget to achieved
 $\rho_{\mathrm{rel}}$ is family and seed dependent. A uniform native
 budget schedule can therefore leave long interpolation intervals in
-functional space, particularly close to the clean operating point. We
+attention-logit displacement space, particularly close to the clean operating point. We
 construct the final family-specific measurement grids to provide denser
 coverage in these regions while preserving the same attack objective,
 parameter norm, optimization length, and number of restarts.
@@ -849,12 +805,13 @@ the CIFAR-100 transition-region grid contains native RMS budgets $0.00625$
 for Learned, $0.01125$ for Sinusoidal, $0.225$ for RoPE, and $0.0375$ and
 $0.060$ for ALiBi. These five budgets were selected from the seed-42
 development scan before the final cohort was analysed and were subsequently
-measured for all six seeds using the locked family-specific schedules. A
-same-protocol H200 rerun of the seed-42 transition points agreed with the
-earlier RTX Blackwell Server Edition run to within $4.91\times10^{-4}$ in
-normalized accuracy and $2.56\times10^{-5}$ in achieved
-$\rho_{\mathrm{rel}}$; the homogeneous H200 values are used in the final
-six-seed transition grid.
+measured for all six seeds using the locked family-specific schedules. A retained historical audit summary reports that a same-protocol H200
+recheck of the seed-42 transition points differed from the earlier RTX Blackwell
+Server Edition values by at most $4.91\times10^{-4}$ in normalized accuracy
+and $2.56\times10^{-5}$ in achieved $\rho_{\mathrm{rel}}$. The earlier raw
+Blackwell log is not redistributed, so this is an audit-recorded cross-hardware
+check rather than a publicly rerunnable paired comparison; only the homogeneous
+H200 values are used in the final six-seed transition grid.
 
 The locked ViT-S/16 ImageNet-100 adversarial native-budget grids are
 \begin{align*}
@@ -868,13 +825,10 @@ family, retained across each native-budget path. Adaptive threshold
 refinement, when present, changes only the nominal budget grid and does
 not change steps, restarts, objective, split, or checkpoint selection.
 
-All validated intermediate points are merged with the remaining canonical
-measurements before curve construction. A single canonical analysis script
-then generates the seed-level curves, the primary and wider-range nAUC tables,
-and the main robustness figure from this final measurement grid. The script
-records SHA-256 hashes for every consumed result file, and the same curve
-objects feed all three manuscript outputs, preventing table--figure convention
-drift.
+Validated intermediate points are merged with the canonical measurements
+before curve construction. One analysis script then generates seed-level
+curves, nAUC tables, and the main robustness figure from the same curve
+objects while recording SHA-256 hashes of all consumed result files.
 
 % Supplementary material: retain a nested-grid interpolation-sensitivity
 % audit comparing estimates before and after inclusion of the targeted
@@ -884,64 +838,42 @@ drift.
 \subsection{Statistical analysis}
 \label{subsec:statistics}
 
-The trained checkpoint is the unit of replication. All curve
-construction, numerical integration, and regime comparisons are
-therefore performed separately for each seed before any across-seed
-summary is calculated. The ten random-noise draws are repeated
-measurements within a checkpoint and are aggregated at matched native budgets
-according to Eq.~\eqref{eq:budget-paired-noise}; they are not treated as
-independent experimental replicates.
+The trained checkpoint is the unit of replication. Curve construction and
+integration are performed separately for each seed before across-seed
+summaries; the ten random-noise draws are repeated within-checkpoint
+measurements, aggregated at matched native budgets according to
+Eq.~\eqref{eq:budget-paired-noise}, not independent replicates. Seed 42 was
+used to develop the family-specific PGD schedules and native grids and is
+therefore not fully independent of those choices. It remains in the
+prespecified six-seed cohort, with a five-seed sensitivity reported
+separately: all 40 remaining gaps are positive, family-mean orderings are
+preserved on both datasets, and the exact Friedman test gives $Q=13.56$ and
+$p=1.38648\times10^{-4}$ for each dataset. The development audit validates
+the protocol but is not independent confirmatory evidence.
 
-Seed 42 served as the protocol-development checkpoint for selecting the
-family-specific PGD schedules and native budget grids and is therefore not
-fully independent of those design choices. It remains in the prespecified
-six-seed cohort, but we additionally repeat the primary analysis after
-excluding it. In that five-seed sensitivity analysis, all 40 remaining
-noise-minus-adversarial gaps are positive, the family-mean orderings are
-preserved on both datasets, and the exact Friedman tests give $Q=13.56$ and
-$p=1.38648\times10^{-4}$ for each dataset (1104 of $24^5=7{,}962{,}624$
-within-block permutations). The development audit is used only to validate
-the optimization protocol and is not treated as independent confirmatory
-evidence.
-
-For every dataset, PE family, seed, and perturbation regime, measured
-points are ordered by achieved $\rho_{\mathrm{rel}}$. The exact clean
-anchor $(0,1)$ is then included. For adversarial perturbations, we use
-the cumulative lower envelope of normalized accuracy:
+For each seed, family, and regime, measured points are ordered by achieved
+$\rho_{\mathrm{rel}}$ and the exact clean anchor $(0,1)$ is included.
+Adversarial curves use the cumulative lower envelope
 \begin{equation}
 \widetilde{a}_{\mathrm{adv}}(\rho_i)
 =
-\min_{j\leq i} a_{\mathrm{adv}}(\rho_j).
+\min_{j\leq i} a_{\mathrm{adv}}(\rho_j),
 \label{eq:lower-envelope}
 \end{equation}
-This prevents small finite-optimization or evaluation fluctuations
-from making a weaker attack at a larger native budget improve the
-strongest-observed adversarial robustness curve.
+so a weaker optimized attack at a larger native budget cannot improve the
+strongest-observed curve within the locked grid. This one-sided
+transformation is appropriate to the adversarial estimand: at each canonical
+budget we retain the highest-loss restart and then the lower envelope across
+achieved displacement. Random-noise curves instead estimate the mean response
+to isotropically sampled directions and are averaged across draws rather than
+enveloped. Audit-only budgets do not alter this locked primary estimand. A
+no-envelope sensitivity analysis (Supplementary Section~5,
+Table~\ref{tab:s-no-envelope}) preserves all 48 positive seed-level gaps and
+all within-seed family rank configurations; the largest family-mean change is
+CIFAR-100 Learned, $0.015369\to0.014591$.
 
-Because the envelope is applied only to the adversarial regime, it is a
-one-sided transformation: it can only lower the adversarial curve and can
-therefore only enlarge the noise-minus-adversarial gap. This aggregation
-asymmetry is intentional because the two regimes target different estimands.
-Random-noise curves estimate the mean response to isotropically sampled
-directions and are therefore averaged across draws at matched native budgets.
-Adversarial curves estimate the strongest observed optimized perturbation:
-the highest-loss restart is retained at each native budget, followed by the
-cumulative lower envelope over achieved displacement. Applying the same
-monotonic transformation to the noise regime would be inappropriate because
-random directions are not optimized and their non-monotonicities represent
-sampling variability rather than attack-optimization artefacts.
-
-A deterministic sensitivity analysis without the adversarial envelope is
-reported in the supplementary material. After adding the exact clean
-anchor, the raw measured normalized accuracies are ordered by increasing
-achieved displacement and connected by piecewise-linear interpolation,
-without clipping values above one. All 48 seed-level gaps remain positive,
-all within-seed family rank configurations are preserved, and the largest
-change in any family-mean gap is small (CIFAR-100 Learned,
-$0.015369 \to 0.014591$).
-
-The primary robustness statistic is the normalized area under the
-accuracy--displacement curve:
+The primary statistic is normalized area under the
+accuracy--displacement curve,
 \begin{equation}
 \operatorname{nAUC}_{s,f,r}
 =
@@ -950,31 +882,18 @@ accuracy--displacement curve:
 a_{s,f,r}(\rho)\,d\rho,
 \label{eq:seed-nauc}
 \end{equation}
-where $s$ denotes the training seed, $f$ the PE family, and $r$ the
-perturbation regime. Piecewise-linear interpolation and trapezoidal
-integration are used between adjacent achieved-displacement points.
-Integration endpoints were selected from the common
-achieved-displacement support of the measured curves, that is, from
-displacement intervals covered by every included seed--family curve
-under both perturbation regimes. Endpoint selection therefore depends
-only on achieved-displacement coverage and not on accuracy outcomes,
-family rankings, or regime differences. The locked ImageNet-100 session
-protocol initially specified a planned primary interval
-$\rho_{\mathrm{rel}}\in[0,0.1]$. During final analysis, the endpoint was
-reduced on coverage grounds: the smallest maximum achieved adversarial
-displacement is $0.095748$ for ImageNet-100 Sinusoidal PE, while the
-smallest maximum achieved displacement among all noise curves in the
-final merged grid is $0.115553$. We therefore use $\rho_{\max}=0.09$ as
-a conservative primary endpoint and $\rho_{\max}=0.095$ as a
-near-maximal common-support sensitivity endpoint. This is a
-support-driven deviation from the initially planned endpoint, not an
-outcome-driven change. The same two endpoints are applied to CIFAR-100
-to preserve identical integration intervals across datasets. Every
-included curve contains at least one measured point beyond each
-applicable endpoint; consequently, no reported nAUC requires
-extrapolation beyond measured support.
+with piecewise-linear interpolation and trapezoidal integration. Endpoints are
+chosen solely from common achieved-displacement support, independently of
+accuracy outcomes or family rankings. The ImageNet-100 protocol initially
+planned $\rho_{\mathrm{rel}}\in[0,0.1]$, but final coverage required a
+support-driven reduction: the smallest maximum adversarial displacement is
+$0.095748$ (Sinusoidal), versus $0.115553$ for noise. We therefore use
+$\rho_{\max}=0.09$ as the primary endpoint and $0.095$ as a near-maximal
+common-support sensitivity endpoint, applying both also to CIFAR-100 for
+cross-dataset comparability. Every included curve has measured support beyond
+the applicable endpoint; no nAUC uses extrapolation.
 
-For each dataset and PE family, the within-seed decoupling statistic is
+The within-seed decoupling statistic is
 \begin{equation}
 G_{s,f}
 =
@@ -983,107 +902,53 @@ G_{s,f}
 \operatorname{nAUC}_{s,f,\mathrm{adv}}.
 \label{eq:auc-gap}
 \end{equation}
-We report the sample mean and sample standard deviation across the six
-seeds. Uncertainty for mean paired differences is additionally
-summarized using a paired bootstrap confidence interval obtained by
-resampling the six seed identities with replacement and retaining the
-pairing between regimes.
+We report its mean and sample standard deviation over six seeds and paired
+bootstrap confidence intervals obtained by resampling seed identities while
+preserving regime pairing. Family-specific exact two-sided sign-flip tests
+enumerate all $2^6$ assignments under sign symmetry. Thus $p=0.03125$ is the
+smallest attainable two-sided value when all six gaps share a sign; these
+eight tests are directional-consistency checks, not separate confirmatory
+claims (Bonferroni threshold $0.00625$; Holm-adjusted values $0.25$).
 
-Because only six paired observations are available, exact
-non-parametric inference has coarse resolution. For each dataset--family
-combination, we compute an exact two-sided sign-flip test under the
-sign-symmetry null for the six paired seed-level gaps. Conditional on the
-observed gap magnitudes, all $2^6=64$ sign assignments are enumerated.
-When all six differences have the same positive sign, the two-sided exact
-probability is
-\[
-p=\frac{2}{2^6}=0.03125.
-\]
-This is the smallest attainable two-sided value in the $n=6$ cohort. The
-eight family-specific tests are therefore used only as secondary checks
-of directional consistency, not as separate confirmatory significance
-tests. In particular, no individual test can meet the Bonferroni
-family-wise threshold $0.05/8=0.00625$; the corresponding
-Holm--Bonferroni-adjusted values are $0.25$. We make no
-multiplicity-adjusted significance claim from these tests. Formal omnibus
-inference is instead provided by the dataset-level exact Friedman
-permutation tests described below, while effect magnitudes, pointwise
-paired bootstrap intervals, and positive-seed counts characterize the
-direction and consistency of the family-specific regime differences.
+Between-family heterogeneity is assessed separately for each dataset by an
+exact Friedman permutation test on the four family gaps within each of the six
+shared seed labels. Shared labels provide blocks but do not make
+family-specific checkpoints strict training pairs because the
+parameterizations and optimization trajectories differ. With no ties, the
+exact null enumerates all $(4!)^6=191{,}102{,}976$ within-block rank
+assignments. We report $Q$ and its exact permutation $p$; the asymptotic
+$\chi^2_3$ value is reference only. The omnibus test addresses heterogeneity
+of gap magnitude, not positivity of the gap.
 
-To test whether the magnitude of the noise-minus-adversarial gap differs
-across PE families, we apply a Friedman repeated-measures test to the four
-family-specific gap values within each dataset, with the six shared
-training-seed identities treated as repeated-measures blocks. The test
-therefore ranks the four family-specific gaps within each shared seed
-identity and evaluates whether those within-seed rankings are
-systematically different across families. Under the null hypothesis that
-the four family labels are exchangeable within each shared seed block,
-and because the seed-level gap values contain no ties, we compute the
-exact null distribution of the Friedman statistic over all
-$(4!)^6=191{,}102{,}976$ possible within-block rank assignments. We report
-the Friedman statistic $Q$ and its exact permutation $p$-value. The
-three-degree-of-freedom asymptotic $\chi^2$ approximation is retained only
-for reference. Family-specific paired effects and their uncertainty
-remain the primary quantities; the omnibus test assesses between-family
-heterogeneity of gap magnitude and does not test whether the gap is
-positive.
+CIFAR-100 additionally permits a wider $\rho_{\max}=0.23$ ordering-sensitivity
+analysis, below its smallest per-seed maximum adversarial displacement
+($0.236431$). This post-primary interval is not pooled with the
+$[0,0.09]$ inference and requires no extrapolation. No individual random draw,
+budget, layer, or image is treated as an independent replicate; standard
+deviations use Bessel's correction unless stated otherwise.
 
-Because CIFAR-100 provides broader common achieved-displacement
-support, we analyse the interval $\rho_{\max}=0.23$ separately as an
-ordering-sensitivity analysis. The endpoint is a conservative choice
-within the CIFAR-100 common support; the smallest per-seed maximum
-achieved adversarial displacement is $0.236431$. This wider interval was not part of the documented primary endpoint
-plan and is not treated as an additional confirmatory test. It is not
-pooled with the primary $[0,0.09]$ inference and is used only to assess
-whether conclusions about relative PE robustness persist beyond the
-small-displacement regime. Every included CIFAR-100 curve has measured
-support beyond $0.23$, so no extrapolation is required.
+For cross-architecture ImageNet-100 analyses, support is again intersected
+over all included curves. The four-family canonical comparison uses
+$\rho_{\mathrm{canonical}}=0.0792383973$ and contrasts AMP-trained ViT-B/16
+with full-FP32 ViT-S/16, so it does not isolate architecture from precision.
+The separate three-family AMP-matched comparison uses
+$\rho_{\mathrm{cross}}=0.0873455716$; each analysis also uses $0.9$ and $0.75$
+of its own endpoint for sensitivity, without mixing support or extrapolating.
+Near-duplicate achieved-displacement points are deterministically grouped
+within absolute/relative tolerances $5\times10^{-7}$ and $5\times10^{-6}$,
+respectively; ties retain lower normalized accuracy, then larger task loss,
+lower nominal budget, and stable source order.
 
-No individual random draw, perturbation budget, attention layer, or
-image is treated as an independent replicate. Unless explicitly stated
-otherwise, reported standard deviations use Bessel's correction
-(\texttt{ddof}=1).
+Seed labels are aligned across architectures but are not matched training
+pairs: the backbones consume different amounts of the global random stream,
+and the DataLoader has no separately locked generator. We therefore report
+seed-aligned difference intervals together with unpaired Welch intervals as a
+sensitivity check. Normalized accuracy is not clipped at one. Finally, the
+all-restart Sinusoidal grid extension is explicitly post-lock, and the
+direct-displacement audit uses a different objective; neither changes the
+canonical support or primary nAUC estimand.
 
-For the four-family canonical cross-cohort ImageNet-100 comparison,
-support is the intersection over every architecture, family, seed, and
-perturbation regime included in that comparison,
-$\rho_{\mathrm{canonical}}=0.0792383973$. Because ViT-B/16 is
-AMP-trained and the canonical ViT-S/16 cohort is full-FP32-trained, this
-comparison does not isolate architecture from training precision. A separate
-three-family AMP-matched cross-architecture analysis therefore defines
-$\rho_{\mathrm{cross}}=0.0873455716$. Each analysis uses
-$0.9$ and $0.75$ of its own locked endpoint for sensitivity; no support is
-mixed and no curve is extrapolated. Near-duplicate achieved-displacement
-points are grouped when
-\[
-|\rho_i-\rho_j|\leq\max\!\left(5\times10^{-7},
-5\times10^{-6}\max(|\rho_i|,|\rho_j|,10^{-12})\right).
-\]
-Within a group, the retained canonical point is selected by lower
-normalized accuracy, then larger task loss, lower nominal budget, and
-stable source order. These rules are fixed before architecture-level
-summaries are computed.
 
-Seed labels are aligned across architectures, but the two backbones consume
-different amounts of the global random stream during initialization. The
-training DataLoader has no separately locked generator, so models sharing a
-seed label share neither initial weights nor guaranteed data ordering. Seeds
-are therefore aligned labels, not matched pairs. Seed-aligned difference
-intervals are reported for consistency with the within-architecture
-analyses, and unpaired Welch intervals are reported as a supplementary
-sensitivity check.
-
-Normalized accuracy is not clipped at one: a noisy model can marginally
-outperform its clean reference on the fixed evaluation split, so a
-noise-nAUC value may also lie slightly above one.
-
-The all-restart Sinusoidal task-loss audit and the direct-displacement
-optimization audit are objective-specific structural analyses. They do not extend canonical
-$\rho_{\mathrm{common}}$, $\rho_{50}$, nAUC, or task-loss-frontier
-support.
-
-% ============================================================
 \section{ViT-B/16 Random--Adversarial Robustness Decoupling}
 \label{sec:decoupling-results}
 % ============================================================
@@ -1110,8 +975,10 @@ Table~\ref{tab:primary-nauc}.
       trained seeds per PE family. The dotted vertical line marks the
       primary integration endpoint $\rho_{\max}=0.09$. Curves are
       constructed and displayed over achieved attention-logit
-      displacement rather than nominal native parameter budget. The random
-      curves use the budget-paired ten-draw aggregation in
+      displacement rather than nominal native parameter budget. The two rows
+      use dataset-specific y-axis limits to make the smaller CIFAR-100
+      deviations visible; each panel remains on the same normalized-accuracy
+      scale within its dataset row. The random curves use the budget-paired ten-draw aggregation in
       Eq.~\eqref{eq:budget-paired-noise}; the figure and both nAUC tables are
       generated by the same canonical analysis script.
       }
@@ -1120,6 +987,14 @@ Table~\ref{tab:primary-nauc}.
 
 
 \subsection{Normalized area under the robustness curve}
+
+For each seed and perturbation regime, we integrate normalized accuracy over
+the common measured support and divide by the integration width to obtain
+nAUC. This support-matched scalar summarizes the full robustness curve while
+avoiding comparisons outside empirically covered $\rho_{\mathrm{rel}}$ values.
+Table~\ref{tab:primary-nauc} reports the resulting seed-level aggregates; the
+noise-minus-adversarial gap is interpreted primarily through its magnitude and
+family dependence rather than through positivity alone.
 
 \input{tables/table_primary_nauc.tex}
 
@@ -1152,15 +1027,50 @@ $p=9.47\times10^{-5}$ for CIFAR-100. For reference, the corresponding
 three-degree-of-freedom asymptotic $\chi^2$ approximations yielded
 $p=9.39\times10^{-4}$ and $p=1.82\times10^{-3}$, respectively. Both exact
 results remain significant after correction for the two dataset-level
-omnibus tests. These omnibus tests address heterogeneity of gap magnitude;
-the uniformly positive direction is described separately by the 48/48
-seed-level gaps and the paired effect sizes in Table~\ref{tab:primary-nauc}.
+omnibus tests. These omnibus tests address heterogeneity of gap magnitude, which carries the
+primary interpretation. The uniformly positive 48/48 seed-level direction is
+reported as a consistency check, together with the paired effect sizes in
+Table~\ref{tab:primary-nauc}.
 
 These conclusions do not depend on the adversarial lower-envelope
-construction. In the supplementary no-envelope sensitivity analysis, all
+construction. In Supplementary Section~5 and Table~\ref{tab:s-no-envelope}, all
 48 gaps remain positive, all within-seed family rank configurations and
 positive-seed counts are preserved, and the exact Friedman results are
 unchanged.
+
+\subsection{Decomposition of the robustness gap}
+\label{subsec:gap-decomposition}
+
+Writing $D_{\mathrm{noise}}=1-\mathrm{nAUC}_{\mathrm{noise}}$ and
+$D_{\mathrm{adv}}=1-\mathrm{nAUC}_{\mathrm{adv}}$ gives
+$G=D_{\mathrm{adv}}-D_{\mathrm{noise}}$. The decomposition shows that the
+gap is driven mainly by adversarial degradation in several cells because
+random-noise nAUC remains near one. At the primary endpoint, ImageNet-100
+Sinusoidal has $D_{\mathrm{noise}}=0.0017$ and
+$D_{\mathrm{adv}}=0.1390$, ImageNet-100 RoPE has $0.0010$ and $0.0484$,
+and CIFAR-100 Learned has $0.0002$ and $0.0156$. Random-noise degradation is
+more material for ImageNet-100 ALiBi ($0.0398$ versus $0.1664$) and,
+proportionally, ImageNet-100 Learned ($0.0020$ versus $0.0065$). Thus the
+paired gap remains the primary contrast, while its numerical magnitude often
+reflects a near-flat random-noise branch combined with a substantially lower
+adversarial branch.
+
+\subsection{Baseline accuracy as an alternative explanation}
+\label{subsec:clean-accuracy-confound}
+
+We also examined whether baseline model quality could provide a common
+alternative explanation for the gap. For this analysis, clean accuracy is
+taken from the same robustness-evaluation subset used to normalize each
+seed-level curve. On CIFAR-100, the four family means are perfectly inversely
+ranked (Spearman $\rho=-1.000$); across all 24 seed-level observations,
+$\rho=-0.774$ ($p=9.25\times10^{-6}$), and after centering both variables
+within family the association is $\rho=-0.395$ ($p=0.056$). The same pattern
+does not reproduce on ImageNet-100: ViT-B/16 gives $\rho=+0.317$
+($p=0.131$), while the full-FP32 ViT-S/16 cohort gives $\rho=-0.311$
+($p=0.140$). Baseline accuracy can therefore covary with the gap within a
+particular cohort, especially CIFAR-100, but it does not provide a single
+dataset- and architecture-independent explanation for the observed
+cross-family robustness structure.
 
 \subsection{Endpoint sensitivity}
 
@@ -1256,25 +1166,7 @@ interpreted jointly rather than as independent robustness tests.
 Table~\ref{tab:factorial-comparison-design} makes explicit which factor is
 held fixed in each comparison.
 
-\begin{table*}[t]
-\centering
-\small
-\caption{Factorial interpretation of the three ImageNet-100 cross-cohort
-comparisons. Equal seed labels are alignment labels, not strict training
-pairs.}
-\label{tab:factorial-comparison-design}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lllll}
-\toprule
-Analysis & Architecture contrast & Training contrast & Shared PE families & Inferential role \\
-\midrule
-Canonical & ViT-B vs ViT-S & AMP vs full FP32 & 4 & System-level replication; factors confounded \\
-Within-ViT-S regime & ViT-S fixed & AMP vs full FP32 & 3 & Within-backbone training-regime comparison \\
-AMP-matched architecture & ViT-B vs ViT-S & AMP fixed & 3 & Cross-architecture effect with training regime fixed \\
-\bottomrule
-\end{tabular}%
-}
-\end{table*}
+\input{tables/table_factorial_comparison_design.tex}
 
 \subsection{Canonical four-family cross-cohort comparison}
 
@@ -1286,34 +1178,24 @@ comparison is integrated only over the
 measured common-support interval
 $\rho_{\mathrm{rel}}\in[0,0.0792383973]$. This endpoint is set by the
 smallest canonical support among all 96 architecture--family--seed--regime
-curves. Points from the objective-specific all-restart and
-direct-displacement audits are excluded from this domain.
+curves, namely ViT-S/16 Sinusoidal seed 456. Before the later all-restart audit,
+three targeted non-canonical ViT-S/16 Sinusoidal coverage-extension runs
+(seeds 123, 456, and 1213; native budgets through 0.020) attempted to reach
+$\rho_{\mathrm{rel}}=0.09$ but were registered as
+\texttt{COMPLETE\_TARGET\_NOT\_REACHED}. Their ledger ``combined max''
+values, 0.088095530, 0.079238397, and 0.087695707, respectively, equal the
+corresponding canonical maxima to the precision recorded in the ledger; the
+extension therefore did not enlarge support for those seeds. The original
+row-level coverage-extension JSONs are not redistributed, so this statement is
+limited to the registered ledger and canonical source records. The primary
+estimand retains the prespecified canonical native-budget grids. Post-lock
+all-restart audit points and direct-displacement points are excluded, even when
+their achieved displacement falls inside the integration interval. Table~\ref{tab:cross-architecture-nauc} and
+Fig.~\ref{fig:cross-architecture-curves} summarize this support-matched
+comparison; Supplementary Section~6 and Table~\ref{tab:s-postlock-grid} quantify the later
+ViT-S/16 Sinusoidal budget-0.020 sensitivity.
 
-\begin{table*}[t]
-\centering
-\small
-\caption{Cross-architecture ImageNet-100 nAUC over the locked common-support
-interval $\rho_{\mathrm{rel}}\in[0,0.07924]$. Values are mean $\pm$
-sample SD across six seeds.}
-\label{tab:cross-architecture-nauc}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{llccc}
-\toprule
-Architecture & PE family & Noise nAUC & Adversarial nAUC & Gap \\
-\midrule
-ViT-B/16 & Learned & $0.9983 \pm 0.0010$ & $0.9945 \pm 0.0023$ & $0.0039 \pm 0.0024$ \\
- & Sinusoidal & $0.9984 \pm 0.0010$ & $0.9034 \pm 0.0105$ & $0.0950 \pm 0.0110$ \\
- & RoPE & $0.9992 \pm 0.0005$ & $0.9669 \pm 0.0083$ & $0.0323 \pm 0.0086$ \\
- & ALiBi & $0.9685 \pm 0.0061$ & $0.8701 \pm 0.0185$ & $0.0983 \pm 0.0201$ \\
-\midrule
-ViT-S/16 & Learned & $0.9981 \pm 0.0007$ & $0.8509 \pm 0.0374$ & $0.1471 \pm 0.0374$ \\
- & Sinusoidal & $0.9988 \pm 0.0011$ & $0.7664 \pm 0.0385$ & $0.2324 \pm 0.0390$ \\
- & RoPE & $0.9992 \pm 0.0008$ & $0.8662 \pm 0.0397$ & $0.1330 \pm 0.0396$ \\
- & ALiBi & $0.9717 \pm 0.0070$ & $0.9046 \pm 0.0064$ & $0.0670 \pm 0.0066$ \\
-\bottomrule
-\end{tabular}%
-}
-\end{table*}
+\input{tables/table_cross_architecture_nauc.tex}
 
 \begin{figure}[!htbp]
 \centering
@@ -1321,18 +1203,29 @@ ViT-S/16 & Learned & $0.9981 \pm 0.0007$ & $0.8509 \pm 0.0374$ & $0.1471 \pm 0.0
 \caption{ImageNet-100 canonical robustness curves over the architecture-common
 support. Lines show across-seed means and shaded regions show $\pm1$ sample
 SD. Random noise is solid and task-loss adversarial perturbation is dashed.
-Every curve is constructed at seed level before aggregation; no point from
-the objective-specific all-restart or direct-displacement audits is included.}
+Every curve is constructed at seed level before aggregation and uses the
+prespecified canonical native-budget grid. Post-lock all-restart audit points
+and direct-displacement points are not included.}
 \label{fig:cross-architecture-curves}
 \end{figure}
 
-The random-noise ordering is identical at both scales:
-RoPE $>$ Sinusoidal $>$ Learned $>$ ALiBi. The adversarial ordering,
-however, changes from Learned $>$ RoPE $>$ Sinusoidal $>$ ALiBi for
-ViT-B/16 to ALiBi $>$ RoPE $>$ Learned $>$ Sinusoidal for ViT-S/16.
-Thus, architecture scale leaves the random ranking almost unchanged while
-altering which positional mechanism is most stable under task-aligned
-perturbations.
+At both scales, RoPE has the highest and ALiBi the lowest mean random-noise
+nAUC. The two middle families are not cleanly separated: Sinusoidal exceeds
+Learned by only $0.000112$ for ViT-B/16 and is higher in $3/6$ seeds; for
+ViT-S/16 the mean difference is $0.000706$ and is positive in $5/6$ seeds.
+We therefore do not interpret their middle ordering as a robust distinction.
+The adversarial ordering, however, changes from Learned $>$ RoPE $>$
+Sinusoidal $>$ ALiBi for ViT-B/16 to ALiBi $>$ RoPE $>$ Learned $>$
+Sinusoidal for ViT-S/16.
+
+A separate later all-restart audit, distinct from the historical
+coverage-extension runs above, provides public row-level results at native
+budget $0.020$ for all six ViT-S/16 Sinusoidal checkpoints. A post-lock
+sensitivity adds its loss-selected $0.020$ point to each seed curve while
+retaining the same cross-architecture endpoint. Its mean adversarial nAUC decreases
+from $0.766366$ to $0.721777$ ($\Delta=-0.044589$), increasing rather than
+weakening the random--adversarial gap; the qualitative family ordering is
+unchanged (Supplementary Table~\ref{tab:s-postlock-grid}).
 
 For all eight combinations of architecture and family, the
 noise-minus-adversarial gap is positive in all six seeds. Exact Friedman permutation
@@ -1382,32 +1275,15 @@ The within-ViT-S/16 comparison shows what changes when the training regime
 varies at fixed architecture. The AMP-matched comparison instead holds the
 training regime fixed and varies the backbone.
 The symmetric comparison contains Learned, Sinusoidal, and RoPE for the
-same six seed labels; ALiBi is excluded because ViT-S/16 AMP/BF16 training
-did not yield a valid checkpoint cohort. Attacks and evaluation are FP32
-for both architectures. The support intersection over both architectures,
+same six seed labels; ALiBi is excluded because ViT-S/16 AMP--FP16 training
+did not yield a valid checkpoint cohort. For both architectures, attack and
+evaluation use float32 tensors/model parameters without autocast or gradient
+scaling; the audit numerical-mode capture permits TF32 matrix multiplication as
+described above. The support intersection over both architectures,
 all three families, all six seeds, and both perturbation regimes is
-$\rho_{\mathrm{cross}}=0.0873456$.
+$\rho_{\mathrm{cross}}=0.0873456$. Table~\ref{tab:amp-matched-nauc} reports the corresponding seed-level architecture contrasts.
 
-\begin{table*}[t]
-\centering
-\scriptsize
-\caption{AMP-matched ImageNet-100 adversarial nAUC over
-$\rho_{\mathrm{rel}}\in[0,0.08735]$. Architecture values are mean
-$\pm$ sample SD across six seeds; $\Delta$ is ViT-S minus ViT-B. Exact
-sign-flip values are secondary directional-consistency checks.}
-\label{tab:amp-matched-nauc}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lccccccc}
-\toprule
-PE family & ViT-B adversarial nAUC & ViT-S adversarial nAUC & $\Delta$ adversarial & Seed-aligned 95\% CI & Seeds $\Delta<0$ & Exact $p$ & $\Delta$ noise nAUC \\
-\midrule
-Learned & $0.9937\pm0.0024$ & $0.7751\pm0.0717$ & $-0.2186$ & $[-0.2929,-0.1443]$ & 6/6 & 0.03125 & $-0.000894$ \\
-Sinusoidal & $0.8736\pm0.0181$ & $0.7137\pm0.0198$ & $-0.1599$ & $[-0.1842,-0.1356]$ & 6/6 & 0.03125 & $+0.000729$ \\
-RoPE & $0.9559\pm0.0119$ & $0.8627\pm0.0557$ & $-0.0932$ & $[-0.1604,-0.0261]$ & 5/6 & 0.06250 & $+0.000132$ \\
-\bottomrule
-\end{tabular}%
-}
-\end{table*}
+\input{tables/table_amp_matched_nauc.tex}
 
 With six nonzero seed contrasts, attainable two-sided exact sign-flip
 $p$-values are quantized in steps of $2/64=0.03125$. Thus 0.03125 is the
@@ -1416,18 +1292,22 @@ between the families. Per-family $p$-values are therefore not treated as
 primary evidence; effect sizes, intervals, seed signs, and the omnibus
 interaction carry the interpretation. Unpaired Welch sensitivity
 intervals are nearly identical to the seed-aligned intervals and remain
-below zero for all three families (Supplementary Table~S1).
+below zero for all three families (Supplementary Table~\ref{tab:s-welch}).
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.95\columnwidth]{figures/fig_amp_matched_attack_nauc.pdf}
+\includegraphics[width=\columnwidth]{figures/fig_D059_amp_matched_seed_paired_slope.pdf}
 \caption{AMP-matched cross-architecture adversarial nAUC over
-$\rho_{\mathrm{rel}}\in[0,0.08735]$. Bars and error bars show the
-across-seed mean and sample standard deviation.}
+$\rho_{\mathrm{rel}}\in[0,0.08735]$. Each line connects the same seed label
+between the ViT-B/16 AMP and ViT-S/16 AMP cohorts for one PE family. The
+labels are seed-aligned descriptive blocks rather than strict training pairs
+because backbone dimensionality, initialization streams, and optimization
+trajectories differ. Learned and Sinusoidal decrease in 6/6 aligned seeds,
+whereas RoPE decreases in 5/6.}
 \label{fig:amp-matched-nauc}
 \end{figure}
 
-The adversarial ranking changes from Learned $>$ RoPE $>$ Sinusoidal in
+As shown in Fig.~\ref{fig:amp-matched-nauc}, the adversarial ranking changes from Learned $>$ RoPE $>$ Sinusoidal in
 ViT-B/16 to RoPE $>$ Learned $>$ Sinusoidal in ViT-S/16. Letting
 $\Delta$ denote ViT-S minus ViT-B adversarial nAUC, 5/6 seeds share the
 ordinal pattern Learned $<$ Sinusoidal $<$ RoPE; seed 42 is the sole
@@ -1497,29 +1377,16 @@ accuracy. Global $\rho$ is therefore not a sufficient scalar predictor
 of functional damage, and its relationship with damage is nonlinear in
 budget and direction.
 
-\begin{table}[t]
-\centering
-\caption{Same-seed, same-budget comparison for ViT-S/16 FP32 Sinusoidal
-seed 42.}
-\label{tab:objective-comparison}
-\begin{tabular}{llrr}
-\toprule
-Budget & Objective & $\rho_{\mathrm{rel}}$ & Accuracy (\%) \\
-\midrule
-0.0095 & direct-$\rho$ & 0.10209 & 76.70 \\
-0.0095 & task loss     & 0.09380 & 7.36 \\
-0.0200 & direct-$\rho$ & 0.29505 & 19.52 \\
-0.0200 & task loss     & 0.07945 & 1.70 \\
-\bottomrule
-\end{tabular}
-\end{table}
+\input{tables/table_objective_comparison.tex}
 
 The direct-$\rho$ schedule is selected by a prespecified best-of-five
 criterion. Its best-of-five envelope is stable between $200\times5$ and
-$400\times5$, but individual restarts do not all converge. The reported
-$\rho$ is consequently an empirical lower bound on attainable displacement
-under the tested protocol, not a supremum estimate or evidence that the
-search was exhausted.
+$400\times5$, but individual restarts do not all converge. At budget $0.020$,
+for example, paired restart 2 changes normalized accuracy from $0.66898$ to
+$0.60212$ between 200 and 400 steps, whereas the schedule-selected envelope
+changes by only $0.000365$. The reported $\rho$ is consequently an empirical
+lower bound on attainable displacement under the tested protocol, not a
+supremum estimate or evidence that the search was exhausted.
 
 \subsection{Layerwise displacement allocation}
 
@@ -1532,7 +1399,7 @@ are shown at the same nominal budgets.}
 \label{fig:layerwise-displacement-profiles}
 \end{figure}
 
-Direct-$\rho$ perturbations are substantially more concentrated across
+As shown in Fig.~\ref{fig:layerwise-displacement-profiles}, direct-$\rho$ perturbations are substantially more concentrated across
 layers than task-loss perturbations. The effective number of layers is
 4.04 versus 9.22 at budget $0.0095$ and 4.45 versus 10.98 at budget
 $0.020$. Direct-$\rho$ profiles are dominated by layer 2, whereas the
@@ -1551,7 +1418,9 @@ causal mechanism.
 
 The AUC analysis establishes whether random and adversarial robustness
 differ, but it does not determine why. We therefore perform a local
-directional probe around every trained checkpoint.
+directional probe on the 48 canonical ViT-B/16 checkpoints (two datasets
+$\times$ four PE families $\times$ six seeds). The ViT-S/16 cohorts are not
+probed in this analysis.
 
 A task-gradient direction is estimated from a fixed subset
 $\mathcal{G}$ of 256 attack-split images:
@@ -1622,8 +1491,10 @@ r_0
 A fixed value $r_0=10^{-4}$ is used for every dataset, PE family,
 training seed, and probe direction. The radius is expressed in the same
 global-RMS-normalized native parameter-space units used to define the unit
-direction $u$ and corresponds to the \texttt{probe\_radius} field in the
-archived geometry-probe metadata.
+direction $u$. The locked value is recorded in
+\path{analysis/local_geometry/reference_outputs/probe_radius_evidence.json},
+and the public direction-level table contains an explicit
+\texttt{probe\_radius} column for all 1,584 direction records.
 
 The task-to-random amplification ratio is
 \begin{equation}
@@ -1641,7 +1512,11 @@ R_{\gamma}
 A large value of $R_{\gamma}$ indicates that the task-gradient direction
 changes the attention logits much more efficiently than the median of the
 32 sampled Gaussian reference directions at the same parameter-space RMS
-magnitude.
+magnitude. Because $\gamma$ is a finite-radius local gain evaluated at
+$r_0=10^{-4}$, the numerical value of $R_{\gamma}$ is radius dependent.
+The family ordering is preserved when gains are recomputed as secants at the
+calibrated $\rho_{\mathrm{rel}}\approx0.03$ operating point, but the
+magnitudes are not scale invariant.
 
 
 \subsection{Task-selective damage efficiency}
@@ -1694,33 +1569,21 @@ direction achieves exactly the nominal target value of 0.03.
 
 \subsection{Scope of the local probe}
 
-The probe is a local directional diagnostic. Here, ``held out'' refers
-specifically to separation from the images used to estimate the
-task-gradient direction. The geometry subset is drawn from the fixed
-calibration partition and contains the inner magnitude-calibration
-subset $\mathcal{H}_{\rho}$; it should not be interpreted as an
-additional independent test set. The probe does not compute the
-singular-value decomposition of the full model Jacobian and should not
-be interpreted as recovering globally dominant sensitivity directions.
-
-A matrix-free spectral analysis using Jacobian--vector and
-vector--Jacobian products could estimate a small number of leading
-singular components without explicitly constructing the full Jacobian.
-Such an analysis would primarily characterise parameter-to-attention
-amplification. It would not, by itself, establish whether the resulting
-attention displacement is aligned with task-critical directions.
-
-The present analysis instead directly compares task-aligned and random
-parameter directions and separately measures their functional
-amplification and classification damage.
+The probe is a local directional diagnostic. Here, ``held out'' means
+separate from the images used to estimate the task-gradient direction:
+$\mathcal{H}$ comes from the fixed calibration partition and contains
+$\mathcal{H}_{\rho}$, so it is not an additional independent test set.
+The analysis does not recover globally dominant Jacobian directions; it
+instead compares task-aligned and random parameter directions while
+separating parameter-to-attention amplification from classification damage.
 
 
 \subsection{Directional amplification results}
 
 The task-gradient direction exhibits strongly family-dependent
 functional amplification. Values below are reported as mean $\pm$
-sample standard deviation across the six independently trained
-checkpoints.
+sample standard deviation across the six independently trained ViT-B/16
+checkpoints within each family.
 
 On ImageNet-100, the task-to-random functional-gain ratio is
 $11.40\pm3.49\times$ for Learned PE, compared with
@@ -1787,24 +1650,14 @@ robustness.
 
 \subsection{Summary of the geometry analysis}
 
-The local probe shows that directional functional amplification and
-task-selective harmfulness are empirically distinct properties. A PE
-family can strongly amplify a task-gradient direction in
-attention-logit space without exhibiting the largest damage per unit
-of achieved displacement, as observed for Learned PE. Conversely, a
-family can show only moderate task-to-random amplification while
-producing highly task-selective internal displacements, as observed
-for ImageNet-100 Sinusoidal PE.
-
-The geometry results provide a mechanism-oriented interpretation of
-the robustness curves rather than an independent robustness ranking.
-They are consistent with family-dependent, anisotropic local mappings
-from positional parameter space to attention-logit space, together
-with family- and dataset-dependent alignment between the induced
-displacement and task-critical directions. Because the probe compares
-one task-gradient direction with a finite random reference set, these
-findings should be interpreted as local directional diagnostics rather
-than as a complete spectral characterization of the Jacobian.
+The probe separates directional amplification from task-selective
+harmfulness: Learned PE can strongly amplify the task-gradient direction
+without the largest damage per achieved displacement, whereas ImageNet-100
+Sinusoidal shows moderate amplification but strongly task-selective damage.
+These results provide a mechanism-oriented interpretation, not an independent
+robustness ranking. They are local diagnostics based on one task-gradient
+direction and a finite random reference set, not a spectral characterization
+of the full Jacobian.
 
 % ============================================================
 % ============================================================
@@ -1821,9 +1674,11 @@ mechanism, dataset, and architecture, so stability under typical
 Gaussian directions does not identify the family most stable under
 task-aligned directions.
 
-The canonical cross-cohort replication sharpens this conclusion. Random
-ordering is preserved from the AMP-trained ViT-B/16 cohort to the full-FP32
-ViT-S/16 cohort, while adversarial ordering changes substantially. The Learned--ALiBi extremes reverse:
+The canonical cross-cohort replication sharpens this conclusion. The
+random-noise family-mean extremes remain similar across the AMP-trained
+ViT-B/16 and full-FP32 ViT-S/16 cohorts, but the small intermediate
+family differences are not treated as a stable ordering; adversarial ordering
+changes substantially. The Learned--ALiBi extremes reverse:
 Learned is strongest and ALiBi weakest adversarially for ViT-B/16, but
 ALiBi is strongest and Learned falls below RoPE for ViT-S/16. This is a descriptive cross-cohort effect in which architecture and
 training precision jointly vary, not an isolated architecture effect or a
@@ -1839,7 +1694,7 @@ random-noise changes have no common seed-level direction. The architecture
 effect is ordinally consistent across pairwise family contrasts, reverses
 the Learned--RoPE ordering, and changes seed dispersion most strongly for
 Learned. Thus PE family governs both the mean and the variability of how
-backbone scale maps functional displacement into task damage.
+backbone scale maps achieved attention-logit displacement into task damage.
 
 \subsection{Equal displacement magnitude does not imply equal damage}
 
@@ -1868,14 +1723,12 @@ Magnitude, orientation, and task damage are therefore separate quantities.
 
 \subsection{Family-specific and architecture-specific geometry}
 
-The four families differ in parameter dimension, sharing, and point of
-injection. Learned embeddings provide a high-dimensional additive space;
-Sinusoidal perturbation changes deterministic positional state; RoPE
-perturbation is tied through phase rotations; and ALiBi uses a low-dimensional
-slope representation shared across blocks. These structural differences
-make architecture changes consequential: changing embedding dimension and
-head count changes both the native perturbation space and the mapping into
-attention, even when head dimension and depth are held fixed.
+The families differ in parameter dimension, sharing, and injection:
+Learned is a high-dimensional additive space, Sinusoidal changes
+deterministic positional state, RoPE is tied through phase rotations, and
+ALiBi uses low-dimensional slopes shared across blocks. Architecture changes
+therefore alter both the native perturbation space and its mapping into
+attention.
 
 The strong early-raster prior of the studied ALiBi-style implementation
 may contribute to its distinctive behavior, but the experiments do not
@@ -1885,22 +1738,19 @@ computations cause the observed accuracy changes.
 
 \subsection{Implications for robustness evaluation}
 
-A defensible positional-robustness evaluation should report random and
-task-aligned perturbations separately, reparameterize both by achieved
-functional displacement, and restrict integration to measured common
-support. Architecture comparisons should use the intersection of support
-for exactly the curves being compared and should not import larger points
-from a different objective. Objective-specific audits, including the all-restart and direct-displacement
-analyses, are valuable structural evidence, but must remain separate from the
-canonical task-loss AUC domain.
+Positional-robustness evaluation should report random and task-aligned
+perturbations separately, compare them by achieved pre-softmax logit
+displacement, and integrate only over measured common support. Post-lock
+points from the same objective belong to grid-extension sensitivity analyses;
+different-objective points remain separate. Accordingly, the all-restart
+audit tests restart/grid sensitivity, whereas direct-displacement optimization
+probes the objective-specific displacement--damage relationship.
 
-Family summaries should include seed-level effects, mean $\pm$ sample SD,
-sign counts, and dispersion. With six nonzero contrasts, two-sided exact
-sign-flip $p$-values are quantized in steps of $2/64$: 0.03125 is the
-floor and 0.0625 the adjacent rung. The omnibus interaction, effect
-magnitudes, interval agreement, ordinal consistency, and seed dispersion
-are therefore more informative than treating family-wise $p$-values as
-finely resolved evidence.
+With six contrasts, exact two-sided sign-flip $p$-values are coarse
+(0.03125 is the attainable floor). Seed-level effects, magnitude,
+dispersion, interval agreement, ordinal consistency, and the omnibus
+interaction are therefore more informative than fine-grained interpretation
+of family-wise $p$-values.
 
 \subsection{Limitations}
 
@@ -1912,9 +1762,12 @@ streams during initialization and do not guarantee identical data order;
 unpaired Welch sensitivity intervals nevertheless agree with the
 seed-aligned intervals. The canonical four-family comparison also
 confounds architecture with training precision; the AMP-matched comparison
-removes that confound for three families but cannot include ALiBi because the ViT-S/16 AMP
-training cohort collapsed. Additional model sizes, patch resolutions,
-and datasets are required for broader generalization.
+removes that confound for three families but cannot include ALiBi because the
+ViT-S/16 AMP--FP16 training recipe did not yield a valid checkpoint cohort.
+The public evidence for this exclusion is cohort-level governance; raw
+per-seed ALiBi training logs are not redistributed, so no exact per-seed
+failure count is claimed. Additional model sizes, patch resolutions, and
+datasets are required for broader generalization.
 
 All four baseline constructions use one-dimensional row-major patch
 ordering. The conclusions do not establish the behavior of axial,
@@ -1926,17 +1779,31 @@ rather than a weight-decay-invariant causal effect of positional form.
 Canonical adversarial perturbations are optimized under native
 family-specific parameter constraints and reparameterized afterward by
 achieved $\rho_{\mathrm{rel}}$; they are not directly $\rho$-constrained.
+The family-specific schedule lock rests on an observed empirical separation in
+the seed-42 step-doubling development audit rather than an a priori numerical
+convergence threshold; the confirmation-seed check is therefore interpreted as
+validation of that empirical choice, not as evidence that the threshold itself
+was preregistered.
 The direct-displacement audit partially probes this distinction but is
 restricted to ViT-S/16 FP32
 Sinusoidal seed 42. Its schedule-level PASS concerns the best-of-five
 envelope, not convergence of every restart or exhaustion of the search.
 No cross-seed or cross-architecture direct-$\rho$ generalization is made.
+Because $\rho_{\mathrm{rel}}$ is defined before softmax, it also retains
+row-constant logit shifts in the exact null space of row-wise softmax. The
+fraction of measured displacement in this null space can in principle depend
+on PE family and perturbation direction; cross-family rankings are therefore
+rankings on the stated pre-softmax logit scale rather than claims of equality
+under a fully softmax-invariant metric. A row-centered quotient-space
+sensitivity metric would be complementary, but is not part of the canonical
+protocol evaluated here.
 
 The scalar displacement aggregates layers, heads, queries, and keys.
 The layerwise displacement-profile analysis resolves the layer dimension for
 one objective comparison but does
-not resolve heads or tokens and is not causal. The local geometry probe
-uses one task-gradient direction and 32 Gaussian directions rather than a
+not resolve heads or tokens and is not causal. The local geometry probe is
+restricted to the 48 ViT-B/16 checkpoints and is not evaluated on ViT-S/16;
+it uses one task-gradient direction and 32 Gaussian directions rather than a
 complete Jacobian spectrum. With six checkpoints per family, mixed-sign
 family-specific damage summaries remain descriptive.
 
@@ -1957,7 +1824,8 @@ For ViT-B/16, every dataset--family--seed comparison has a positive
 noise-minus-adversarial nAUC gap over the primary interval
 $[0,0.09]$. Over the architecture-common ImageNet-100 support
 $[0,0.07924]$, the gap remains positive in all six seeds for every family
-at both model scales, with significant between-family heterogeneity. The random-noise ranking is stable across the canonical cohorts, but
+at both model scales, with significant between-family heterogeneity. The
+random-noise extremes are stable across the canonical cohorts, but
 adversarial ordering is not: Learned is strongest for ViT-B/16, whereas
 ALiBi is strongest for the full-FP32 ViT-S/16 cohort and Sinusoidal becomes
 weakest. In the AMP-matched three-family comparison, all ViT-S/16
@@ -1979,7 +1847,7 @@ positional-parameter robustness. Positional-encoding families differ in
 how achieved attention-logit displacement is converted into functional
 damage, and that mapping changes with backbone architecture. Evaluation
 should therefore combine random and task-aligned directions, achieved
-functional displacement, measured common-support integration, seed-level
+attention-logit displacement, measured common-support integration, seed-level
 dispersion, and explicit objective and architecture qualifiers.
 
 % Back matter
@@ -1987,20 +1855,33 @@ dispersion, and explicit objective and architecture qualifiers.
 
 \section*{Declaration of competing interest}
 
-The author declares that there are no known competing financial interests
+The authors declare that there are no known competing financial interests
 or personal relationships that could have appeared to influence the work
 reported in this paper.
 
 
 \section*{Data availability}
 
-The accompanying reproducibility package contains the manuscript source,
+The public reproducibility repository
+\href{https://github.com/djokobandjur/vit-pe-decoupling}{\texttt{vit-pe-decoupling}} contains the manuscript source,
 analysis code, immutable input hashes, seed-level and aggregate numerical
-outputs, figures, protocol and split manifests, and the all-restart,
-direct-displacement, and layerwise audit records used in this article.
-Trained checkpoint binaries are not
-duplicated in the manuscript archive; their identities and SHA-256 hashes
-are recorded. The package will be made publicly available upon publication.
+outputs, figures, protocol and split manifests, the local directional-geometry
+records, the clean-accuracy anchors, and the all-restart, direct-displacement,
+layerwise, no-envelope, and post-lock-grid sensitivity records used in this
+article.
+Trained checkpoint binaries are not duplicated in the manuscript archive.
+For the 48 canonical ViT-B/16 checkpoints, the historical attack JSONs record
+checkpoint paths rather than contemporaneous digests; the complete SHA-256
+manifest was reconstructed post hoc from the retained checkpoint cohort, and
+all 48 attack paths bind exactly to it. Six ImageNet-100 Sinusoidal hashes also
+match independently retained historical digests. ViT-S/16 full-FP32 and AMP
+checkpoint manifests are likewise distributed. The public audit bundle also
+includes the later numerical-mode lock, its engine-source provenance report,
+and the Sinusoidal audit input lock that verifies identical ImageNet-100 sample
+ordering/split hashes across the original ViT-B/16 validation copy and the
+re-extracted ViT-S/16 copy. These later audit records are not presented as
+contemporaneous environment captures for the historical canonical runs. An
+archival DOI will be added to the repository metadata when issued.
 
 
 \bibliographystyle{elsarticle-harv}

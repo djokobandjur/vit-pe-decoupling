@@ -1,0 +1,33 @@
+{
+  "package": "/home/djoko.bandjur.ftnkm/Notebooks/FMLE_PE_GEOMETRY_PROBE_R32",
+  "code_dir": "/home/djoko.bandjur.ftnkm/Notebooks/FMLE_PE_GEOMETRY_PROBE_R32/code",
+  "output_dir": "/home/djoko.bandjur.ftnkm/Notebooks/results/pe_geometry_probe_n6_r32",
+  "imagenet_val": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/imagenet100_resized/val",
+  "imagenet_models": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints",
+  "cifar_val": "/home/djoko.bandjur.ftnkm/datasets/cifar100",
+  "cifar_models": "/home/djoko.bandjur.ftnkm/Notebooks/CIFAR100_checkpoints",
+  "pe_types": [
+    "learned",
+    "sinusoidal",
+    "rope",
+    "alibi"
+  ],
+  "all_seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011,
+    1213
+  ],
+  "target_rho_rel": 0.03,
+  "random_directions": 32,
+  "gradient_images": 256,
+  "geometry_images": 64,
+  "rho_images": 32,
+  "core_hashes": {
+    "cross_family_rho_decoupling.py": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307",
+    "full_scale_experiment.py": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf"
+  },
+  "damage_efficiency_denominator": "actual held-out rho_rel_geometry, not nominal target rho"
+}

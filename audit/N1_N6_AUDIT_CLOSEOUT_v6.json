@@ -1,0 +1,20 @@
+{
+  "schema": "N1_N6_AUDIT_CLOSEOUT_v6",
+  "status": "PASS_ALL_6_CLOSED",
+  "date": "2026-08-07",
+  "new_experiments_required": false,
+  "findings": {
+    "N1": "PASS",
+    "N2": "PASS",
+    "N3": "PASS",
+    "N4": "PASS",
+    "N5": "PASS",
+    "N6": "PASS"
+  },
+  "evidence_boundaries": {
+    "sinext_row_level_jsons_public": false,
+    "historical_canonical_environment_lock_contemporaneous": false,
+    "tf32_permitted_in_later_audit_lock": true,
+    "point_3_5_protocol_hash_independently_bound_in_public_repo": false
+  }
+}

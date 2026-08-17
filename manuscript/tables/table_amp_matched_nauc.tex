@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{AMP-matched ImageNet-100 adversarial nAUC over
+$\rho_{\mathrm{rel}}\in[0,0.08735]$. Architecture values are mean
+$\pm$ sample SD across six seeds; $\Delta$ is ViT-S minus ViT-B. Exact
+sign-flip values are secondary directional-consistency checks.}
+\label{tab:amp-matched-nauc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+PE family & ViT-B adversarial nAUC & ViT-S adversarial nAUC & $\Delta$ adversarial & Seed-aligned 95\% CI & Seeds $\Delta<0$ & Exact $p$ & $\Delta$ noise nAUC \\
+\midrule
+Learned & $0.9937\pm0.0024$ & $0.7751\pm0.0717$ & $-0.2186$ & $[-0.2929,-0.1443]$ & 6/6 & 0.03125 & $-0.000894$ \\
+Sinusoidal & $0.8736\pm0.0181$ & $0.7137\pm0.0198$ & $-0.1599$ & $[-0.1842,-0.1356]$ & 6/6 & 0.03125 & $+0.000729$ \\
+RoPE & $0.9559\pm0.0119$ & $0.8627\pm0.0557$ & $-0.0932$ & $[-0.1604,-0.0261]$ & 5/6 & 0.06250 & $+0.000132$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

@@ -11,3 +11,17 @@ next to the script and use:
 ```bash
 python canonical_analysis.py --package-dir /path/to/package-root
 ```
+
+
+The canonical seed-level output also stores adversarial nAUC before the
+cumulative lower envelope. The deterministic supplementary sensitivity is
+generated with:
+
+```bash
+python build_no_envelope_sensitivity.py \
+  --seed-level reference_outputs/seed_level_nauc_v18.csv \
+  --output-dir reference_outputs
+```
+
+This produces the aggregate CSV, machine-readable audit report, and
+Supplementary Table S6 source. No additional model evaluation is required.

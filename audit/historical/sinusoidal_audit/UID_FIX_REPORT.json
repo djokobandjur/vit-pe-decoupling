@@ -1,0 +1,16 @@
+{
+  "package": "SINUSOIDAL_PER_RESTART_AUDIT_v1_1_UID_FIX.zip",
+  "status": "PASS",
+  "fix": "FMLE UID 1545 / private runtime cache environment",
+  "methodology_changed": false,
+  "notebooks_compiled": [
+    "00_PREPARE_AND_LOCK.ipynb",
+    "10_AUDIT_AND_EXPORT.ipynb",
+    "FINAL_AUDIT_GPU1.ipynb",
+    "FINAL_AUDIT_GPU2.ipynb"
+  ],
+  "python_compile": "PASS",
+  "zip_integrity": "PASS",
+  "sha256": "989988e68c1d2fa76f6d1016cc9d077d1b40db78581bc9ce023be990494c3768",
+  "size_bytes": 167121
+}

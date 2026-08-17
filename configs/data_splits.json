@@ -4,7 +4,20 @@
     "calibration": 256,
     "attack": 1280,
     "evaluation": 3464,
-    "split_seed": 0
+    "split_seed": 0,
+    "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+    "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+    "validation_copy_provenance": {
+      "vitb": {
+        "historical_val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/imagenet100_resized/val"
+      },
+      "vits": {
+        "historical_val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/reextract_test/imagenet100_resized/val"
+      },
+      "verified_same_sample_order": true,
+      "verified_same_split": true,
+      "evidence": "audit/historical/sinusoidal_audit/SINUSOIDAL_PER_RESTART_AUDIT_INPUT_LOCK_v1.json"
+    }
   },
   "CIFAR-100": {
     "total": 10000,

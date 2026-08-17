@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "lock_id": "SINUSOIDAL_PER_RESTART_AUDIT_INPUT_LOCK_v1",
+  "created_at": "2026-07-30T10:39:07.396704+00:00",
+  "status": "LOCKED",
+  "plan_sha256": "7eacfae604cba9e65af2efc3a22748002e4825ad954946fc6986dbc4f4b56606",
+  "split_file": "/home/djoko.bandjur.ftnkm/Notebooks/SINUSOIDAL_PER_RESTART_AUDIT_v1/inputs/imagenet100_split_indices.json",
+  "split_file_sha256": "43daa888eddd89047f2b73a42755554f974bf0da44c58b43f347d44bb9bd3259",
+  "dataset_reports": {
+    "vitb": {
+      "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/imagenet100_resized/val",
+      "n_images": 5000,
+      "n_classes": 100,
+      "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+      "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+      "counts": {
+        "calibration": 256,
+        "attack": 1280,
+        "evaluation": 3464
+      }
+    },
+    "vits": {
+      "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/reextract_test/imagenet100_resized/val",
+      "n_images": 5000,
+      "n_classes": 100,
+      "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+      "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+      "counts": {
+        "calibration": 256,
+        "attack": 1280,
+        "evaluation": 3464
+      }
+    }
+  },
+  "checkpoint_rows": [
+    {
+      "architecture": "vitb",
+      "family": "sinusoidal",
+      "seed": 42,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints/sinusoidal_seed42/best_model.pth",
+      "sha256": "15a95418f02a736056c3f8a6fc9e6ee691f4f8305493a6ddc0e01094234bb66b",
+      "size_bytes": 343559209,
+      "strict_load_ok": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vitb",
+      "family": "sinusoidal",
+      "seed": 123,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints/sinusoidal_seed123/best_model.pth",
+      "sha256": "730353da2ea1c25db6eaa77fee6c76de203ea7ffdb52ab425df7ef35096fd399",
+      "size_bytes": 343559209,
+      "strict_load_ok": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vitb",
+      "family": "sinusoidal",
+      "seed": 456,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints/sinusoidal_seed456/best_model.pth",
+      "sha256": "7b85839b150bd0e77821c96e83569f51c25722031538fb43cbf8a15a81c0af71",
+      "size_bytes": 343559209,
+      "strict_load_ok": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vitb",
+      "family": "sinusoidal",
+      "seed": 789,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints/sinusoidal_seed789/best_model.pth",
+      "sha256": "a11ca590daf022fee035245c697f79741a36b81a3cb34bd29ef4031cc57111e9",
+      "size_bytes": 343559209,
+      "strict_load_ok": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vitb",
+      "family": "sinusoidal",
+      "seed": 1011,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints/sinusoidal_seed1011/best_model.pth",
+      "sha256": "4837c33caa430b06fd92476fab8c35445f1e8e830117542bfed9f608a96de58b",
+      "size_bytes": 343559209,
+      "strict_load_ok": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vitb",
+      "family": "sinusoidal",
+      "seed": 1213,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/Notebooks/ImageNet100_checkpoints/sinusoidal_seed1213/best_model.pth",
+      "sha256": "2f4fe8bcb8884c44121dc75d68d4a0e59622b10f29253a84c4a0ac4cc518d03a",
+      "size_bytes": 343559209,
+      "strict_load_ok": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vits",
+      "family": "sinusoidal",
+      "seed": 42,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed42/best_model.pth",
+      "sha256": "e11bba5a1ab879b50cb75cbf34f826811fc72e94bc5bb1342d631445905bf0c2",
+      "size_bytes": 86873641,
+      "strict_load_ok": true,
+      "prior_manifest_sha256_match": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vits",
+      "family": "sinusoidal",
+      "seed": 123,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed123/best_model.pth",
+      "sha256": "f0bc4d890c71265606a215f32e01da4bae7099ba6466399f458a26105b99b15c",
+      "size_bytes": 86873641,
+      "strict_load_ok": true,
+      "prior_manifest_sha256_match": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vits",
+      "family": "sinusoidal",
+      "seed": 456,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed456/best_model.pth",
+      "sha256": "128a1956a4a560efcad8c65deb02ed7532156c31163ea15b3b213fc7dc185ae2",
+      "size_bytes": 86873641,
+      "strict_load_ok": true,
+      "prior_manifest_sha256_match": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vits",
+      "family": "sinusoidal",
+      "seed": 789,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed789/best_model.pth",
+      "sha256": "d22c01e9441df4f2b2252363e55a6fedf298bc037739447f6fee3a39ca7b9718",
+      "size_bytes": 86873641,
+      "strict_load_ok": true,
+      "prior_manifest_sha256_match": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vits",
+      "family": "sinusoidal",
+      "seed": 1011,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed1011/best_model.pth",
+      "sha256": "4b8d4068f3c3a0f05d892e12e1e4fcbb907196a6937e9c62959284b98db32f48",
+      "size_bytes": 86873641,
+      "strict_load_ok": true,
+      "prior_manifest_sha256_match": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    },
+    {
+      "architecture": "vits",
+      "family": "sinusoidal",
+      "seed": 1213,
+      "checkpoint": "/home/djoko.bandjur.ftnkm/IN100_ViTS_FP32_checkpoints/sinusoidal_seed1213/best_model.pth",
+      "sha256": "ff17ed614c07cf386d1b2d0023ebb70146abc649e69eb4e7936bf6a7d57debcc",
+      "size_bytes": 86873641,
+      "strict_load_ok": true,
+      "prior_manifest_sha256_match": true,
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "checkpoint_dtype_counts": {
+        "torch.float32": 152
+      },
+      "model_dtype_counts_after_load": {
+        "torch.float32": 152
+      }
+    }
+  ],
+  "numerical_mode_file": "/home/djoko.bandjur.ftnkm/Notebooks/results/sinusoidal_per_restart_audit_v1/locks/ATTACK_EVAL_NUMERICAL_MODE_v1.json",
+  "provenance_report_file": "/home/djoko.bandjur.ftnkm/Notebooks/results/sinusoidal_per_restart_audit_v1/locks/D033A_PROVENANCE_REPORT.json"
+}

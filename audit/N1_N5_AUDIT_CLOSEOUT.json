@@ -1,0 +1,36 @@
+{
+  "title": "N1-N5 audit closeout",
+  "date": "2026-08-07",
+  "status": "PASS_ALL_FIVE_FINDINGS_CLOSED",
+  "findings": {
+    "N1": {
+      "status": "PASS",
+      "closure": "Misleading byte-identical ViT-S training file removed; public training-source scope explicitly limited to historical ViT-B/16 AMP source."
+    },
+    "N2": {
+      "status": "PASS",
+      "closure": "All manuscript occurrences now qualify only the stable random-noise extremes; automated guard blocks the former full-ranking wording."
+    },
+    "N3": {
+      "status": "PASS",
+      "closure": "Six original raw R32 JSONs and retained execution sources added; 48 checkpoint SHA-256 values linked to raw paths; raw-to-processed reconstruction passes; 6/6 historical checkpoint digests match.",
+      "posthoc_manifest_disclosure": true
+    },
+    "N4": {
+      "status": "PASS",
+      "closure": "Finite-radius nature and radius dependence of R_gamma documented; calibrated-secant family ordering preserved."
+    },
+    "N5": {
+      "status": "PASS",
+      "closure": "Dropout context, gradient clipping, ViT-B post-lock support, ORCID metadata, and abstract limit all reconciled."
+    }
+  },
+  "n3_counts": {
+    "raw_json_files": 6,
+    "direction_rows": 1584,
+    "checkpoint_records": 48,
+    "historical_digest_matches": 6,
+    "historical_digest_expected": 6
+  },
+  "new_gpu_experiment_required": false
+}

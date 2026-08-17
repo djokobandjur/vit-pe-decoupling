@@ -1,0 +1,52 @@
+{
+  "schema": "VITS_SINUSOIDAL_COVERAGE_EXTENSION_PUBLIC_EVIDENCE_v1",
+  "status": "PASS_EVIDENCE_BOUNDED",
+  "interpretation": "Three targeted non-canonical ViT-S/16 full-FP32 Sinusoidal coverage-extension runs were registered as COMPLETE_TARGET_NOT_REACHED. Their ledger combined maxima equal the corresponding canonical maxima to the precision recorded in the ledger, so the extension did not increase support for those seeds. Original row-level SINEXT JSONs are not redistributed; this is a ledger-plus-canonical-source statement, not row-level reproduction of the historical extension runs.",
+  "records": [
+    {
+      "run_id": "RUN-VITS-FP32-SINEXT-123",
+      "seed": 123,
+      "status": "COMPLETE_TARGET_NOT_REACHED",
+      "protocol_id": "VITS_FP32_SINUSOIDAL_COVERAGE_EXTENSION",
+      "budget_grid": "[0.0, 0.0105, 0.011, 0.012, 0.013, 0.015, 0.02]",
+      "ledger_combined_max_rho_rel": 0.08809553,
+      "source_member": "vits_in100_full_robustness_v1/session_2_seed_123/attacks_sinusoidal.json",
+      "canonical_max_rho_rel": 0.08809552955874674,
+      "canonical_budget_at_max": 0.01,
+      "absolute_difference_ledger_vs_canonical_max": 4.412532700337479e-10,
+      "target_rho_rel": 0.09,
+      "target_reached": false
+    },
+    {
+      "run_id": "RUN-VITS-FP32-SINEXT-456",
+      "seed": 456,
+      "status": "COMPLETE_TARGET_NOT_REACHED",
+      "protocol_id": "VITS_FP32_SINUSOIDAL_COVERAGE_EXTENSION",
+      "budget_grid": "[0.0, 0.0105, 0.011, 0.012, 0.013, 0.015, 0.02]",
+      "ledger_combined_max_rho_rel": 0.079238397,
+      "source_member": "vits_in100_full_robustness_v1/session_3_seed_456/attacks_sinusoidal.json",
+      "canonical_max_rho_rel": 0.07923839733806452,
+      "canonical_budget_at_max": 0.0095,
+      "absolute_difference_ledger_vs_canonical_max": 3.3806452082174587e-10,
+      "target_rho_rel": 0.09,
+      "target_reached": false
+    },
+    {
+      "run_id": "RUN-VITS-FP32-SINEXT-1213",
+      "seed": 1213,
+      "status": "COMPLETE_TARGET_NOT_REACHED",
+      "protocol_id": "VITS_FP32_SINUSOIDAL_COVERAGE_EXTENSION",
+      "budget_grid": "[0.0, 0.0105, 0.011, 0.012, 0.013, 0.015, 0.02]",
+      "ledger_combined_max_rho_rel": 0.087695707,
+      "source_member": "vits_in100_full_robustness_v1/session_6_seed_1213/attacks_sinusoidal.json",
+      "canonical_max_rho_rel": 0.08769570668589602,
+      "canonical_budget_at_max": 0.01,
+      "absolute_difference_ledger_vs_canonical_max": 3.141039789378297e-10,
+      "target_rho_rel": 0.09,
+      "target_reached": false
+    }
+  ],
+  "public_row_level_sinext_jsons_available": false,
+  "later_all_restart_budget_0_020_row_level_audit_available": true,
+  "later_audit_is_distinct_from_historical_sinext_runs": true
+}

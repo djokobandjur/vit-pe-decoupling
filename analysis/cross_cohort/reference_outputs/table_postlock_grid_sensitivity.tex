@@ -1,0 +1,26 @@
+\begin{table}[H]
+\centering
+\caption{Post-lock sensitivity to adding the loss-selected ViT-S/16
+Sinusoidal task-loss point at native budget 0.020. The primary column
+uses the prespecified canonical grid ending at 0.010; the sensitivity
+column adds the later all-restart audit point while keeping the locked
+cross-architecture endpoint $\rho_{\mathrm{rel}}=0.0792384$.}
+\label{tab:s-postlock-grid}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{rrrrrr}
+\toprule
+Seed & Audit $\rho_{\mathrm{rel}}$ & Audit normalized accuracy & Primary adversarial nAUC & With 0.020 point & Difference \\
+\midrule
+42 & 0.079453 & 0.021556 & 0.796951 & 0.790104 & -0.006847 \\
+123 & 0.071233 & 0.026967 & 0.779643 & 0.732882 & -0.046760 \\
+456 & 0.068338 & 0.018950 & 0.725753 & 0.687994 & -0.037759 \\
+789 & 0.066990 & 0.025229 & 0.812803 & 0.702306 & -0.110496 \\
+1011 & 0.076631 & 0.020154 & 0.766697 & 0.752726 & -0.013971 \\
+1213 & 0.067808 & 0.026297 & 0.716350 & 0.664651 & -0.051699 \\
+\midrule
+\multicolumn{3}{r}{Across-seed mean $\pm$ sample SD} & $0.766366\pm0.038521$ & $0.721777\pm0.045899$ & $-0.044589$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

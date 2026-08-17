@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "vitb_seed_rows": 48,
+  "vits_seed_rows": 24,
+  "all_cells_seed_reproducible": true,
+  "table_population": "locked robustness evaluation splits"
+}

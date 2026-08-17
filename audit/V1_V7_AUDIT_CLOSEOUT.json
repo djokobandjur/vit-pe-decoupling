@@ -1,0 +1,49 @@
+{
+  "schema": "V1_V7_AUDIT_CLOSEOUT_v1",
+  "date": "2026-08-07",
+  "status": "PASS_ALL_V1_V7_CLOSED",
+  "findings": [
+    {
+      "id": "V1",
+      "status": "PASS",
+      "title": "ViT-B harmonization evidence claim corrected",
+      "resolution": "Public runner + run ledger added; unsupported selected-attack-loss threshold removed; manuscript explicitly states original row-level JSONs/closure file are not redistributed."
+    },
+    {
+      "id": "V2",
+      "status": "PASS",
+      "title": "Cross-hardware claim evidence-bounded",
+      "resolution": "Historical audit summary with exact 0.000491 and 2.55718e-05 values plus named D033A report distributed; raw Blackwell log absence disclosed."
+    },
+    {
+      "id": "V3",
+      "status": "PASS",
+      "title": "Geometry scope explicit",
+      "resolution": "Method now states 48 ViT-B/16 checkpoints and excludes ViT-S/16; limitations repeat the boundary."
+    },
+    {
+      "id": "V4",
+      "status": "PASS",
+      "title": "Unsupported trainability wording removed",
+      "resolution": "Cross-architecture README uses cohort-level wording; verifier scans all repository Markdown for prohibited exact-count language."
+    },
+    {
+      "id": "V5",
+      "status": "PASS",
+      "title": "Checkpoint README and manifests reconciled",
+      "resolution": "ViT-S AMP 18-entry manifest extracted publicly; checkpoint README documents ViT-B 48, ViT-S FP32 24, ViT-S AMP 18."
+    },
+    {
+      "id": "V6",
+      "status": "PASS",
+      "title": "Stale pending protocol state removed",
+      "resolution": "Locked protocol now records completed public release state and truthful historical harmonization evidence pointer."
+    },
+    {
+      "id": "V7",
+      "status": "PASS",
+      "title": "Minor provenance/limitations/restart/callout issues closed",
+      "resolution": "48/48 canonical attack path binding added; post-hoc manifest timing disclosed; ALiBi log boundary added; direct-rho restart non-convergence quantified; four Supplement tables called out."
+    }
+  ]
+}

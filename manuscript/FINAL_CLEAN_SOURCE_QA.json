@@ -1,53 +1,155 @@
 {
+  "status": "PASS_V8_S1_CLOSED",
+  "date": "2026-08-07",
   "internal_decision_codes": {
     "source": 0,
     "rendered_manuscript_and_supplement": 0,
     "rendered_figure_text": 0
   },
-  "internal_version_labels": {
-    "source": 0,
-    "rendered_manuscript_and_supplement": 0,
-    "rendered_figure_text": 0
+  "authorship": {
+    "authors": 2,
+    "djoko_corresponding": true,
+    "djoko_orcid_present": true,
+    "milos_orcid_present": true
   },
-  "ceiling": {
-    "source": 0,
-    "rendered_manuscript_and_supplement": 0,
-    "rendered_figure_text": 0
+  "precision_wording": {
+    "obsolete_precision_token_occurrences": 0,
+    "AMP_FP16_occurrences": 4
   },
-  "precision_invariance": {
-    "source": 0,
-    "rendered_manuscript_and_supplement": 0,
-    "rendered_figure_text": 0
+  "trainability_boundary": {
+    "cohort_level_wording_present": true,
+    "unsupported_exact_failure_count_occurrences": 0,
+    "raw_per_seed_alibi_training_logs_public": false
   },
-  "localization": {
-    "source": 0,
-    "rendered_manuscript_and_supplement": 0,
-    "rendered_figure_text": 0
+  "reviewer_audit_closure": {
+    "N1_N5": "5/5 CLOSED",
+    "V1_V7": "7/7 CLOSED",
+    "vitb_harmonization_public_row_level_claim": false,
+    "cross_hardware_claim_semantics": "audit-recorded; earlier raw Blackwell log not redistributed",
+    "geometry_scope": "48 ViT-B/16 checkpoints only; ViT-S/16 not probed",
+    "repository_wide_markdown_trainability_guard": true,
+    "stale_pending_protocol_block_present": false,
+    "new_N1_N6": "6/6 CLOSED",
+    "sinext_public_claim_semantics": "ledger + canonical-max triangulation; original row-level SINEXT JSONs not redistributed",
+    "numerical_mode_semantics": "float32 tensors/model state; no autocast/GradScaler; MATH SDPA explicitly selected where torch.nn.attention is available, active in locked PyTorch 2.8 environment; older-PyTorch fallback not claimed; TF32 permitted in later audit lock; historical environment reconciliation pending",
+    "schedule_threshold_semantics": "empirical separation, not an a priori numerical threshold",
+    "gitignored_build_artifacts_in_release": 0,
+    "page_count_guard": true,
+    "supplement_cross_document_refs": "xr-hyper labels for S1/S6/S7",
+    "imagenet_validation_copy_hash_equivalence": true,
+    "new_R1_R3": "3/3 CLOSED",
+    "annotated_numerical_mode_config_resolves_locked_artifact": true,
+    "claim_matrix_all_evidence_paths_resolve": true,
+    "new_S1": "1/1 CLOSED",
+    "abstract_texcount_consistency_guard": true
   },
-  "two_to_four_times": {
-    "source": 0,
-    "rendered_manuscript_and_supplement": 0,
-    "rendered_figure_text": 0
+  "training_source_scope": {
+    "historical_vitb_amp_source_present": true,
+    "misleading_byte_identical_vits_duplicate_present": false,
+    "vits_full_fp32_launcher_redistributed": false,
+    "vits_amp_launcher_redistributed": false,
+    "source_complete_vits_retraining_claim": false
   },
-  "all_points_converged": {
-    "source": 0,
-    "rendered_manuscript_and_supplement": 0,
-    "rendered_figure_text": 0
+  "checkpoint_provenance": {
+    "vitb_manifest_records": 48,
+    "vitb_manifest_timing": "post_hoc_reconstruction_from_retained_original_checkpoint_cohort",
+    "vitb_historical_digest_crosscheck": "6/6 PASS",
+    "canonical_vitb_attack_path_binding": "48/48 PASS",
+    "canonical_attack_jsons_embed_checkpoint_sha256": false,
+    "vits_fp32_manifest_records": 24,
+    "vits_amp_manifest_records": 18
   },
-  "all_restarts_converged": {
-    "source": 0,
-    "rendered_manuscript_and_supplement": 0,
-    "rendered_figure_text": 0
+  "table_generation": {
+    "main_external_tables": 7,
+    "supplement_external_tables": 7,
+    "all_14_sources_present": true,
+    "new_supplement_callouts": [
+      "tab:s-orders",
+      "tab:s-did",
+      "tab:s-dispersion",
+      "tab:s-signs"
+    ]
   },
-  "caption_internal_codes": {
-    "source": 0,
-    "version_labels": 0
+  "critical_evidence": {
+    "local_geometry_direction_rows": 1584,
+    "local_geometry_checkpoint_groups": 48,
+    "geometry_architecture_scope": "ViT-B/16 only",
+    "probe_radius_verified": true,
+    "public_processed_geometry_hash_chain": "PASS",
+    "raw_geometry_json_digest_status": "PASS_6_OF_6",
+    "vitb_checkpoint_digest_status": "PASS_48_OF_48",
+    "radius_sensitivity_family_order_preserved": true,
+    "clean_accuracy_cells_seed_reproducible": 12,
+    "postlock_primary_mean": 0.7663660668996223,
+    "postlock_augmented_mean": 0.7217772442386754,
+    "postlock_all_seed_deltas_negative": true,
+    "direct_rho_budget_0p020_restart2_norm_acc_200": 0.668980635732554,
+    "direct_rho_budget_0p020_restart2_norm_acc_400": 0.6021191085129703,
+    "direct_rho_budget_0p020_schedule_envelope_delta": 0.00036536353671901,
+    "hardware_audit_max_norm_acc_diff": 0.000491,
+    "hardware_audit_max_rho_diff": 2.55718e-05,
+    "sinext_registered_runs": 3,
+    "sinext_target_not_reached": 3,
+    "sinext_original_row_level_jsons_public": false,
+    "sinext_seed456_limiting_canonical_rho": 0.07923839733806452,
+    "numerical_mode_tf32_permitted": true,
+    "historical_environment_reconciliation_pending": true,
+    "imagenet_vitb_vits_sample_order_hash_match": true,
+    "imagenet_vitb_vits_split_hash_match": true
   },
   "build": {
-    "main_pages": 43,
-    "supplement_pages": 3,
-    "abstract_texcount": 233,
-    "latex_warnings_main": 0,
-    "latex_warnings_supplement": 0
+    "main_pages": 49,
+    "supplement_pages": 5,
+    "abstract_texcount": 237,
+    "abstract_conservative_tokens": 250,
+    "article_abstract_limit": 250,
+    "main_log": {
+      "hyperref_pdf_string_warnings": 4,
+      "overfull_boxes": 0,
+      "underfull_boxes": 0,
+      "undefined_references": 0
+    },
+    "supplement_log": {
+      "hyperref_pdf_string_warnings": 4,
+      "overfull_boxes": 0,
+      "underfull_boxes": 0,
+      "undefined_references": 0
+    },
+    "ghostscript_validation": "PASS",
+    "encrypted": false,
+    "xfa": false,
+    "visual_inspection": "PASS"
+  },
+  "reproducibility": {
+    "repository_verification": "PASS",
+    "pytest": "26/26 PASS",
+    "full_analysis_reproduction": "PASS_REPRODUCTION_COMPLETE",
+    "exact_reproduction_checks": "35/35 PASS",
+    "figure_pixel_identity": "4/4 PASS at 150 dpi",
+    "claim_to_evidence_gates": "30/30 PASS; all evidence paths resolve",
+    "repository_sha_manifest": "372/372 PASS_COMPLETE_TREE_AND_HASHES",
+    "repository_verifier_checks": "175 PASS",
+    "all_restart_lock_artifacts": "3/3 byte-exact PASS"
+  },
+  "key_hashes": {
+    "main_tex": "c3c34b0880a8dde8aff6469f8c0be2d607e17acc5aa0ca6d88bb2493562132d7",
+    "main_pdf": "776b9a6b059f7f4336bba812a29a5b87ac0d8960061d210f6f2668d54de0f202",
+    "supplement_tex": "b2fceba6f092d9fe15f788d4336196792d5e666e134c6990ba7f2bc5a4428fc1",
+    "supplement_pdf": "aca1461f0a5c47a8046b1d6249d64cedff7b022db6c2241a675de29d734d3468",
+    "geometry_provenance": "8194e364da2741739f311858a69731302f32d4f9d86e60ebdb9b66fe342a5c78",
+    "geometry_verification": "f325cbe0037a4e2c219714acd44991d75ed46cdce347a9f25688489c708489b6",
+    "geometry_radius_sensitivity": "bf9ff57f61062fe7be282dafb07b7c73f9ed1852578fcf0a58730add643b9f18",
+    "vitb_checkpoint_manifest": "1c853b789a7b0da838dd65d0e2c0cdf85f89eb8d6f0ceff55167ccedc9735749",
+    "vitb_canonical_attack_binding": "ecaa480d892a3d63431c66e6b8a46456405578c8fad4aa3b6f9162b10aab6e97",
+    "vits_amp_checkpoint_manifest": "b3ec8d4a2b5449311f382ccafbf56c869ce76d304bb574cd2fc6a89fc9ad7dad",
+    "v1_v7_closeout": "36f7875e4b8cacf8ede0d0acb72897c743d20d5d364e6b8578c70f8b58c328c0",
+    "n1_n6_closeout_v6": "d65421ed35767dba370e2cf92f38927a8972d43a0c2bb13d68e7fdb09c85d6c2",
+    "sinext_evidence": "e4d70764be7533b55e60b88358f6a41e17237270aa3f01d44405ccca74d45498",
+    "sinusoidal_input_lock": "7e1cc094d1284e376189895eecb1134f52e2052e26b4ad858b91876954ee2e9b",
+    "later_numerical_mode_lock": "df0341e1953c9457bdf9dec409bbdd7f122246f85204f0b999ebc666a70748f7",
+    "r1_r3_closeout_v7": "5a89f8ce0ac62e4086dff84540905ac429bf5a065a422fa3942e3ed00d85b4db",
+    "annotated_numerical_mode_config": "13147ab45ff3aece3f36da5b634b0b5eaecddf70b9fb64b7251d09e2434b8c0a",
+    "final_claim_to_evidence_matrix": "bbac7c2c054ce9bf9ab9d3783d4957f51fdc8a709efad4c46cffeb558b5b023d",
+    "s1_closeout_v8": "6b21a74a59d544a7c70c6b6c54978932856f8725266ed8ab349ae6c19030ed58"
   }
 }

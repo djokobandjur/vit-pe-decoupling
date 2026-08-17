@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Same-seed, same-budget comparison for ViT-S/16 FP32 Sinusoidal
+seed 42. Reported $\rho_{\mathrm{rel}}$ values are measured on the common
+256-image calibration split; accuracies use the 3,464-image evaluation split.}
+\label{tab:objective-comparison}
+\begin{tabular}{llrr}
+\toprule
+Budget & Objective & $\rho_{\mathrm{rel}}$ & Accuracy (\%) \\
+\midrule
+0.0095 & direct-$\rho$ & 0.10209 & 76.70 \\
+0.0095 & task loss & 0.09380 & 7.36 \\
+0.0200 & direct-$\rho$ & 0.29505 & 19.52 \\
+0.0200 & task loss & 0.07945 & 1.70 \\
+\bottomrule
+\end{tabular}
+\end{table}

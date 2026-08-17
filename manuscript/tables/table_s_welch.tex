@@ -1,0 +1,23 @@
+\begin{table}[H]
+\centering
+\caption{Seed-aligned and unpaired Welch 95\% intervals for ViT-S minus
+ViT-B nAUC contrasts. Both interval constructions give the same
+interpretive conclusion for every family and metric.}
+\label{tab:s-welch}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrr}
+\toprule
+PE family & Metric & Mean difference & Seed-aligned 95\% CI & Welch 95\% CI \\
+\midrule
+Learned & Adversarial nAUC & -0.218610 & $[-0.292924, -0.144295]$ & $[-0.293806, -0.143413]$ \\
+Sinusoidal & Adversarial nAUC & -0.159924 & $[-0.184240, -0.135608]$ & $[-0.184361, -0.135487]$ \\
+RoPE & Adversarial nAUC & -0.093204 & $[-0.160354, -0.026054]$ & $[-0.151529, -0.034878]$ \\
+\midrule
+Learned & Noise nAUC & -0.000894 & $[-0.003112, 0.001324]$ & $[-0.002435, 0.000646]$ \\
+Sinusoidal & Noise nAUC & 0.000729 & $[-0.001757, 0.003216]$ & $[-0.001043, 0.002501]$ \\
+RoPE & Noise nAUC & 0.000132 & $[-0.000479, 0.000743]$ & $[-0.000417, 0.000681]$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

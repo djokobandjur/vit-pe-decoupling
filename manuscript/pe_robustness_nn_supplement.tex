@@ -7,15 +7,25 @@
 \usepackage{microtype}
 \usepackage{hyperref}
 \usepackage{float}
-\hypersetup{hidelinks}
+\hypersetup{hidelinks,hypertexnames=false}
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theHtable}{S\arabic{table}}
+\renewcommand{\theHfigure}{S\arabic{figure}}
 
 \begin{document}
 \begin{frontmatter}
-\title{Supplementary Sensitivity Analyses for AMP-Matched Cross-Architecture Positional Robustness}
-\author{\DJ{}oko Ban{\dj}ur}
-\address{Faculty of Technical Sciences, University of Priština, Kosovska Mitrovica, Serbia}
+\title{Supplementary Sensitivity Analyses for Positional-Parameter Robustness}
+\author[aff1]{\DJ{}oko Ban{\dj}ur\corref{cor1}}
+\ead{djoko.bandjur@pr.ac.rs}
+\ead[url]{https://orcid.org/0000-0001-9034-6854}
+
+\author[aff1]{Milo\v{s} Ban{\dj}ur}
+\ead{milos.bandjur@pr.ac.rs}
+\ead[url]{https://orcid.org/0009-0007-0124-3943}
+
+\cortext[cor1]{Corresponding author}
+\address[aff1]{Faculty of Technical Sciences, University of Priština, Kosovska Mitrovica, Serbia}
 \end{frontmatter}
 
 \section{Seed alignment and Welch sensitivity}
@@ -29,102 +39,31 @@ intervals retained for continuity with the within-architecture analyses.
 Table~\ref{tab:s-welch} gives unpaired Welch intervals as a sensitivity
 analysis.
 
-\begin{table}[H]
-\centering
-\caption{Seed-aligned and unpaired Welch 95\% intervals for ViT-S minus
-ViT-B nAUC contrasts. Both interval constructions give the same
-interpretive conclusion for every family and metric.}
-\label{tab:s-welch}
-\small
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{llrrr}
-\toprule
-PE family & Metric & Mean difference & Seed-aligned 95\% CI & Welch 95\% CI \\
-\midrule
-Learned & Adversarial nAUC & -0.218610 & [-0.292924, -0.144295] & [-0.293806, -0.143413] \\
-Sinusoidal & Adversarial nAUC & -0.159924 & [-0.184240, -0.135608] & [-0.184361, -0.135487] \\
-RoPE & Adversarial nAUC & -0.093204 & [-0.160354, -0.026054] & [-0.151529, -0.034878] \\
-\midrule
-Learned & Noise nAUC & -0.000894 & [-0.003112, 0.001324] & [-0.002435, 0.000646] \\
-Sinusoidal & Noise nAUC & 0.000729 & [-0.001757, 0.003216] & [-0.001043, 0.002501] \\
-RoPE & Noise nAUC & 0.000132 & [-0.000479, 0.000743] & [-0.000417, 0.000681] \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
+\input{tables/table_s_welch.tex}
 
 \section{Ordinal robustness of the architecture-by-PE interaction}
 
 Let $\Delta_f$ denote ViT-S minus ViT-B adversarial nAUC for family $f$.
 More negative values indicate a larger loss under the smaller backbone.
 Five of the six seeds have the order Learned $<$ Sinusoidal $<$ RoPE; seed
-42 is the sole exception.
+42 is the sole exception. Table~\ref{tab:s-orders} lists the six seed-level
+orderings explicitly.
 
-\begin{table}[H]
-\centering
-\caption{Per-seed ordering of adversarial architecture effects.}
-\label{tab:s-orders}
-\small
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{rccc l}
-\toprule
-Seed & Learned $\Delta$ & Sinusoidal $\Delta$ & RoPE $\Delta$ & Ascending order \\
-\midrule
-42 & -0.121191 & -0.159980 & -0.153736 & Sinusoidal $<$ RoPE $<$ Learned \\
-123 & -0.188993 & -0.131088 & -0.065368 & Learned $<$ Sinusoidal $<$ RoPE \\
-456 & -0.200771 & -0.197074 & -0.157989 & Learned $<$ Sinusoidal $<$ RoPE \\
-789 & -0.205311 & -0.174361 & 0.014230 & Learned $<$ Sinusoidal $<$ RoPE \\
-1011 & -0.326862 & -0.149978 & -0.087133 & Learned $<$ Sinusoidal $<$ RoPE \\
-1213 & -0.268529 & -0.147064 & -0.109227 & Learned $<$ Sinusoidal $<$ RoPE \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
+\input{tables/table_s_orders.tex}
 
 The rank sums are 8, 11, and 17 for Learned, Sinusoidal, and RoPE,
 respectively, reproducing the exact Friedman result $Q=7.0$,
-$p=0.0289352$.
+$p=0.0289352$. Table~\ref{tab:s-did} reports the corresponding
+pairwise difference-in-differences contrasts.
 
-\begin{table}[H]
-\centering
-\caption{Pairwise differences in architecture effects. Same-sign counts
-refer to the dominant sign across the six seeds.}
-\label{tab:s-did}
-\small
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lrr}
-\toprule
-Difference-in-differences contrast & 95\% CI & Same-sign seeds \\
-\midrule
-Learned $-$ RoPE & [-0.235330, -0.015482] & 5/6 negative \\
-Sinusoidal $-$ RoPE & [-0.133297, -0.000143] & 6/6 negative \\
-Learned $-$ Sinusoidal & [-0.141594, 0.024222] & 5/6 negative \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
+\input{tables/table_s_did.tex}
 
 \section{Architecture-dependent seed dispersion}
 
-\begin{table}[H]
-\centering
-\caption{Seed dispersion of adversarial nAUC. The leave-one-out range is
-the minimum and maximum ViT-S/ViT-B SD ratio after omitting each seed in
-turn.}
-\label{tab:s-dispersion}
-\small
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lrrrrrr}
-\toprule
-PE family & ViT-B range & ViT-S range & ViT-B SD & ViT-S SD & SD ratio & LOO SD-ratio range \\
-\midrule
-Learned & 0.007196 & 0.209900 & 0.002436 & 0.071663 & 29.414 & [19.930, 47.272] \\
-RoPE & 0.035298 & 0.149260 & 0.011945 & 0.055722 & 4.665 & [3.919, 5.754] \\
-Sinusoidal & 0.051913 & 0.059656 & 0.018077 & 0.019832 & 1.097 & [0.614, 1.485] \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
+Table~\ref{tab:s-dispersion} reports the seed-level dispersion of the
+AMP-matched architecture effects.
+
+\input{tables/table_s_dispersion.tex}
 
 The dispersion ordering, Learned $\gg$ RoPE $>$ Sinusoidal, differs from
 the mean architecture-effect ordering, Learned $>$ Sinusoidal $>$ RoPE.
@@ -133,20 +72,10 @@ law is inferred.
 
 \section{Noise sign balance and normalized values above one}
 
-\begin{table}[H]
-\centering
-\caption{Seed signs for ViT-S minus ViT-B nAUC contrasts.}
-\label{tab:s-signs}
-\begin{tabular}{lrrrr}
-\toprule
-PE family & Attack $\Delta<0$ & Attack $\Delta>0$ & Noise $\Delta<0$ & Noise $\Delta>0$ \\
-\midrule
-Learned & 6 & 0 & 3 & 3 \\
-Sinusoidal & 6 & 0 & 2 & 4 \\
-RoPE & 5 & 1 & 3 & 3 \\
-\bottomrule
-\end{tabular}
-\end{table}
+Table~\ref{tab:s-signs} gives the seed-level sign balance for the noise
+architecture contrasts.
+
+\input{tables/table_s_signs.tex}
 
 Noise contrasts have no common sign tendency, unlike the adversarial
 contrasts. ViT-S Sinusoidal seed 123 has noise nAUC 1.0009374. Normalized
@@ -154,5 +83,70 @@ accuracy is defined relative to clean accuracy on the same finite split
 and is not clipped at one; a perturbed model can therefore marginally
 outperform its clean reference, and its integrated normalized curve can
 slightly exceed one.
+
+
+\section{Sensitivity to the adversarial lower envelope}
+\label{sec:s-no-envelope}
+
+The primary analysis retains the highest-loss restart at each native budget
+and then applies a cumulative lower envelope to adversarial normalized
+accuracy after ordering points by achieved $\rho_{\mathrm{rel}}$. As a
+deterministic sensitivity analysis, we keep the same selected restart at
+every budget but connect the raw measured normalized accuracies directly,
+using the same exact clean anchor, achieved-displacement ordering,
+piecewise-linear interpolation, and no clipping above one.
+
+\input{tables/table_no_envelope_sensitivity}
+
+At both integration endpoints, all 48 raw noise-minus-adversarial
+seed-level gaps remain positive and every within-seed family rank
+configuration is preserved. Consequently, the exact Friedman results are
+unchanged: $Q=16.4$, exact $p=8.03755\times10^{-6}$ for ImageNet-100 and
+$Q=15.0$, exact $p=9.46924\times10^{-5}$ for CIFAR-100. The largest change
+at the primary endpoint is CIFAR-100 Learned PE, whose family-mean gap
+changes from $0.015369$ with the envelope to $0.014591$ without it. At
+$\rho_{\max}=0.095$, the largest change is again CIFAR-100 Learned PE,
+from $0.018347$ to $0.017030$. Thus, the positive-gap and between-family
+heterogeneity conclusions do not depend on the lower-envelope operation.
+Because the no-envelope analysis connects the same selected points without a
+cumulative minimum, it also removes the family-dependent opportunity for
+envelope selection that can arise when curves contain unequal numbers of
+measured adversarial budgets.
+
+
+\section{Sensitivity to the post-lock task-loss budget}
+\label{sec:s-postlock-grid}
+
+The canonical ViT-S/16 Sinusoidal task-loss curves were defined on the
+prespecified native-budget grid ending at $0.010$. A historical targeted
+coverage extension subsequently attempted to reach $\rho_{\mathrm{rel}}=0.09$
+for seeds 123, 456, and 1213 using additional native budgets through 0.020; the
+run ledger records all three as target-not-reached and the registered combined
+maxima equal their canonical maxima to ledger precision. Original row-level
+coverage-extension JSONs are not redistributed. The later all-restart audit is
+a separate public row-level audit that used the same checkpoints, split,
+float32 tensors/model state without autocast or gradient scaling, task-loss
+objective, and $200\times5$ schedule, and additionally evaluated native budget
+$0.020$ for all six seeds. Because that point was collected after the canonical
+grid was locked, it is not inserted into the primary estimand. The analogous
+ViT-B/16 budget-0.015 audit points reach
+$\rho_{\mathrm{rel}}\in[0.096597,0.106636]$, above both the locked
+ViT-B/16 endpoint and the $0.095$ sensitivity endpoint, so they cannot alter
+the reported ViT-B/16 nAUC values.
+
+As a transparent post-lock sensitivity, we add the loss-selected $0.020$
+point to each of the six ViT-S/16 Sinusoidal curves and retain the same
+cross-architecture integration endpoint
+$\rho_{\mathrm{rel}}=0.0792384$.
+
+\input{tables/table_postlock_grid_sensitivity}
+
+The added point lowers adversarial nAUC in every seed. The across-seed mean
+changes from $0.766366\pm0.038521$ to
+$0.721777\pm0.045899$, a difference of $-0.044589$. This increases the
+noise-minus-adversarial separation and leaves the adversarial family
+ordering unchanged. The sensitivity therefore strengthens the central
+decoupling result, while the prelocked-grid values remain the primary
+reported estimates.
 
 \end{document}

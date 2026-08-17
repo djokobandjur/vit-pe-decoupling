@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-07-31T10:40:31.402930+00:00",
+  "status": "PASS_COMPLETE",
+  "complete": true,
+  "expected_restarts": 240,
+  "valid_restarts": 240,
+  "expected_points": 48,
+  "complete_points": 48,
+  "issue_count": 0,
+  "issues": [],
+  "selection_rule": "loss-selected=max task loss; rho-selected=max rho_rel. rho-selected is diagnostic only and does not alter canonical support/frontier.",
+  "locks": {
+    "ATTACK_EVAL_NUMERICAL_MODE_v1.json": "df0341e1953c9457bdf9dec409bbdd7f122246f85204f0b999ebc666a70748f7",
+    "SINUSOIDAL_PER_RESTART_AUDIT_INPUT_LOCK_v1.json": "7e1cc094d1284e376189895eecb1134f52e2052e26b4ad858b91876954ee2e9b",
+    "D033A_PROVENANCE_REPORT.json": "e0eb35ec79bce00fd4df53d70566808bcb8b2e037f1e52e367ec48f3efd245b6"
+  },
+  "exports": {
+    "per_restart": "/home/djoko.bandjur.ftnkm/Notebooks/results/sinusoidal_per_restart_audit_v1/exports/PER_RESTART_RESULTS_v1.csv",
+    "point_summary": "/home/djoko.bandjur.ftnkm/Notebooks/results/sinusoidal_per_restart_audit_v1/exports/POINT_SELECTION_SUMMARY_v1.csv"
+  }
+}

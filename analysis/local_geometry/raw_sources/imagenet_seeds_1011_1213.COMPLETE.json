@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "dataset": "imagenet",
+  "seeds": [
+    1011,
+    1213
+  ],
+  "pe_types": [
+    "learned",
+    "sinusoidal",
+    "rope",
+    "alibi"
+  ],
+  "output": "/home/djoko.bandjur.ftnkm/Notebooks/results/pe_geometry_probe_n6_r32/imagenet_seeds_1011_1213.json",
+  "completed_at": "2026-07-17T22:53:54.496251+00:00"
+}

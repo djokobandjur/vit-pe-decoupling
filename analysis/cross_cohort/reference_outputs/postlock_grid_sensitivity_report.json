@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "interpretation": "The 0.020 points were collected after the canonical grid was locked. Adding them strengthens the reported Sinusoidal random-versus-adversarial separation and leaves the qualitative family ordering unchanged.",
+  "locked_cross_endpoint": 0.07923839733806452,
+  "canonical_vits_sinusoidal_native_grid_max": 0.01,
+  "postlock_audit_budget": 0.02,
+  "same_task_loss_objective": true,
+  "same_schedule": "200x5",
+  "same_split_and_checkpoint_cohort": true,
+  "primary_mean": 0.7663660668996223,
+  "primary_sd": 0.03852055422681634,
+  "augmented_mean": 0.7217772442386754,
+  "augmented_sd": 0.04589875309838628,
+  "delta_mean": -0.0445888226609469,
+  "all_seed_deltas_negative": true,
+  "qualitative_conclusion_changed": false
+}

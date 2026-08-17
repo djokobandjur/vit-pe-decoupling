@@ -37,6 +37,6 @@
       "RoPE"
     ],
     "seeds": 6,
-    "ALiBi": "all six attempted runs diverged"
+    "ALiBi": "systematic divergence; no valid checkpoint cohort"
   }
 }

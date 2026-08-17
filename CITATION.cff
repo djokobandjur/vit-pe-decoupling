@@ -5,6 +5,14 @@ type: software
 authors:
   - family-names: "Banđur"
     given-names: "Đoko"
+    affiliation: "Faculty of Technical Sciences, University of Priština, Kosovska Mitrovica, Serbia"
+    email: "djoko.bandjur@pr.ac.rs"
+    orcid: "https://orcid.org/0000-0001-9034-6854"
+  - family-names: "Banđur"
+    given-names: "Miloš"
+    affiliation: "Faculty of Technical Sciences, University of Priština, Kosovska Mitrovica, Serbia"
+    email: "milos.bandjur@pr.ac.rs"
+    orcid: "https://orcid.org/0009-0007-0124-3943"
 version: "1.0.0"
 date-released: "2026-08-06"
 license: MIT
@@ -16,6 +24,12 @@ preferred-citation:
   authors:
     - family-names: "Banđur"
       given-names: "Đoko"
+      affiliation: "Faculty of Technical Sciences, University of Priština, Kosovska Mitrovica, Serbia"
+      orcid: "https://orcid.org/0000-0001-9034-6854"
+    - family-names: "Banđur"
+      given-names: "Miloš"
+      affiliation: "Faculty of Technical Sciences, University of Priština, Kosovska Mitrovica, Serbia"
+      orcid: "https://orcid.org/0009-0007-0124-3943"
   journal: "Neural Networks"
   year: 2026
   status: "submitted"

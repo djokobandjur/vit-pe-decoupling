@@ -1,38 +1,47 @@
-# Upload checklist
+# Existing-repository update and release checklist
 
-The prepared repository is ready for a first public push after three manual
-fields are decided: the GitHub account/repository name, confirmation of the
-code licence, and whether checkpoint binaries will be published separately.
+The public repository already exists at
+`https://github.com/djokobandjur/vit-pe-decoupling`. The `main` branch and an
+initial `v1.0.0` tag were pushed before the final evidence-completeness audit,
+but no GitHub Release was published. Complete the corrected commit and CI run
+before creating the first Release.
 
 ## 1. Final local review
 
 ```bash
+python scripts/generate_repository_manifest.py
 python scripts/verify_repository.py
-pytest -q
+python -m pytest -q
 python scripts/reproduce_all.py
 python scripts/verify_reproduction.py
 ```
 
-## 2. Create an empty GitHub repository
-
-Create a repository on GitHub without adding a README, licence, or `.gitignore`
-(the prepared repository already contains them). The public repository is
-`vit-pe-decoupling`: https://github.com/djokobandjur/vit-pe-decoupling.
-
-## 3. Push the prepared tree
+## 2. Commit and push the corrected tree
 
 ```bash
-git init
 git add .
-git commit -m "Public reproducibility release v1.0.0"
-git branch -M main
-git remote add origin https://github.com/djokobandjur/vit-pe-decoupling.git
-git push -u origin main
+git commit -m "Complete public evidence and manuscript QA"
+git push origin main
+```
+
+The push automatically starts the `repository-checks` GitHub Actions workflow.
+Do not create a Release until the new run is green.
+
+## 3. Move the unpublished v1.0.0 tag to the corrected commit
+
+Because no Release was created from the initial tag, replace it after the
+corrected commit has passed CI:
+
+```bash
+git tag -d v1.0.0
+git push origin :refs/tags/v1.0.0
 git tag -a v1.0.0 -m "Submission reproducibility release"
 git push origin v1.0.0
 ```
 
-## 4. Create the release assets
+Verify on GitHub that `v1.0.0` points to the corrected commit.
+
+## 4. Create release assets
 
 ```bash
 python scripts/prepare_release.py
@@ -49,13 +58,17 @@ Use `RELEASE_NOTES_v1.0.0.md` as the release description.
 ## 5. Archive and cite
 
 Enable the GitHub–Zenodo integration and publish the tagged release. Then add
-the GitHub URL and Zenodo DOI to `CITATION.cff`, the manuscript data/code
-availability statement, and the final repository release notes.
+the Zenodo DOI to `CITATION.cff`, the manuscript data-availability statement,
+and the release notes.
 
-## Decisions to confirm before upload
+## Release boundaries
 
-- The root MIT licence is a prepared default for project code. Replace it
-  before the first push if a different licence is required.
+- The root MIT licence applies to project code as described in
+  `LICENSE_SCOPE.md`.
 - ImageNet images must not be uploaded.
-- Checkpoints are not in Git. If they are published through Zenodo or Hugging
-  Face, add the permanent link and hashes to `checkpoints/README.md`.
+- Checkpoint binaries are not in Git. A permanent checkpoint archive, if
+  published separately, should be linked with hashes from `checkpoints/`.
+
+## Git/manifest consistency
+
+LaTeX build intermediates are intentionally ignored and excluded from the public release (`*.aux`, `*.log`, `*.out`, `*.spl`, `*.synctex.gz`). Run `python scripts/generate_repository_manifest.py` after any final edit and before `git add .`; the verifier rejects either missing manifest entries or ignored build artifacts appearing in the manifest.

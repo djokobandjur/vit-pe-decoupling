@@ -1,0 +1,21 @@
+{
+  "schema": "VITB_R32_CHECKPOINT_VERIFICATION_v1",
+  "generated_at_utc": "2026-08-06T23:17:02.915623+00:00",
+  "record_count_expected": 48,
+  "record_count_observed": 48,
+  "record_count_pass": true,
+  "unique_checkpoint_paths_expected": 48,
+  "unique_checkpoint_paths_observed": 48,
+  "unique_checkpoint_paths_pass": true,
+  "unique_dataset_family_seed_keys_expected": 48,
+  "unique_dataset_family_seed_keys_observed": 48,
+  "unique_dataset_family_seed_keys_pass": true,
+  "historical_imagenet_sinusoidal_hashes_expected": 6,
+  "historical_imagenet_sinusoidal_hashes_checked": 6,
+  "historical_imagenet_sinusoidal_hashes_matched": 6,
+  "historical_imagenet_sinusoidal_hashes_pass": true,
+  "duplicate_paths": [],
+  "duplicate_keys": [],
+  "historical_mismatches": [],
+  "overall_pass": true
+}

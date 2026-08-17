@@ -1,0 +1,12 @@
+{
+  "release": "v8_S1_CLOSED",
+  "date": "2026-08-07",
+  "status": "PASS",
+  "finding": {
+    "id": "S1",
+    "title": "Conflicting abstract texcount metadata",
+    "resolution": "PUBLIC_REPOSITORY_RELEASE_AUDIT corrected from 242 to the actual texcount value 237; manuscript_internal_label_removal already reported 237.",
+    "actual_abstract_words_texcount": 237,
+    "guard": "Cross-record equality is always enforced; direct texcount verification runs when texcount is installed."
+  }
+}

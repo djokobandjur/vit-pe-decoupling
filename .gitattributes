@@ -12,3 +12,6 @@
 *.gif binary
 *.webp binary
 *.ico binary
+
+# Preserve evidence/table CSV bytes exactly; repository SHA-256 hashes are byte-level.
+*.csv -text

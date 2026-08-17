@@ -1,0 +1,16 @@
+{
+  "created_at": 1784328282.6048386,
+  "source_package": "/home/djoko.bandjur.ftnkm/Notebooks/FMLE_PE_GEOMETRY_PROBE",
+  "r32_package": "/home/djoko.bandjur.ftnkm/Notebooks/FMLE_PE_GEOMETRY_PROBE_R32",
+  "output_dir": "/home/djoko.bandjur.ftnkm/Notebooks/results/pe_geometry_probe_n6_r32",
+  "random_directions": 32,
+  "directions_per_model": 33,
+  "target_rho_rel": 0.03,
+  "reported_rho": "actual rho_rel_geometry measured on held-out geometry subset",
+  "damage_efficiency": "delta_ce / actual held-out rho_rel_geometry",
+  "code_hashes": {
+    "mechanistic_geometry_probe.py": "55724416ca5f41cf7917c6b51093265d9bed29bcc8b9eb9f91de236d85c81345",
+    "cross_family_rho_decoupling.py": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307",
+    "full_scale_experiment.py": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf"
+  }
+}

@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Three complementary comparisons used to separate system-level,
+training-regime, and architecture contrasts.}
+\label{tab:factorial-comparison-design}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+Analysis & Architecture contrast & Training contrast & Shared PE families & Inferential role \\
+\midrule
+Canonical & ViT-B vs ViT-S & AMP vs full FP32 & 4 & System-level replication; factors confounded \\
+Within-ViT-S regime & ViT-S fixed & AMP vs full FP32 & 3 & Within-backbone training-regime comparison \\
+AMP-matched architecture & ViT-B vs ViT-S & AMP fixed & 3 & Cross-architecture effect with training regime fixed \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

@@ -21,7 +21,7 @@ The factorial-design table now uses descriptive analysis names. Section headings
 - The visible reference to the “canonical v19 reproducibility package” was replaced by “the accompanying reproducibility package.”
 - Submission-facing LaTeX labels and figure/table filenames were renamed descriptively.
 - Internal identifiers remain only in the separate governance, reconciliation, and reproducibility evidence system; they are absent from the reviewer-facing manuscript and submission-source package.
-- The agreed abstract wording is retained, including the Learned–RoPE ordering, direct-displacement inversion, training-regime bridge, ALiBi trainability boundary, and the “Together, these results show…” conclusion.
+- The final abstract retains the Learned–RoPE ordering, direct-displacement inversion, training-regime bridge, cohort-level ALiBi trainability boundary, and the “Together, these results show…” conclusion.
 
 ## Verification
 
@@ -29,12 +29,14 @@ The factorial-design table now uses descriptive analysis names. Section headings
 - Internal D-codes in rendered main/supplement PDFs: 0
 - Internal D-codes or version labels in captions: 0
 - Submission-facing version labels (V17–V20): 0
-- Main manuscript: 43 pages
-- Supplement: 3 pages
-- Abstract: 233 words by texcount
+- Main manuscript: 44 pages
+- Supplement: 5 pages
+- Abstract: 236 words by texcount
 - Final LaTeX warnings: 0
 - Ghostscript PDF validation: PASS
 - PDF preflight: openable, unencrypted, searchable, non-XFA
-- Visual inspection: title/abstract, factorial table, cross-architecture captions, objective comparison, conclusion, and data-availability pages PASS
+- Visual inspection: title/abstract, numerical-mode wording, convergence-threshold wording, coverage-extension disclosure, cross-architecture captions, limitations, and data-availability pages PASS
+- Cross-document Supplement table references resolve through `xr-hyper`; S1/S6/S7 are not hard-coded in the main source
+- Page-count claims are machine-checked against the distributed PDFs by `scripts/verify_repository.py`
 
 No numerical result, confidence interval, statistical test, support boundary, or scientific claim was weakened by this cleanup.

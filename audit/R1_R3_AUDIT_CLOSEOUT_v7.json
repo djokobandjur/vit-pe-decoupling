@@ -1,0 +1,42 @@
+{
+  "release": "v7",
+  "date": "2026-08-07",
+  "status": "PASS_R1_R3_CLOSED",
+  "findings": {
+    "R1": {
+      "status": "PASS",
+      "locked_artifact": "audit/historical/sinusoidal_audit/ATTACK_EVAL_NUMERICAL_MODE_v1.json",
+      "sha256": "df0341e1953c9457bdf9dec409bbdd7f122246f85204f0b999ebc666a70748f7",
+      "annotated_copy": "configs/attack_eval_numerical_mode.json",
+      "guard": "verifier/test compare annotated reference, actual bytes, and FINAL_AUDIT_REPORT lock digest"
+    },
+    "R2": {
+      "status": "PASS",
+      "claim_gates": 29,
+      "all_evidence_paths_resolve": true,
+      "glob_aware": true,
+      "g29_evidence": "explicit main and supplement source paths plus split/input-lock provenance"
+    },
+    "R3": {
+      "status": "PASS",
+      "claim": "MATH SDPA explicitly selected when torch.nn.attention is available; locked PyTorch 2.8 environment uses that branch",
+      "older_pytorch_fallback_forces_math": false
+    }
+  },
+  "external_manual_item": {
+    "github_public_visibility": "CHECK_BEFORE_SUBMISSION",
+    "checklist": "audit/PRE_SUBMISSION_CHECKLIST.md"
+  },
+  "verification": {
+    "repository_verifier": "PASS",
+    "repository_verifier_checks": 168,
+    "pytest": "25/25 PASS",
+    "reproduction": "PASS_REPRODUCTION_COMPLETE",
+    "exact_output_checks": 35,
+    "main_pages": 46,
+    "supplement_pages": 5,
+    "all_restart_lock_artifacts": "3/3 byte-exact PASS",
+    "repository_manifest_records": 370,
+    "fresh_git_add_manifest_coverage": "370/370 PASS"
+  }
+}

@@ -7,7 +7,9 @@
     "depth": 12,
     "num_heads": 6,
     "mlp_ratio": 4.0,
-    "dropout": 0.0
+    "dropout": 0.0,
+    "dropout_context": "evaluation-construction value; dropout is inactive in eval mode and has no checkpoint state",
+    "training_recipe_dropout": 0.1
   },
   "architecture_source": "/home/djoko.bandjur.ftnkm/Notebooks/FMLE_IN100_VITS_CALIBRATION_v2/architecture/full_scale_experiment.py",
   "architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf",
@@ -909,5 +911,7 @@
     }
   ],
   "failures": [],
-  "complete": true
+  "complete": true,
+  "training_source_publication_status": "ViT-S/16 full-FP32 production training launcher not redistributed",
+  "architecture_source_note": "The recorded historical full_scale_experiment.py hash identifies the shared model-definition source used in provenance checks. The public ViT-B AMP driver with the same source hash is not a valid ViT-S FP32 training launcher."
 }

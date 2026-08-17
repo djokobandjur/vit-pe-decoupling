@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "direction_rows": 1584,
+  "checkpoint_groups": 48,
+  "task_directions": 48,
+  "gaussian_directions": 1536,
+  "probe_radius": 0.0001,
+  "probe_radius_verified": true,
+  "execution_source_hash_status": "PASS_3_OF_3",
+  "raw_source_digest_status": "PASS_6_OF_6",
+  "raw_completion_markers_status": "PASS_6_OF_6",
+  "raw_to_direction_level_reconstruction": "PASS_1584_OF_1584",
+  "raw_to_seed_level_reconstruction": "PASS_48_OF_48",
+  "seed_level_recalculation": "PASS",
+  "aggregate_recalculation": "PASS",
+  "public_processed_artifact_hash_chain": "PASS",
+  "checkpoint_digest_status": "PASS_48_OF_48",
+  "historical_checkpoint_crosscheck": "PASS_6_OF_6",
+  "full_raw_checkpoint_processed_hash_chain": "PASS",
+  "radius_sensitivity_family_order_preserved": true
+}

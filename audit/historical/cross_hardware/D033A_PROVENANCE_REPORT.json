@@ -1,0 +1,74 @@
+{
+  "created_at": "2026-07-30T10:39:07.234061+00:00",
+  "status": "PROVENANCE_CAPTURED_FOR_NEW_AUDIT__HISTORICAL_RECONCILIATION_PENDING",
+  "package_dir": "/home/djoko.bandjur.ftnkm/Notebooks/SINUSOIDAL_PER_RESTART_AUDIT_v1",
+  "package_code": {
+    "audit_core_sha256": "71dd1d19138326dec5c2a77aed3bad57b28062c11c12e4780c74fff17d96cc4a",
+    "runner_sha256": "8f1252169acfa23bd31cbc83a5181cb33470d5cb1987c84011911dd7922a0c9a",
+    "vitb_architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf",
+    "vits_architecture_sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf"
+  },
+  "canonical_engine_sources": {
+    "vitb_server": {
+      "path": "/home/djoko.bandjur.ftnkm/Notebooks/cross_family_final_n6_FMLE/code/cross_family_rho_decoupling.py",
+      "exists": true,
+      "sha256": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307",
+      "autocast_mentions": 0,
+      "gradscaler_mentions": 0,
+      "tf32_mentions": 0,
+      "attack_backward_present": true,
+      "expected_sha256": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307",
+      "expected_sha256_match": true
+    },
+    "vits_server": {
+      "path": "/home/djoko.bandjur.ftnkm/Notebooks/FMLE_IN100_VITS_FULL_ROBUSTNESS_v1/code/cross_family_rho_vits_engine.py",
+      "exists": true,
+      "sha256": "e2b86d96ee33737761665b1e6a78f96cc5f446ac41f9cbc3f5426fa82fd88c64",
+      "autocast_mentions": 0,
+      "gradscaler_mentions": 0,
+      "tf32_mentions": 0,
+      "attack_backward_present": true,
+      "expected_sha256": "e2b86d96ee33737761665b1e6a78f96cc5f446ac41f9cbc3f5426fa82fd88c64",
+      "expected_sha256_match": true
+    },
+    "vits_packaged_reference": {
+      "path": "/home/djoko.bandjur.ftnkm/Notebooks/SINUSOIDAL_PER_RESTART_AUDIT_v1/inputs/VITS_CANONICAL_ENGINE_REFERENCE.py",
+      "exists": true,
+      "sha256": "e2b86d96ee33737761665b1e6a78f96cc5f446ac41f9cbc3f5426fa82fd88c64",
+      "autocast_mentions": 0,
+      "gradscaler_mentions": 0,
+      "tf32_mentions": 0,
+      "attack_backward_present": true
+    }
+  },
+  "expected_engine_hashes_from_prior_session_protocols": {
+    "vitb": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307",
+    "vits": "e2b86d96ee33737761665b1e6a78f96cc5f446ac41f9cbc3f5426fa82fd88c64"
+  },
+  "datasets": {
+    "vitb": {
+      "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/imagenet100_resized/val",
+      "n_images": 5000,
+      "n_classes": 100,
+      "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+      "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+      "counts": {
+        "calibration": 256,
+        "attack": 1280,
+        "evaluation": 3464
+      }
+    },
+    "vits": {
+      "val_dir": "/home/djoko.bandjur.ftnkm/datasets/imagenet100/reextract_test/imagenet100_resized/val",
+      "n_images": 5000,
+      "n_classes": 100,
+      "sample_order_sha256": "4ed846efe0db71ffc43119eb46c884118d73b18101337fd59622960feaa3ada8",
+      "split_sha256": "043dbfcba0b659be8cf8498d84e5a1d396f59598e8840ccc4210b67aa7d6640c",
+      "counts": {
+        "calibration": 256,
+        "attack": 1280,
+        "evaluation": 3464
+      }
+    }
+  }
+}

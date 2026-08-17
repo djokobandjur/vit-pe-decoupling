@@ -1,16 +1,18 @@
-# Reproducing the CANONICAL v19 analysis
+# Reproducing the canonical cross-cohort analysis
 
-From the package root:
+From the public repository root, run:
 
 ```bash
-python analysis/v19_support_aware/build_v19_full_analysis.py \
-  --v18-outputs analysis/v18_canonical_pipeline/outputs \
-  --vits-root raw_inputs/v19/vits_in100_full_robustness_v1 \
-  --output-dir analysis/v19_support_aware/rebuilt_outputs
-
-python analysis/v19_support_aware/generate_v19_figures.py \
-  --output-dir analysis/v19_support_aware/rebuilt_outputs \
-  --d031-point-csv analysis/v19_support_aware/inputs/D031_POINT_LEVEL_LAYER_METRICS_v1.csv
+python scripts/reproduce_all.py
 ```
 
-The canonical cross-architecture domain is inferred from the intersection of measured support. D019 and D020 are intentionally excluded from that support and are reported only as objective-specific structural audits.
+The generated cross-cohort outputs are written to
+`artifacts/reproduced/cross_cohort/`.
+
+The primary cross-architecture analysis uses the prespecified canonical
+native-budget grids and integrates only over their measured common-support
+intersection. The later all-restart ViT-S Sinusoidal budget-0.020 points use
+the same task-loss objective but were collected after the canonical grid was
+locked; they are reported separately through
+`analysis/cross_cohort/build_postlock_grid_sensitivity.py`. Direct-displacement
+points use a different objective and remain outside canonical task-loss nAUC.

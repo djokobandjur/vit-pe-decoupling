@@ -200,12 +200,7 @@
     "seed_variability": "Report per-seed values/statuses, median, IQR, min-max; mean+SD only when all thresholds are identified."
   },
   "auc_domain_rule": "The integration domain is the intersection of support over every seed and architecture included in the specific comparison. AUC values integrated over different domains must not be compared directly.",
-  "pending": {
-    "vitb_harmonization": "Complete in v17 on prespecified confirmation seed 123.",
-    "vits_full_n6": "Not yet run under the locked protocol.",
-    "manuscript_numerical_update": "Deferred until final ViT-S n=6, threshold refinement, and cross-backbone analysis are complete."
-  },
-  "updated_date": "2026-07-26",
+  "updated_date": "2026-08-07",
   "vitb_reference_harmonization": {
     "status": "complete",
     "confirmation_seed": 123,
@@ -216,6 +211,19 @@
       "alibi": 200
     },
     "restarts": 5,
-    "closure_record": "vitb_harmonization/VITB_HARMONIZATION_LOCKED_PROTOCOL.json"
+    "closure_record": "Historical v17/v18 closure record is registered in the internal artifact registry but is not redistributed.",
+    "public_evidence_record": "audit/historical/vitb_harmonization/VITB_HARMONIZATION_PUBLIC_EVIDENCE.json",
+    "historical_closure_record_redistributed": false
+  },
+  "public_training_source_scope": {
+    "vits_full_fp32_launcher_redistributed": false,
+    "vits_amp_launcher_redistributed": false,
+    "public_vitb_amp_source_is_not_a_vits_launcher": true,
+    "analysis_level_reproduction_affected": false
+  },
+  "release_status": {
+    "vitb_harmonization": "Historical confirmation-seed harmonization complete; public runner and run ledger are redistributed, but original row-level comparison JSONs are not.",
+    "vits_full_n6": "Complete; the six-seed ViT-S/16 full-FP32 cohort and analysis-level outputs are distributed.",
+    "manuscript_numerical_update": "Complete in the public v1.0.0 reproducibility release."
   }
 }

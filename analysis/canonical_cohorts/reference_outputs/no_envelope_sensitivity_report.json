@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "seed_level_rows": 48,
+  "all_48_raw_gaps_positive_at_0p09": true,
+  "all_48_raw_gaps_positive_at_0p095": true,
+  "all_within_seed_family_ranks_preserved": true,
+  "rank_checks": {
+    "imagenet_0p09": {
+      "rank_configurations_preserved": true,
+      "envelope_friedman_q": 16.400000000000006,
+      "raw_friedman_q": 16.400000000000006
+    },
+    "cifar_0p09": {
+      "rank_configurations_preserved": true,
+      "envelope_friedman_q": 15.0,
+      "raw_friedman_q": 15.0
+    },
+    "imagenet_0p095": {
+      "rank_configurations_preserved": true,
+      "envelope_friedman_q": 16.400000000000006,
+      "raw_friedman_q": 16.400000000000006
+    },
+    "cifar_0p095": {
+      "rank_configurations_preserved": true,
+      "envelope_friedman_q": 15.0,
+      "raw_friedman_q": 15.0
+    }
+  },
+  "largest_family_mean_changes": {
+    "0p09": {
+      "dataset": "cifar",
+      "pe_family": "learned",
+      "envelope_gap_mean": 0.015368611871956017,
+      "raw_gap_mean": 0.014590711233047384,
+      "raw_minus_envelope": -0.0007779006389086328
+    },
+    "0p095": {
+      "dataset": "cifar",
+      "pe_family": "learned",
+      "envelope_gap_mean": 0.01834743433234268,
+      "raw_gap_mean": 0.017030256650963235,
+      "raw_minus_envelope": -0.0013171776813794497
+    }
+  },
+  "interpretation": "The positive-gap direction and between-family rank structure do not depend on the adversarial cumulative lower envelope."
+}

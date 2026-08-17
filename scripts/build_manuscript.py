@@ -22,10 +22,12 @@ def main() -> None:
     require("pdflatex")
     main_tex = "pe_robustness_nn_main.tex"
     supp_tex = "pe_robustness_nn_supplement.tex"
-    for _ in range(3):
-        run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", main_tex])
+    # Build supplement first so the main manuscript can resolve external
+    # Supplement table references through xr-hyper.
     for _ in range(3):
         run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", supp_tex])
+    for _ in range(3):
+        run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", main_tex])
     print("Manuscript build complete.")
 
 

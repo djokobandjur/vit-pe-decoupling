@@ -1,0 +1,21 @@
+{
+  "files": [
+    "cifar_seeds_1011_1213.COMPLETE.json",
+    "cifar_seeds_1011_1213.json",
+    "cifar_seeds_42_123.COMPLETE.json",
+    "cifar_seeds_42_123.json",
+    "cifar_seeds_456_789.COMPLETE.json",
+    "cifar_seeds_456_789.json",
+    "imagenet_seeds_1011_1213.COMPLETE.json",
+    "imagenet_seeds_1011_1213.json",
+    "imagenet_seeds_42_123.COMPLETE.json",
+    "imagenet_seeds_42_123.json",
+    "imagenet_seeds_456_789.COMPLETE.json",
+    "imagenet_seeds_456_789.json"
+  ],
+  "count_probe_radius_fields": 3168,
+  "unique_probe_radius_values": [
+    0.0001
+  ],
+  "all_equal_1e-4": true
+}

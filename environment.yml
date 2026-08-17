@@ -10,3 +10,5 @@ dependencies:
   - openpyxl=3.1.5
   - pytest=9.0.2
   - pip
+
+  - pypdf>=5.0

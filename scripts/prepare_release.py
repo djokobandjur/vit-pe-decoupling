@@ -23,9 +23,12 @@ def main() -> None:
     if archive.exists():
         archive.unlink()
     excluded = {".git", "dist", "artifacts", "build", ".pytest_cache", "__pycache__"}
+    excluded_suffixes = {".aux", ".log", ".out", ".spl", ".synctex.gz"}
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for path in sorted(ROOT.rglob("*")):
             if not path.is_file() or any(part in excluded for part in path.relative_to(ROOT).parts):
+                continue
+            if any(path.name.endswith(suffix) for suffix in excluded_suffixes):
                 continue
             zf.write(path, Path("vit-pe-decoupling") / path.relative_to(ROOT))
     sums = OUT / "SHA256SUMS.txt"

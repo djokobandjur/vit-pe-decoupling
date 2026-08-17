@@ -53,6 +53,18 @@ def main() -> None:
 
     # 1. Canonical cohorts.
     canonical_out, canonical_figs = stage_canonical(work, output)
+    run([
+        sys.executable,
+        ROOT / "analysis/canonical_cohorts/build_no_envelope_sensitivity.py",
+        "--seed-level", canonical_out / "seed_level_nauc_v18.csv",
+        "--output-dir", canonical_out,
+    ])
+    for name in (
+        "no_envelope_aggregate_nauc.csv",
+        "no_envelope_sensitivity_report.json",
+        "table_no_envelope_sensitivity.tex",
+    ):
+        shutil.copy2(canonical_out / name, output / "canonical" / name)
 
     # Shared ViT-S result archives.
     extracted = work / "extracted"
@@ -74,7 +86,45 @@ def main() -> None:
         "--d031-point-csv", ROOT / "data/objective_specific/layerwise/layerwise_point_metrics.csv",
     ])
 
-    # 3. Within-ViT-S training-regime comparison.
+    # 3. Post-lock task-loss-grid sensitivity.
+    postlock_out = output / "postlock_grid"
+    postlock_out.mkdir()
+    run([
+        sys.executable,
+        ROOT / "analysis/cross_cohort/build_postlock_grid_sensitivity.py",
+        "--vits-zip", ROOT / "data/vits_fp32_results.zip",
+        "--audit-points",
+        ROOT / "data/objective_specific/all_restart_audit/POINT_SELECTION_SUMMARY_v1.csv",
+        "--primary-seed-level",
+        cross_cohort_out / "v19_support_aware_seed_level_nauc.csv",
+        "--build-report",
+        cross_cohort_out / "V19_SUPPORT_AWARE_BUILD_REPORT.json",
+        "--output-dir", postlock_out,
+    ])
+
+    # 4. Clean-accuracy table on the locked robustness evaluation splits.
+    clean_out = output / "clean_accuracy"
+    clean_out.mkdir()
+    run([
+        sys.executable,
+        ROOT / "analysis/clean_accuracy/build_clean_accuracy_table.py",
+        "--vitb", ROOT / "data/clean_accuracy_eval_subset_seed_level.csv",
+        "--vits", cross_cohort_out / "v19_vits_clean_accuracy.csv",
+        "--output-dir", clean_out,
+    ])
+
+    # 5. Local directional-geometry verification.
+    geometry_out = output / "local_geometry"
+    geometry_out.mkdir()
+    run([
+        sys.executable,
+        ROOT / "analysis/local_geometry/verify_geometry_analysis.py",
+        "--reference-dir",
+        ROOT / "analysis/local_geometry/reference_outputs",
+        "--output-dir", geometry_out,
+    ])
+
+    # 6. Within-ViT-S training-regime comparison.
     precision_out = output / "precision_bridge"
     precision_out.mkdir()
     run([
@@ -85,7 +135,7 @@ def main() -> None:
         "--sesoi-lock", ROOT / "analysis/precision_bridge/equivalence_margin_lock.json",
     ])
 
-    # 4. AMP-matched cross-architecture comparison.
+    # 7. AMP-matched cross-architecture comparison.
     cross_arch_out = output / "cross_architecture"
     cross_arch_out.mkdir()
     run([
@@ -115,16 +165,30 @@ def main() -> None:
         "--out", output / "figures",
     ])
 
-    # Public manuscript-asset aliases.
+    # 8. Public manuscript tables and figure aliases.
     assets = output / "manuscript_assets"
     assets.mkdir()
+    run([
+        sys.executable,
+        ROOT / "scripts/generate_manuscript_tables.py",
+        "--output-dir", assets,
+        "--primary-table-source", canonical_out / "table_primary_nauc_v18.tex",
+        "--wide-table-source", canonical_out / "table_cifar_wide_v18.tex",
+        "--clean-table-source", clean_out / "table_clean_accuracy.tex",
+        "--no-envelope-table-source",
+        canonical_out / "table_no_envelope_sensitivity.tex",
+        "--postlock-table-source",
+        postlock_out / "table_postlock_grid_sensitivity.tex",
+    ])
     aliases = {
-        output / "figures/fig_primary_robustness_curves.pdf": assets / "fig_primary_robustness_curves.pdf",
-        cross_cohort_out / "fig_cross_architecture_robustness.pdf": assets / "fig_cross_architecture_robustness.pdf",
-        output / "figures/fig_D059_attack_nauc_amp_matched.pdf": assets / "fig_amp_matched_attack_nauc.pdf",
-        cross_cohort_out / "fig_layerwise_displacement_profiles.pdf": assets / "fig_layerwise_displacement_profiles.pdf",
-        canonical_out / "table_primary_nauc_v18.tex": assets / "table_primary_nauc.tex",
-        canonical_out / "table_cifar_wide_v18.tex": assets / "table_cifar_wide.tex",
+        output / "figures/fig_primary_robustness_curves.pdf":
+            assets / "fig_primary_robustness_curves.pdf",
+        cross_cohort_out / "fig_cross_architecture_robustness.pdf":
+            assets / "fig_cross_architecture_robustness.pdf",
+        output / "figures/fig_D059_attack_nauc_amp_matched.pdf":
+            assets / "fig_amp_matched_attack_nauc.pdf",
+        cross_cohort_out / "fig_layerwise_displacement_profiles.pdf":
+            assets / "fig_layerwise_displacement_profiles.pdf",
     }
     for src, dst in aliases.items():
         shutil.copy2(src, dst)
@@ -135,6 +199,9 @@ def main() -> None:
         "cross_cohort": str(cross_cohort_out.relative_to(output)),
         "precision_bridge": str(precision_out.relative_to(output)),
         "cross_architecture": str(cross_arch_out.relative_to(output)),
+        "postlock_grid": str(postlock_out.relative_to(output)),
+        "clean_accuracy": str(clean_out.relative_to(output)),
+        "local_geometry": str(geometry_out.relative_to(output)),
         "manuscript_assets": str(assets.relative_to(output)),
         "new_gpu_experiment_required": False,
     }

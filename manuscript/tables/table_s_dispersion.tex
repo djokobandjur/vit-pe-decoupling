@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\caption{Seed dispersion of adversarial nAUC. The leave-one-out range is
+the minimum and maximum ViT-S/ViT-B SD ratio after omitting each seed in turn.}
+\label{tab:s-dispersion}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+PE family & ViT-B range & ViT-S range & ViT-B SD & ViT-S SD & SD ratio & LOO SD-ratio range \\
+\midrule
+Learned & 0.007196 & 0.209900 & 0.002436 & 0.071663 & 29.414 & $[19.930, 47.272]$ \\
+RoPE & 0.035298 & 0.149260 & 0.011945 & 0.055722 & 4.665 & $[3.919, 5.754]$ \\
+Sinusoidal & 0.051913 & 0.059656 & 0.018077 & 0.019832 & 1.097 & $[0.614, 1.485]$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

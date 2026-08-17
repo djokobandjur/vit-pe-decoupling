@@ -71,3 +71,56 @@ ads-vit-forensics/
     ├── sinusoidal_seed42/best_model.pth
     ├── rope_seed42/best_model.pth
     └── ...
+```
+
+The six primary seeds are:
+
+```text
+42 123 456 789 1011 1213
+```
+
+## Verifying downloaded checkpoints
+
+On Linux or macOS, from the directory containing the four checkpoint folders:
+
+```bash
+sha256sum -c checkpoints/NN_ALL_90_CHECKPOINTS_SHA256.txt
+```
+
+On Windows PowerShell, use a SHA-256 verification script that reads standard
+`sha256sum`-format manifest lines:
+
+```powershell
+.\verify_linux_sha256.ps1 `
+  -Folder "C:\path\to\checkpoint_root" `
+  -Manifest "C:\path\to\NN_ALL_90_CHECKPOINTS_SHA256.txt"
+```
+
+A complete verification should report:
+
+```text
+OK:            90
+Missing:       0
+Hash mismatch: 0
+Invalid lines: 0
+
+PASS: all files are bit-identical.
+```
+
+For ViT-B/16 only, use:
+
+```text
+NN_ViTB_48CHECKPOINTS_SHA256_CLEAN.txt
+```
+
+and expect 48 matching checkpoint files.
+
+## Scope of the archive
+
+The shared Google Drive root also contains `CIFAR100_canonical/`, which belongs
+to the related ADS/TIFS robustness analysis. It is not part of the 90-checkpoint
+set used by this manuscript.
+
+ImageNet images are not redistributed. Re-running ImageNet-100 experiments
+requires a licensed ImageNet copy and reconstruction of the dataset split using
+the metadata provided in this repository.

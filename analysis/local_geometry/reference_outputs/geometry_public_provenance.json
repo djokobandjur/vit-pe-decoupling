@@ -1,0 +1,106 @@
+{
+  "status": "PASS_FULL_RAW_CHECKPOINT_PROCESSED_HASH_CHAIN",
+  "scope": "Complete public geometry provenance from retained raw JSONs and checkpoint digest manifest to processed outputs",
+  "architecture": "ViT-B/16 canonical checkpoints on ImageNet-100 and CIFAR-100",
+  "closure_date": "2026-08-07",
+  "execution_sources": {
+    "cross_family_rho_decoupling.py": {
+      "path": "analysis/local_geometry/execution_provenance/code/cross_family_rho_decoupling.py",
+      "sha256": "d1bf3324353c1a0d377967d2088e32b64a9bda88edacba2383ea2d44a382a307"
+    },
+    "full_scale_experiment.py": {
+      "path": "analysis/local_geometry/execution_provenance/code/full_scale_experiment.py",
+      "sha256": "83fc337128dec7f896c9816842806789a634154dea8372bb0a43bae19188d3bf"
+    },
+    "mechanistic_geometry_probe.py": {
+      "path": "analysis/local_geometry/execution_provenance/code/mechanistic_geometry_probe.py",
+      "sha256": "55724416ca5f41cf7917c6b51093265d9bed29bcc8b9eb9f91de236d85c81345"
+    }
+  },
+  "raw_source_files": [
+    {
+      "file": "cifar_seeds_1011_1213.json",
+      "path": "analysis/local_geometry/raw_sources/cifar_seeds_1011_1213.json",
+      "sha256": "bb9929f6443f95b6b9f20cd8fa41c9646b99d4c621a9b87c4ed14b7c233678d4",
+      "digest_status": "PASS_REDISTRIBUTED_ORIGINAL_RAW_JSON",
+      "public_direction_slice_sha256": "0fcc6a3bef5c6d4b2ad773ad9b1fa7b01c171039ac724325a5879954313a8175"
+    },
+    {
+      "file": "cifar_seeds_42_123.json",
+      "path": "analysis/local_geometry/raw_sources/cifar_seeds_42_123.json",
+      "sha256": "8dc98eaaee70df4bb9f3d06809c67eddb5c0f2c25b5dba7dba916b253e3d3c96",
+      "digest_status": "PASS_REDISTRIBUTED_ORIGINAL_RAW_JSON",
+      "public_direction_slice_sha256": "6fa915c8403996448422054452ff9359aeb1fcfa48efb4867844cfe93bb718c8"
+    },
+    {
+      "file": "cifar_seeds_456_789.json",
+      "path": "analysis/local_geometry/raw_sources/cifar_seeds_456_789.json",
+      "sha256": "d472118c3b061d162f852c30615683e3f3097766889c2dba31eec438bdcad0cb",
+      "digest_status": "PASS_REDISTRIBUTED_ORIGINAL_RAW_JSON",
+      "public_direction_slice_sha256": "739dfb5697e796c8294e71ad475dd35f98ba99df962911725ef83b80ebca1458"
+    },
+    {
+      "file": "imagenet_seeds_1011_1213.json",
+      "path": "analysis/local_geometry/raw_sources/imagenet_seeds_1011_1213.json",
+      "sha256": "51949e5c6f6103d65ba25a80ea8cbbdf94b106e894bb185bb192d081aa89c830",
+      "digest_status": "PASS_REDISTRIBUTED_ORIGINAL_RAW_JSON",
+      "public_direction_slice_sha256": "a1d56d0715cd8f701a33c6d52ac9101629e9aecb28a501f100ac05d7b0d88834"
+    },
+    {
+      "file": "imagenet_seeds_42_123.json",
+      "path": "analysis/local_geometry/raw_sources/imagenet_seeds_42_123.json",
+      "sha256": "5259daf7f1c0640bc7cb52ed49949bb4e4cf4667299d9cd780bffafcc632026f",
+      "digest_status": "PASS_REDISTRIBUTED_ORIGINAL_RAW_JSON",
+      "public_direction_slice_sha256": "6ddf6421e65460de7409c2869f3078fa21ce4a79bc4bcd1651214f6a9e050212"
+    },
+    {
+      "file": "imagenet_seeds_456_789.json",
+      "path": "analysis/local_geometry/raw_sources/imagenet_seeds_456_789.json",
+      "sha256": "20857b8cc642d3af12cefaa4f67adea167d8072beb05fd94498958feec46337a",
+      "digest_status": "PASS_REDISTRIBUTED_ORIGINAL_RAW_JSON",
+      "public_direction_slice_sha256": "0d28ad74af79fd60686c74bd0106b8ca9486f14abf19c567f9f50ff5ef60ada7"
+    }
+  ],
+  "original_result_bundle": {
+    "archive_name": "pe_geometry_probe_n6_r32(4).zip",
+    "sha256": "f8bbc69a9412433ad32e950c184a0205d01278c01227e78930dbf6ad5bc1fed6",
+    "recovered_all_original_files_archive_sha256": "1d3c5fab85036ac0fd435a1b14b1d0cca5bbe41e3bceb512ed9d4cbb5ede35e2",
+    "retained_files_sha256_manifest": "analysis/local_geometry/raw_sources/SHA256_ALL_ORIGINAL_FILES.txt"
+  },
+  "checkpoint_digests": {
+    "available": true,
+    "status": "PASS_48_OF_48_POSTHOC_MANIFEST_WITH_6_OF_6_HISTORICAL_MATCH",
+    "manifest_json": "checkpoints/vitb_r32/VITB_R32_CHECKPOINT_MANIFEST.json",
+    "manifest_json_sha256": "1c853b789a7b0da838dd65d0e2c0cdf85f89eb8d6f0ceff55167ccedc9735749",
+    "manifest_csv": "checkpoints/vitb_r32/VITB_R32_CHECKPOINT_MANIFEST.csv",
+    "manifest_csv_sha256": "460e4185a0c5386a0a52e5774ef9644a267f1df562c337a56352636c758739ed",
+    "verification_json": "checkpoints/vitb_r32/VITB_R32_CHECKPOINT_VERIFICATION.json",
+    "verification_json_sha256": "20b019ce296e5d5fb142e49a8c218d11a7912d37cb0f8bd247bbcef80e262337",
+    "checkpoint_records": 48,
+    "unique_checkpoint_paths": 48,
+    "historical_imagenet_sinusoidal_matches": 6,
+    "historical_imagenet_sinusoidal_expected": 6,
+    "provenance_timing": "Complete manifest reconstructed post hoc from retained original checkpoint cohort; six digests independently matched to a previously preserved input-lock record."
+  },
+  "processed_artifacts": {
+    "geometry_direction_level.csv": "c11cb90b90aff6a37f0c3609118746c3c743d9b4e76e3601740845de9c0d5f3d",
+    "geometry_seed_level.csv": "4c9068f53b5578532ba6db4cf70958e4e84d863c7ecfadd6312300110b1dc13f",
+    "geometry_aggregate.csv": "5214cf765a51930b1db3ec4b14ee8b9b83d5e7e0845d53ac36e297984ac5409f",
+    "geometry_metadata_audit.csv": "1e506ad87cc69b08a836fba0f27d093130727099be3de0840c2c8a826d8a384d",
+    "geometry_statistics.json": "a20a3cce93764113b67b1f41bf8e3b1347792cff3c27dcce6cd5548f32d5d759",
+    "geometry_audit_report.json": "afbe8f5aee54bd5933885f22d6b3bc30af9100288585fc0a6a7fcb60c86bb14a",
+    "geometry_audit_report.md": "aeb25fff3925497ed892a90b4e86e02c4fc70bcf4094eba36c25b2aeb8a63080",
+    "probe_radius_evidence.json": "cba5eb3d1bc278bd9535034f1eefa90f4546d7bcd5a978c3e9c8ef0002420c20",
+    "geometry_radius_sensitivity.csv": "bf9ff57f61062fe7be282dafb07b7c73f9ed1852578fcf0a58730add643b9f18"
+  },
+  "chain_verification": {
+    "execution_source_bytes_to_raw_metadata_hashes": "PASS",
+    "raw_json_sha256": "PASS_6_OF_6",
+    "raw_json_to_direction_level_reconstruction": "PASS_1584_OF_1584",
+    "raw_json_to_seed_level_reconstruction": "PASS_48_OF_48",
+    "checkpoint_path_to_sha256_manifest": "PASS_48_OF_48",
+    "historical_checkpoint_crosscheck": "PASS_6_OF_6",
+    "processed_artifact_hash_chain": "PASS"
+  },
+  "claim_limit": "Checkpoint binaries and ImageNet images are not redistributed. The complete 48-checkpoint digest manifest was reconstructed post hoc from the retained original cohort, with 6/6 independent historical digest matches; all original raw geometry JSONs and execution sources are redistributed and verified."
+}

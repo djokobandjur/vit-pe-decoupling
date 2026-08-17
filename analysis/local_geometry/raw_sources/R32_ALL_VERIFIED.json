@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "model_records": 48,
+  "random_directions_per_model": 32,
+  "directions_per_model": 33,
+  "total_direction_evaluations": 1584,
+  "damage_efficiency": "delta_ce / actual held-out rho_rel_geometry",
+  "seed_summary_csv": "/home/djoko.bandjur.ftnkm/Notebooks/results/pe_geometry_probe_n6_r32/R32_heldout_rho_seed_summary.csv",
+  "group_summary_json": "/home/djoko.bandjur.ftnkm/Notebooks/results/pe_geometry_probe_n6_r32/R32_heldout_rho_group_summary.json"
+}

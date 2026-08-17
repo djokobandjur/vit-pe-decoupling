@@ -1,0 +1,12 @@
+{
+  "status": "PASS_REPRODUCTION_COMPLETE",
+  "canonical": "_work/canonical_package/analysis/canonical_cohorts/outputs",
+  "cross_cohort": "cross_cohort",
+  "precision_bridge": "precision_bridge",
+  "cross_architecture": "cross_architecture",
+  "postlock_grid": "postlock_grid",
+  "clean_accuracy": "clean_accuracy",
+  "local_geometry": "local_geometry",
+  "manuscript_assets": "manuscript_assets",
+  "new_gpu_experiment_required": false
+}

@@ -24,5 +24,17 @@
   "hostname": "1e41e8b00727",
   "python": "3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0]",
   "platform": "Linux-4.18.0-477.27.1.el8_8.x86_64-x86_64-with-glibc2.39",
-  "note": "This locks the new audit execution mode. Historical cross-cohort equivalence remains subject to D033a reconciliation; no historical result is declared invalid here."
+  "note": "This locks the H200 audit execution mode. The historical cross-hardware check is documented by audit/historical/cross_hardware/POINT_3_5_AUDIT_REPORT_CANONICAL_v10.md; the earlier raw Blackwell log is not redistributed, so the comparison is audit-recorded rather than publicly rerunnable. No historical result is declared invalid here.",
+  "historical_provenance_report": "audit/historical/cross_hardware/D033A_PROVENANCE_REPORT.json",
+  "claim_semantics": {
+    "fp32_means": "float32 attack inputs/model parameters with autocast and GradScaler disabled; TF32 matmul/cudnn is permitted by this audit lock",
+    "historical_canonical_environment_status": "HISTORICAL_RECONCILIATION_PENDING",
+    "engine_source_level_verification": "PASS_NO_AUTOCAST_NO_GRADSCALER_MATH_SDPA",
+    "sdpa_backend_scope": "MATH is explicitly selected when the installed PyTorch exposes torch.nn.attention.sdpa_kernel/SDPBackend, as in the locked torch 2.8.0a0 environment; older-PyTorch fallback is not claimed to force MATH."
+  },
+  "locked_artifact_reference": {
+    "path": "audit/historical/sinusoidal_audit/ATTACK_EVAL_NUMERICAL_MODE_v1.json",
+    "sha256": "df0341e1953c9457bdf9dec409bbdd7f122246f85204f0b999ebc666a70748f7",
+    "note": "This configs/ file is an annotated reviewer-facing copy. The byte-exact locked artifact is the referenced path and is the file whose digest is recorded by FINAL_AUDIT_REPORT_v1.json."
+  }
 }

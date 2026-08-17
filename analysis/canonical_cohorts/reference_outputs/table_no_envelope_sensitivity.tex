@@ -1,0 +1,29 @@
+\begin{table}[H]
+\centering
+\caption{Deterministic sensitivity to omitting the adversarial cumulative
+lower envelope. Values are family-mean noise-minus-adversarial nAUC
+gaps across six seeds. ``Raw'' connects the same loss-selected
+native-budget points without enforcing monotonicity; $\Delta$ is raw
+minus envelope. Every raw seed-level gap is positive at both endpoints.}
+\label{tab:s-no-envelope}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrr rr r c}
+\toprule
+ & & \multicolumn{3}{c}{$\rho_{\max}=0.09$} & \multicolumn{3}{c}{$\rho_{\max}=0.095$} & \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}
+Dataset & PE family & Envelope gap & Raw gap & $\Delta$ & Envelope gap & Raw gap & $\Delta$ & Raw gap $>0$ \\
+\midrule
+ImageNet-100 & Learned & 0.004501 & 0.004466 & -0.000036 & 0.004802 & 0.004768 & -0.000034 & 6/6 \\
+ & Sinusoidal & 0.137345 & 0.137345 & +0.000000 & 0.166796 & 0.166794 & -0.000001 & 6/6 \\
+ & RoPE & 0.047449 & 0.047397 & -0.000053 & 0.056335 & 0.056285 & -0.000050 & 6/6 \\
+ & ALiBi & 0.126587 & 0.126587 & +0.000000 & 0.140466 & 0.140466 & +0.000000 & 6/6 \\
+\midrule
+CIFAR-100 & Learned & 0.015369 & 0.014591 & -0.000778 & 0.018347 & 0.017030 & -0.001317 & 6/6 \\
+ & Sinusoidal & 0.040536 & 0.040536 & +0.000000 & 0.044829 & 0.044829 & +0.000000 & 6/6 \\
+ & RoPE & 0.008677 & 0.008540 & -0.000138 & 0.010009 & 0.009879 & -0.000130 & 6/6 \\
+ & ALiBi & 0.020276 & 0.020276 & +0.000000 & 0.022697 & 0.022697 & +0.000000 & 6/6 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

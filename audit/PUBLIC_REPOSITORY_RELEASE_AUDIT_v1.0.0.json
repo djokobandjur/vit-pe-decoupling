@@ -1,85 +1,174 @@
 {
   "release": "v1.0.0",
-  "date": "2026-08-06",
-  "status": "PASS_PUBLIC_REPOSITORY_RELEASE_CANDIDATE",
+  "date": "2026-08-07",
+  "status": "PASS_PUBLIC_REPOSITORY_RELEASE_CANDIDATE_V8_S1_CLOSED",
+  "audit_closure": {
+    "original_N1_N5": "5/5 CLOSED",
+    "new_V1_V7": "7/7 CLOSED",
+    "new_N1_N6": "6/6 CLOSED",
+    "new_R1_R3": "3/3 CLOSED",
+    "new_S1": "1/1 CLOSED"
+  },
   "scope": {
     "analysis_level_reproduction": "complete_without_gpu",
     "attack_level_rerun": "requires_separately_published_checkpoints",
-    "training_from_scratch": "requires_licensed_datasets_and_gpu_resources"
+    "training_source_provenance": "partial_historical_vitb_amp_only",
+    "source_complete_vits_retraining": false,
+    "historical_vitb_harmonization_row_level_outputs_public": false,
+    "historical_blackwell_raw_log_public": false,
+    "historical_sinext_row_level_outputs_public": false,
+    "later_all_restart_row_level_outputs_public": true,
+    "historical_canonical_environment_reconciliation": "pending",
+    "later_audit_tf32_permitted": true
   },
   "verification": {
     "repository_integrity": "PASS",
     "pytest": {
       "status": "PASS",
-      "passed": 3
+      "passed": 26
+    },
+    "claim_to_evidence_matrix": {
+      "status": "PASS",
+      "gates": 30,
+      "all_evidence_paths_resolve": true
     },
     "full_analysis_reproduction": {
       "status": "PASS_REPRODUCTION_COMPLETE",
+      "exact_output_checks": 35,
       "new_gpu_experiment_required": false
-    },
-    "exact_output_checks": {
-      "status": "PASS",
-      "passed": 13
-    },
-    "cross_architecture_internal_QA": {
-      "status": "PASS",
-      "passed": 31
     },
     "figure_render_comparison": {
       "status": "PASS",
-      "figures": {
-        "fig_primary_robustness_curves": {
-          "changed_pages": 0,
-          "pages": 1,
-          "dpi": 150
-        },
-        "fig_cross_architecture_robustness": {
-          "changed_pages": 0,
-          "pages": 1,
-          "dpi": 150
-        },
-        "fig_layerwise_displacement_profiles": {
-          "changed_pages": 0,
-          "pages": 1,
-          "dpi": 150
-        },
-        "fig_amp_matched_attack_nauc": {
-          "changed_pages": 0,
-          "pages": 1,
-          "dpi": 150
-        }
-      },
-      "all_pixel_identical": true
+      "dpi": 150,
+      "figures_checked": 4,
+      "changed_pages": 0
     },
-    "portable_archive_extraction": {
+    "manuscript_build": {
       "status": "PASS",
-      "exact_output_checks": 13,
-      "pytest_passed": 3
+      "main_pages": 49,
+      "supplement_pages": 5,
+      "abstract_words_texcount": 236,
+      "abstract_conservative_tokens": 249,
+      "overfull_or_undefined_reference_warnings": 0,
+      "benign_hyperref_pdf_string_warnings_main": 4,
+      "benign_hyperref_pdf_string_warnings_supplement": 4,
+      "ghostscript": "PASS",
+      "visual_inspection": "PASS"
+    },
+    "v1_v7": {
+      "V1": "PASS - historical runner and ledger public; no row-level-output overclaim; selected-attack-loss threshold removed",
+      "V2": "PASS - historical audit summary + named D033A public; raw Blackwell log boundary explicit",
+      "V3": "PASS - local geometry explicitly 48 ViT-B/16 only",
+      "V4": "PASS - unsupported exact ALiBi wording removed; all-Markdown guard active",
+      "V5": "PASS - ViT-B 48, ViT-S FP32 24, ViT-S AMP 18 manifests documented",
+      "V6": "PASS - stale pending block removed",
+      "V7": "PASS - 48/48 path binding, post-hoc disclosure, ALiBi log caveat, restart quantification, Supplement callouts"
+    },
+    "checkpoint_provenance": {
+      "vitb_manifest": 48,
+      "vitb_historical_crosscheck": 6,
+      "canonical_attack_path_binding": 48,
+      "vits_fp32_manifest": 24,
+      "vits_amp_manifest": 18
+    },
+    "local_geometry": {
+      "status": "PASS_FULL_RAW_CHECKPOINT_PROCESSED_HASH_CHAIN",
+      "raw_json_files": 6,
+      "direction_rows": 1584,
+      "checkpoint_groups": 48,
+      "architecture": "ViT-B/16",
+      "vits_probed": false
+    },
+    "new_n1_n6": {
+      "N1": "PASS - three SINEXT runs disclosed; 0.09 target not reached; ledger maxima equal canonical maxima; row-level SINEXT absence explicit",
+      "N2": "PASS - float32/no-autocast source evidence separated from TF32-permitted later environment lock; historical environment reconciliation pending",
+      "N3": "PASS - empirical schedule-development separation disclosed; no a priori threshold claim",
+      "N4": "PASS - ignored LaTeX intermediates excluded; complete-tree SHA manifest guard active",
+      "N5": "PASS - pypdf page-count guard; main 46, supplement 5",
+      "N6": "PASS - xr-hyper S1/S6/S7 refs; validation-copy hash equivalence; protocol hash treated as unbound report metadata"
+    },
+    "repository_verifier_checks": 175,
+    "new_r1_r3": {
+      "R1": "PASS - annotated configs numerical-mode record links to byte-exact locked artifact df0341e1... and FINAL_AUDIT_REPORT lock digest",
+      "R2": "PASS - all 30 claim-matrix evidence entries resolve as repository paths or nonempty globs",
+      "R3": "PASS - MATH-SDPA wording is conditioned on torch.nn.attention availability and explicitly anchored to locked PyTorch 2.8 environment"
+    },
+    "all_restart_lock_artifacts": {
+      "status": "PASS",
+      "matched": "3/3 byte-exact",
+      "source": "data/objective_specific/all_restart_audit/FINAL_AUDIT_REPORT_v1.json"
+    },
+    "repository_manifest_records": 372,
+    "fresh_git_add_manifest_coverage": "372/372 PASS; SHA256SUMS_REPOSITORY.txt itself is additionally staged",
+    "new_s1": {
+      "S1": "PASS - actual abstract texcount is 237; label-removal and public-release audit records agree; live texcount guard runs when available"
     }
   },
   "reviewer_facing_hygiene": {
-    "internal_workflow_codes_in_main_tex": 0,
-    "internal_workflow_codes_in_supplement_tex": 0,
-    "obsolete_package_version_wording": 0
+    "unsupported_exact_ALiBi_failure_count_occurrences": 0,
+    "stale_pending_protocol_blocks": 0,
+    "unsupported_public_harmonization_row_level_claims": 0,
+    "geometry_scope_ambiguous_occurrences": 0,
+    "supplement_missing_callouts_for_s2_s5": 0,
+    "hardcoded_s1_s6_s7_table_references": 0,
+    "sinext_row_level_overclaims": 0,
+    "strict_fp32_tf32_exclusion_overclaims": 0,
+    "a_priori_convergence_threshold_overclaims": 0,
+    "stale_page_count_occurrences": 0,
+    "ignored_latex_build_artifacts_in_release": 0,
+    "ambiguous_annotated_vs_locked_numerical_mode_copy": 0,
+    "unresolvable_claim_matrix_evidence_tokens": 0,
+    "unconditional_math_sdpa_backend_overclaims": 0,
+    "conflicting_abstract_texcount_metadata": 0
   },
   "release_policy": {
     "image_data_included": false,
     "checkpoint_binaries_in_git": false,
-    "processed_outputs_sufficient_for_all_tables_and_figures": true,
-    "code_license_default": "MIT — author confirmation required before first public push",
-    "citation_url_and_doi": "to be added after GitHub and Zenodo publication"
+    "processed_outputs_sufficient_for_all_reported_tables_and_figures": true,
+    "raw_geometry_jsons_included": true,
+    "vitb_checkpoint_digest_manifest_included": true,
+    "vits_amp_checkpoint_digest_manifest_included": true,
+    "vitb_manifest_timing": "post_hoc with 6/6 independent historical cross-check",
+    "code_license": "MIT",
+    "public_repository": "https://github.com/djokobandjur/vit-pe-decoupling",
+    "archival_doi": "pending",
+    "historical_sinext_claim_level": "ledger_plus_canonical_source_only",
+    "numerical_mode_claim_level": "engine_source_level_for_historical_canonical; detailed_environment_lock_for_later_audit",
+    "tf32_permitted_in_later_audit_lock": true,
+    "cross_document_supplement_refs": true,
+    "numerical_mode_annotated_config_links_locked_artifact": true,
+    "claim_matrix_evidence_path_resolution_guard": true,
+    "math_sdpa_claim_scope": "explicit selection when torch.nn.attention is available; locked PyTorch 2.8 environment takes this branch",
+    "external_repository_visibility": "MANUAL_PRE_SUBMISSION_CHECK_REQUIRED",
+    "external_repository_visibility_checklist": "audit/PRE_SUBMISSION_CHECKLIST.md",
+    "abstract_texcount_cross_record_guard": true,
+    "abstract_texcount_live_verification_when_available": true
   },
   "key_file_hashes": {
-    "main_tex": "864e6d5034aab91977f7bf381acfb519388b8142767cceca4369db8725fce617",
-    "main_pdf": "8e19be5f9409120f295272c45b6328a4da73deb923cf7ce32327f2edbef8f750",
-    "supplement_tex": "e1c8e77e5bfe7f2e3b9dca99e87d27d3293bcc0e69b51e629d448e1ed05a8d4b",
-    "supplement_pdf": "76b3a28eab4d49ea30e9141647a9cbfcfc83033ad5105004f20115aa5510a0d4",
-    "reproduction_report": "5295d7bc361a5e8507d70d484ee00b8d479fd9094a1991f3bf5e1346ac83b57f"
+    "main_tex": "c3c34b0880a8dde8aff6469f8c0be2d607e17acc5aa0ca6d88bb2493562132d7",
+    "main_pdf": "776b9a6b059f7f4336bba812a29a5b87ac0d8960061d210f6f2668d54de0f202",
+    "supplement_tex": "b2fceba6f092d9fe15f788d4336196792d5e666e134c6990ba7f2bc5a4428fc1",
+    "supplement_pdf": "aca1461f0a5c47a8046b1d6249d64cedff7b022db6c2241a675de29d734d3468",
+    "geometry_provenance": "8194e364da2741739f311858a69731302f32d4f9d86e60ebdb9b66fe342a5c78",
+    "geometry_verification": "f325cbe0037a4e2c219714acd44991d75ed46cdce347a9f25688489c708489b6",
+    "geometry_radius_sensitivity": "bf9ff57f61062fe7be282dafb07b7c73f9ed1852578fcf0a58730add643b9f18",
+    "vitb_checkpoint_manifest": "1c853b789a7b0da838dd65d0e2c0cdf85f89eb8d6f0ceff55167ccedc9735749",
+    "vitb_canonical_attack_binding": "ecaa480d892a3d63431c66e6b8a46456405578c8fad4aa3b6f9162b10aab6e97",
+    "vits_amp_checkpoint_manifest": "b3ec8d4a2b5449311f382ccafbf56c869ce76d304bb574cd2fc6a89fc9ad7dad",
+    "v1_v7_closeout": "36f7875e4b8cacf8ede0d0acb72897c743d20d5d364e6b8578c70f8b58c328c0",
+    "n1_n6_closeout_v6": "d65421ed35767dba370e2cf92f38927a8972d43a0c2bb13d68e7fdb09c85d6c2",
+    "sinext_evidence": "e4d70764be7533b55e60b88358f6a41e17237270aa3f01d44405ccca74d45498",
+    "sinusoidal_input_lock": "7e1cc094d1284e376189895eecb1134f52e2052e26b4ad858b91876954ee2e9b",
+    "later_numerical_mode_lock": "df0341e1953c9457bdf9dec409bbdd7f122246f85204f0b999ebc666a70748f7",
+    "annotated_attack_eval_numerical_mode": "13147ab45ff3aece3f36da5b634b0b5eaecddf70b9fb64b7251d09e2434b8c0a",
+    "locked_attack_eval_numerical_mode": "df0341e1953c9457bdf9dec409bbdd7f122246f85204f0b999ebc666a70748f7",
+    "s1_closeout_v8": "6b21a74a59d544a7c70c6b6c54978932856f8725266ed8ab349ae6c19030ed58"
   },
   "repository_tree": {
-    "tracked_candidate_files": 263,
-    "tracked_candidate_bytes": 16897455,
+    "tracked_candidate_files_excluding_sha_manifest": 367,
+    "tracked_candidate_bytes_excluding_sha_manifest": 24585641,
     "largest_file_bytes": 1448766,
-    "largest_file": "data/canonical_inputs/cifar_base/session_1_seeds_42_123/noise_all_families.json"
+    "largest_file": "data/canonical_inputs/cifar_base/session_1_seeds_42_123/noise_all_families.json",
+    "ignored_latex_build_artifacts": 0
   }
 }

@@ -1,0 +1,183 @@
+{
+  "status": "PASS",
+  "n_checks": 35,
+  "passed": 35,
+  "checks": [
+    {
+      "name": "canonical primary aggregate",
+      "pass": true,
+      "detail": "2e5fbbf4d38ff394e1ea09ec541fa9f6870c9157b0aaffaf854b9b7b3b6d9b3d"
+    },
+    {
+      "name": "canonical wider-range aggregate",
+      "pass": true,
+      "detail": "af82ad48f769dcbaef63636ab78e15b614d7edd270171ce5eb6a981ce431ac6b"
+    },
+    {
+      "name": "canonical seed-level nAUC",
+      "pass": true,
+      "detail": "0d2a800c5a177433c3278bdf368811b3a49905a6b96966ae578e82865f62e675"
+    },
+    {
+      "name": "canonical statistics",
+      "pass": true,
+      "detail": "f7fc496620fd3ca539e13aeb3275e731cfe701c0a69676f31a0c58a70f43a164"
+    },
+    {
+      "name": "no-envelope aggregate",
+      "pass": true,
+      "detail": "02c93c7ca3a93355ce6ce60eca2138bb34824df1ffcc5d86d121effd9fd0ac2c"
+    },
+    {
+      "name": "no-envelope audit report",
+      "pass": true,
+      "detail": "7715034493119a022710cfa996f94351dbc2fe4de37f53bd7f018c432d6b24c9"
+    },
+    {
+      "name": "precision bridge summary",
+      "pass": true,
+      "detail": "4f5fa405afbee7493a0f6a36d213d9d8033f4d912295fcf94002143ff8ed4a05"
+    },
+    {
+      "name": "precision bridge family endpoints",
+      "pass": true,
+      "detail": "2f848ee1002093bece039edccf2dc799075a2d486f21688c920fa92207e3bdad"
+    },
+    {
+      "name": "cross-architecture main table",
+      "pass": true,
+      "detail": "1fe419ffc53cbfc8ddf3359943b4503435c5065604080d096e2f41fd7dc1e5c5"
+    },
+    {
+      "name": "cross-architecture summary",
+      "pass": true,
+      "detail": "12871f2b4b6461f071590bbd6f60f42666061d6b4de46fc4958605465358b638"
+    },
+    {
+      "name": "cross-architecture Welch sensitivity",
+      "pass": true,
+      "detail": "b35c2c885e444ee52a6bc1c4afd7e7b9a3bc01207348af71d3b53aea063f6363"
+    },
+    {
+      "name": "cross-architecture ordinal reconstruction",
+      "pass": true,
+      "detail": "24bdbd2c8fea2f557b6158818bf2088c1a16df8396bb6e82975dcf6c187c018c"
+    },
+    {
+      "name": "clean-accuracy aggregate",
+      "pass": true,
+      "detail": "5fa1dd9ddceab39324d6be547981bda4d0b21d951c3c09858289fee696559490"
+    },
+    {
+      "name": "clean-accuracy report",
+      "pass": true,
+      "detail": "a09adc61fc9db5dc40de3545818cfd8547166c3816d53daa83fd6b5645e3bdc6"
+    },
+    {
+      "name": "post-lock seed-level sensitivity",
+      "pass": true,
+      "detail": "ecd11f0bbcbaa58ee54bf569159191efd4085d58f2566b4fcb6976e1ba98943c"
+    },
+    {
+      "name": "post-lock sensitivity report",
+      "pass": true,
+      "detail": "4645986ee9a0c4df711aa14616d7e7d2638fa3a316501380a26817b14c425d39"
+    },
+    {
+      "name": "local-geometry verification report",
+      "pass": true,
+      "detail": "f325cbe0037a4e2c219714acd44991d75ed46cdce347a9f25688489c708489b6"
+    },
+    {
+      "name": "local-geometry radius sensitivity",
+      "pass": true,
+      "detail": "bf9ff57f61062fe7be282dafb07b7c73f9ed1852578fcf0a58730add643b9f18"
+    },
+    {
+      "name": "manuscript table table_primary_nauc.tex",
+      "pass": true,
+      "detail": "bc6ebcddef1a2a62f3a19f2e25415a0584966e5acb3e965f5655faeaebc4f96b"
+    },
+    {
+      "name": "manuscript table table_cifar_wide.tex",
+      "pass": true,
+      "detail": "b55f00a8a3a00aeee8fa098462fc0a7838ff6773c0000705aca790fe97b122b8"
+    },
+    {
+      "name": "manuscript table table_clean_accuracy.tex",
+      "pass": true,
+      "detail": "7f3b836446568de07b66ab4bb20afec212f5a740fb4b5587e5be76ca9babafc7"
+    },
+    {
+      "name": "manuscript table table_factorial_comparison_design.tex",
+      "pass": true,
+      "detail": "59ea33fea7c81fc104e7211369887a888cdf474d987fdd63d607e5d530f30ac7"
+    },
+    {
+      "name": "manuscript table table_cross_architecture_nauc.tex",
+      "pass": true,
+      "detail": "c3f29b1210338a595809254b52d2f6fa225aee6e56eb275d1283203ad3ec5297"
+    },
+    {
+      "name": "manuscript table table_amp_matched_nauc.tex",
+      "pass": true,
+      "detail": "15c38d3d1cc1ba7730ad451180eb8cafaa063f736eeaed11aec39553176d4146"
+    },
+    {
+      "name": "manuscript table table_objective_comparison.tex",
+      "pass": true,
+      "detail": "08bba6fbc48134ef732034bb8862ff3ae8734aa21653fc6b25d8728a17c6fece"
+    },
+    {
+      "name": "manuscript table table_s_welch.tex",
+      "pass": true,
+      "detail": "da6312eaa1e3dff11a1a116a6013b60f1e12fb9d2bfcd7d881e5e3b1a185fb66"
+    },
+    {
+      "name": "manuscript table table_s_orders.tex",
+      "pass": true,
+      "detail": "e0615706b00e6adff16997b37e256f3c17ea7e643ee07c0c55d42c9f84944396"
+    },
+    {
+      "name": "manuscript table table_s_did.tex",
+      "pass": true,
+      "detail": "6963e8448cf1807f88ef08bead2a97dd8b4b05a1c6ffa2e61d00cfc5751f503e"
+    },
+    {
+      "name": "manuscript table table_s_dispersion.tex",
+      "pass": true,
+      "detail": "9c9f79d8be54daefb5303ff91a17b0eab2b9c744ce957c7ce0bb8396327806db"
+    },
+    {
+      "name": "manuscript table table_s_signs.tex",
+      "pass": true,
+      "detail": "f3e3c0cdbc0510895bcbdaa2eddbaf6a3324bd402f65080073528296f9778e48"
+    },
+    {
+      "name": "manuscript table table_no_envelope_sensitivity.tex",
+      "pass": true,
+      "detail": "9d1275a1bdb1971f1870292d0b14177d7081a3efcb34838fa0094328f5487b0d"
+    },
+    {
+      "name": "manuscript table table_postlock_grid_sensitivity.tex",
+      "pass": true,
+      "detail": "5e5d9418f85483bca17d8a1c5e54ebb2494cf1364ab9556b0056a2995da59bea"
+    },
+    {
+      "name": "cross-architecture 31/31 QA",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "local geometry 1,584 directions / 48 checkpoints",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "post-lock grid sensitivity strengthens separation",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "note": "PDF visual identity is checked in the repository release audit; PDF byte hashes can differ because of metadata."
+}

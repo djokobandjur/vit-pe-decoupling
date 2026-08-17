@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "claim": "ViT-S/16 AMP--FP16 ALiBi training did not yield a valid checkpoint cohort.",
+  "supported_wording": "systematic divergence / no valid checkpoint cohort",
+  "unsupported_wording": "an exact per-seed failure count without raw training logs",
+  "comparison_boundaries": {
+    "ViT-B/16_AMP_ALiBi": "valid six-seed cohort",
+    "ViT-S/16_full_FP32_ALiBi": "valid six-seed cohort",
+    "ViT-S/16_AMP_FP16_ALiBi": "excluded; no valid cohort"
+  },
+  "source_decision": "historical D008 methodology governance",
+  "note": "This compact public record preserves the cohort-level governance conclusion without asserting an unevidenced raw-log count.",
+  "governance_state": "LOCKED",
+  "exact_per_seed_failure_count_publicly_supported": false,
+  "public_evidence_scope": "cohort-level governance; raw per-seed training logs are not distributed"
+}

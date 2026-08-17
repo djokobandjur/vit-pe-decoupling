@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Per-seed ordering of adversarial architecture effects.}
+\label{tab:s-orders}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{rccc l}
+\toprule
+Seed & Learned $\Delta$ & Sinusoidal $\Delta$ & RoPE $\Delta$ & Ascending order \\
+\midrule
+42 & -0.121191 & -0.159980 & -0.153736 & Sinusoidal $<$ RoPE $<$ Learned \\
+123 & -0.188993 & -0.131088 & -0.065368 & Learned $<$ Sinusoidal $<$ RoPE \\
+456 & -0.200771 & -0.197074 & -0.157989 & Learned $<$ Sinusoidal $<$ RoPE \\
+789 & -0.205311 & -0.174361 & 0.014230 & Learned $<$ Sinusoidal $<$ RoPE \\
+1011 & -0.326862 & -0.149978 & -0.087133 & Learned $<$ Sinusoidal $<$ RoPE \\
+1213 & -0.268529 & -0.147064 & -0.109227 & Learned $<$ Sinusoidal $<$ RoPE \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

@@ -1,0 +1,72 @@
+{
+  "package": "SINUSOIDAL_PER_RESTART_AUDIT_v1",
+  "created_at": "2026-07-30",
+  "status": "PASS_STATIC_QA",
+  "methodology_snapshot": "METHODOLOGY MASTER v1.1",
+  "scope": {
+    "architectures": [
+      "ViT-B/16",
+      "ViT-S/16"
+    ],
+    "family": "sinusoidal",
+    "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011,
+      1213
+    ],
+    "points": 48,
+    "restart_records": 240,
+    "session_1": [
+      42,
+      456,
+      1011
+    ],
+    "session_2": [
+      123,
+      789,
+      1213
+    ]
+  },
+  "locked_grids": {
+    "vitb": [
+      0.009,
+      0.01,
+      0.015,
+      0.02
+    ],
+    "vits": [
+      0.009,
+      0.0095,
+      0.01,
+      0.02
+    ]
+  },
+  "qa": {
+    "python_compile": "PASS",
+    "static_unit_test": "PASS",
+    "restart_seed_compatibility_with_canonical_json": "PASS",
+    "notebook_json_parse": "PASS",
+    "cli_help": "PASS",
+    "gpu_runtime_test": "NOT_RUN_NO_SERVER_GPU_OR_CHECKPOINTS_IN_BUILD_ENV"
+  },
+  "resume": {
+    "atomic_unit": "architecture x seed x budget x restart",
+    "atomic_write": "tmp + flush + fsync + os.replace",
+    "validation_before_skip": [
+      "plan/input/numerical/checkpoint/split/source hashes",
+      "steps/budget/restart",
+      "finite metrics",
+      "12-layer rho",
+      "global-RMS budget compliance"
+    ]
+  },
+  "claim_boundary": "D019 ceiling/support audit; per-restart max rho does not extend canonical AUC support/frontier.",
+  "file_count_before_report_and_manifest": 39,
+  "limitations": [
+    "Preflight must run on FMLE before GPU execution.",
+    "Historical D033a reconciliation is captured but not silently declared complete when an engine hash mismatches."
+  ]
+}

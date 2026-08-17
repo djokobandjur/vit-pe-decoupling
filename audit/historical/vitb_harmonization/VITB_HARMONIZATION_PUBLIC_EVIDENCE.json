@@ -1,0 +1,82 @@
+{
+  "schema": "VITB_HARMONIZATION_PUBLIC_EVIDENCE_v1",
+  "status": "PUBLIC_SCOPE_DOCUMENTED",
+  "architecture": "ViT-B/16",
+  "dataset": "ImageNet-100",
+  "confirmation_seed": 123,
+  "public_evidence": {
+    "historical_runner": "run_vitb_harmonization.py",
+    "historical_run_ledger": "EXPERIMENT_RUN_LEDGER_v1.csv",
+    "registered_harmonization_runs": [
+      {
+        "run_id": "RUN-VITB-HARM-LEARNED-400-800",
+        "pe_family": "learned",
+        "seed_scope": "123",
+        "pgd_steps": "800",
+        "pgd_restarts": "5",
+        "pgd_alpha_ratio": "0.05",
+        "budget_grid": "[0.0, 0.002, 0.00225, 0.0025]",
+        "status": "COMPLETE",
+        "protocol_id": "VITB_HARMONIZATION",
+        "notes": "Evidence used to lock harmonized ViT-B schedule; see v17/v18 closure package."
+      },
+      {
+        "run_id": "RUN-VITB-HARM-SINUSOIDAL-400-800",
+        "pe_family": "sinusoidal",
+        "seed_scope": "123",
+        "pgd_steps": "800",
+        "pgd_restarts": "5",
+        "pgd_alpha_ratio": "0.05",
+        "budget_grid": "[0.0, 0.006, 0.007, 0.008]",
+        "status": "COMPLETE",
+        "protocol_id": "VITB_HARMONIZATION",
+        "notes": "Evidence used to lock harmonized ViT-B schedule; see v17/v18 closure package."
+      },
+      {
+        "run_id": "RUN-VITB-HARM-ROPE-200-400",
+        "pe_family": "rope",
+        "seed_scope": "123",
+        "pgd_steps": "400",
+        "pgd_restarts": "5",
+        "pgd_alpha_ratio": "0.05",
+        "budget_grid": "[0.0, 0.05, 0.06, 0.07]",
+        "status": "COMPLETE",
+        "protocol_id": "VITB_HARMONIZATION",
+        "notes": "Evidence used to lock harmonized ViT-B schedule; see v17/v18 closure package."
+      },
+      {
+        "run_id": "RUN-VITB-HARM-ALIBI-100-200",
+        "pe_family": "alibi",
+        "seed_scope": "123",
+        "pgd_steps": "200",
+        "pgd_restarts": "5",
+        "pgd_alpha_ratio": "0.05",
+        "budget_grid": "[0.0, 0.005, 0.0125, 0.02]",
+        "status": "COMPLETE",
+        "protocol_id": "VITB_HARMONIZATION",
+        "notes": "Evidence used to lock harmonized ViT-B schedule; see v17/v18 closure package."
+      },
+      {
+        "run_id": "RUN-VITB-HARM-ALIBI-200-400",
+        "pe_family": "alibi",
+        "seed_scope": "123",
+        "pgd_steps": "400",
+        "pgd_restarts": "5",
+        "pgd_alpha_ratio": "0.05",
+        "budget_grid": "[0.0, 0.02]",
+        "status": "COMPLETE",
+        "protocol_id": "VITB_HARMONIZATION",
+        "notes": "Evidence used to lock harmonized ViT-B schedule; see v17/v18 closure package."
+      }
+    ]
+  },
+  "historical_lock_decision": {
+    "learned": "400x5",
+    "sinusoidal": "400x5",
+    "rope": "200x5",
+    "alibi": "200x5"
+  },
+  "public_scope_limit": "The historical runner and run ledger are redistributed. The original row-level N-to-2N harmonization result JSONs and the original v17/v18 lock/comparison/closure files are not redistributed in this public repository; therefore no public row-level reproduction claim is made for the historical schedule-lock decision.",
+  "terminology_note": "The historical seed-42 development audit did not use a prespecified numerical convergence threshold. The later POINT_3_5 audit summary reports observed selected-attack-loss changes up to 0.00410 for retained configurations and at least 0.00579 for configurations that were extended; these are empirical separation values, not an a priori 0.005 criterion. The manuscript therefore does not present 0.005 as a prespecified selected-attack-loss threshold.",
+  "historical_development_threshold_semantics": "EMPIRICAL_SEPARATION_NOT_A_PRIORI_THRESHOLD"
+}
