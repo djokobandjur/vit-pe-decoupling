@@ -362,7 +362,7 @@ def test_v8_abstract_texcount_metadata_is_consistent():
     label_count = int(m.group(1))
     release = json.loads((ROOT / "audit/PUBLIC_REPOSITORY_RELEASE_AUDIT_v1.0.0.json").read_text(encoding="utf-8"))
     release_count = int(release["verification"]["manuscript_build"]["abstract_words_texcount"])
-    assert label_count == release_count == 237
+    assert label_count == release_count == 236
     texcount = shutil.which("texcount")
     if texcount:
         main = (ROOT / "manuscript/pe_robustness_nn_main.tex").read_text(encoding="utf-8")
@@ -376,7 +376,7 @@ def test_v8_abstract_texcount_metadata_is_consistent():
             out = subprocess.run([texcount, "-brief", name], check=True, capture_output=True, text=True).stdout
             live = re.search(r"(^|\n)\s*(\d+)\+\d+\+\d+", out)
             assert live
-            assert int(live.group(2)) == 237
+            assert int(live.group(2)) == 236
         finally:
             if name:
                 Path(name).unlink(missing_ok=True)

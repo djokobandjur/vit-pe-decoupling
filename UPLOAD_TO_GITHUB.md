@@ -66,8 +66,11 @@ and the release notes.
 - The root MIT licence applies to project code as described in
   `LICENSE_SCOPE.md`.
 - ImageNet images must not be uploaded.
-- Checkpoint binaries are not in Git. A permanent checkpoint archive, if
-  published separately, should be linked with hashes from `checkpoints/`.
+- Checkpoint binaries are not stored in Git. The checkpoint archive is
+  published separately as a shared read-only Google Drive archive. The
+  repository `README.md` and `checkpoints/README.md` provide the archive
+  link, checkpoint inventory, expected directory structure, and SHA-256
+  integrity manifests.
 
 ## Git/manifest consistency
 

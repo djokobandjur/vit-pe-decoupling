@@ -38,10 +38,14 @@ The local geometry section is explicitly scoped to the 48 ViT-B/16 checkpoints. 
 
 ## Not included in Git
 
-ImageNet images and model checkpoint binaries are not redistributed. The
-processed outputs are sufficient to reproduce all tables and figures. Full
-attack reruns require the original checkpoints, and complete retraining
-requires a licensed ImageNet copy and substantial GPU resources.
+ImageNet images and model checkpoint binaries are not redistributed directly
+through Git. The processed outputs are sufficient to reproduce all tables and
+figures without downloading the model binaries. For full attack reruns, the
+exact checkpoints used in the study are available from the shared read-only
+Google Drive checkpoint archive linked from the repository `README.md` and
+`checkpoints/README.md`, together with checkpoint-level SHA-256 integrity
+manifests. Complete retraining requires a licensed ImageNet copy and
+substantial GPU resources.
 
 The full raw all-restart and direct-displacement archives are distributed as
 a separate release asset because they contain large saved perturbation data.
